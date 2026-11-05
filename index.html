@@ -661,7 +661,11 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
 .stack.l{ right: 100%; border-radius: 4px 0 0 4px; background: repeating-linear-gradient(90deg, var(--paper-edge) 0 1px, var(--paper-2) 1px 3px); box-shadow: -2px 2px 6px rgba(0,0,0,.35); }
 .stack.r{ left: 100%; border-radius: 0 4px 4px 0; background: repeating-linear-gradient(90deg, var(--paper-2) 0 2px, var(--paper-edge) 2px 3px); box-shadow: 2px 2px 6px rgba(0,0,0,.35); }
 .stage{ position: absolute; inset: 0; perspective: 2400px; perspective-origin: 50% 40%; }
-.leaf{ position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 0 50%; z-index: 2; }
+.leaf{ position: absolute; inset: 0; transform-origin: 0 50%; z-index: 2; }
+/* 3D only while a page is turning; a flat page scrolls normally on phones */
+.leaf.out, .leaf.in{ transform-style: preserve-3d; }
+.leaf:not(.out):not(.in) .face.back{ display: none; }
+.leaf:not(.out):not(.in) .face{ -webkit-backface-visibility: visible; backface-visibility: visible; }
 .face{
   position: absolute; inset: 0; overflow: hidden; border-radius: 4px 14px 14px 4px;
   background: var(--paper); color: var(--p-ink);
@@ -688,13 +692,18 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
 .folio{ margin: 34px 0 0; text-align: center; font: italic 500 15px/1 var(--f-display); color: var(--p-soft); }
 .more{
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; height: 76px; pointer-events: none;
-  display: flex; align-items: flex-end; justify-content: center; gap: 6px; padding-bottom: 14px;
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px;
   background: linear-gradient(180deg, transparent, var(--paper) 72%);
-  font: italic 500 14px/1 var(--f-display); color: var(--p-soft);
   opacity: 0; transition: opacity .25s;
 }
-.more svg.i{ width: 16px; height: 16px; }
+.more-btn{
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--p-rule); background: var(--paper); color: var(--p-soft);
+  font: italic 500 14px/1 var(--f-display); pointer-events: none;
+}
+.more-btn svg.i{ width: 16px; height: 16px; }
 .face.has-more .more{ opacity: 1; }
+.face.has-more .more-btn{ pointer-events: auto; }
 .dogear{ position: absolute; right: 0; bottom: 0; z-index: 5; width: 56px; height: 56px; padding: 0; border: 0; background: none; cursor: pointer; }
 .dogear::before{
   content: ""; position: absolute; right: 0; bottom: 0; width: 30px; height: 30px; border-top-left-radius: 8px;
@@ -4379,7 +4388,7 @@ function leafHTML(i){
         <article class="notes" data-branch="${R.branch}">${p.html}</article>
         <p class="folio">&mdash; ${i + 1} &mdash;</p>
       </div>
-      <span class="more" aria-hidden="true">${icon('down')}More below</span>
+      <span class="more"><button type="button" class="more-btn" data-act="more" tabindex="-1">${icon('down')}More below</button></span>
       <span class="shade"></span>
       <button type="button" class="dogear" data-act="next" aria-label="${last ? 'Finish this read' : 'Turn the page'}" title="${last ? 'Finish' : 'Turn the page'}"></button>
     </div>
@@ -4656,6 +4665,11 @@ function wire(){
     if (act){
       switch (act.dataset.act){
         case 'next': next(); break;
+        case 'more': {
+          const sh = act.closest('.face').querySelector('.sheet');
+          sh.scrollBy({ top: sh.clientHeight * 0.75, behavior: reduceMotion ? 'auto' : 'smooth' });
+          break;
+        }
         case 'prev': prev(); break;
         case 'toc': toggleDrawer(); break;
         case 'prefs': togglePrefs(); break;
