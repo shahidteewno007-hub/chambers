@@ -914,6 +914,13 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
   .gate{ perspective: none; }
 }
 
+/* the maker's credit */
+.card-by{ margin: 6px 0 0; font-size: 13.5px; color: #7a6650; }
+.card-by span, .foot .by span, .act-sign .sign{ font: 700 1.6em/1 var(--f-hand); color: #1d3b8a; }
+.foot .by{ margin: 14px 0 6px; font-size: 15.5px; color: var(--ink-soft); }
+.foot .by span{ color: var(--brass); font-size: 1.75em; vertical-align: -2px; }
+.act-sign .sign{ display: inline-block; margin-top: 6px; color: #1d3b8a; transform: rotate(-3deg); }
+
 </style>
 </head>
 <body class="locked">
@@ -1005,7 +1012,7 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
           <li><b>Saving clause.</b> If your mind goes blank, write the definition, the relevant section and one example. Partial marks are still marks.</li>
         </ol>
         <div class="act-sign">
-          <p>Given under the seal of the Chambers, November 2026.</p>
+          <p>Given under the seal of the Chambers, November 2026.<br><span class="sign">Shahid</span></p>
           <span class="wax small" aria-hidden="true"><i data-icon="scales"></i></span>
         </div>
       </article>
@@ -1013,7 +1020,8 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
 
     <footer class="foot">
       <p class="luck">Good luck, counsel.</p>
-      <p>Built for BA-LLB Batch 14, Semester VIII, Dadabhoy Institute of Higher Education.</p>
+      <p class="by">Made with late nights and too much chai by <span>Shahid</span></p>
+      <p>For BA-LLB Batch 14, Semester VIII, Dadabhoy Institute of Higher Education.</p>
     </footer>
   </main>
 
@@ -1067,7 +1075,7 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
 const CONFIG = {
   // Who people should ask for access when their name isn't on the list.
   // Leave '' to say "the classmate who shared this link".
-  librarian: '',
+  librarian: 'Shahid',
 
   // The class list, stored as scrambled codes so names aren't readable here.
   // Empty = preview mode: any name gets in (except "outsider", which shows the refusal).
@@ -1098,7 +1106,7 @@ const LIBRARY = [
   { id: 'pil', title: 'Public International Law II', short: 'PIL II', code: 'LLB 421', color: '#23436f', emblem: 'globe',
     blurb: 'Disputes, intervention, environmental law, war, enemy character, war crimes, neutrality and blockade: all six mid-term lectures.' },
   { id: 'equity', title: 'Equity & Specific Relief', short: 'Equity', code: 'LLB 422', color: '#1d5b4b', emblem: 'scales',
-    blurb: 'Fairness that fills the gaps in the law, and the remedies the Specific Relief Act 1877 gives.' },
+    blurb: 'Where equity came from, and sections 1 to 27 of the Specific Relief Act 1877: getting property back and specific performance.' },
   { id: 'cpc', title: 'Civil Procedure II', short: 'CPC II', code: 'LLB 423', color: '#57295f', emblem: 'court',
     blurb: 'How a civil case moves through the courts under the Code of Civil Procedure 1908.' },
   { id: 'crpc', title: 'Criminal Procedure II', short: 'CrPC II', code: 'LLB 424', color: '#5c3a1a', emblem: 'gavel',
@@ -1137,6 +1145,1233 @@ const DAILY = [
   ['Lex semper dabit remedium', 'The law will always give a remedy.', 'Panic has a remedy too: the Last-Minute Read.'],
   ['Cessante ratione legis cessat ipsa lex', 'When the reason for a law ends, the law ends too.', 'When the exams end, so does the stress.']
 ];
+
+
+/* ==========================================================
+   EQUITY & SPECIFIC RELIEF (LLB 422)
+   Deep Read, part 1: start page + Part I + Part II of the outline
+   Written from the Specific Relief Act 1877 and sir's mid-term
+   outline (no class notes were available).
+   ========================================================== */
+BOOKS.equity = { deep: '', clear: '', quick: '', tips: '' };
+
+BOOKS.equity.deep += String.raw`
+# Start here: the map of the mid-term
+
+Sir's instructions are clear: **one or two questions from each Part, and nothing outside the outline.** So this book follows the outline exactly.
+
+:::cram
+Part I: Introduction || Meaning, origin and growth of equity; the Specific Relief Act 1877 (object, nature, scope); sections 1 to 7
+Part II: Recovering possession || Immovable property, sections 8 and 9; movable property, sections 10 and 11
+Part III: Specific performance || Sections 12 to 27: which contracts, which not, the court's discretion, for whom, for whom not, variation, against whom
+:::
+
+:::remember The one idea behind the whole subject
+The ordinary remedy for a broken promise is **money** (damages). **Specific relief** gives you **the thing itself**: your land back, your car back, or the sale actually completed. Equity invented this idea, and the Specific Relief Act 1877 wrote it down.
+:::
+
+## The section map
+:::cram
+Sections 1 to 7 || Preliminary: title, definitions, savings, how relief is given, preventive relief, no penal laws
+Sections 8 to 9 || Possession of immovable property
+Sections 10 to 11 || Possession of movable property
+Sections 12 to 20 || Contracts that **may** be specifically enforced
+Section 21 || Contracts that **cannot** be specifically enforced
+Section 22 || The court's **discretion**
+Section 23 || **For whom** (who may sue)
+Sections 24 to 25 || **For whom not** (who is barred)
+Section 26 || Enforced only **with a variation**
+Section 27 || **Against whom**
+:::
+
+:::tip A note on these notes
+There were no class notes for this subject, so this book is written from the **Act itself** and standard equity principles. Where sir taught something differently in class, follow sir.
+:::
+
+===
+
+# Part I: What equity means
+
+In everyday language, **equity** means fairness. In law, it has a more exact meaning: a body of rules that grew up to **correct the harshness and gaps of the ordinary law**, so that justice is done in the individual case.
+
+Think of the law as a big ruler that measures everyone the same way. Most of the time that is fair. But sometimes a rigid rule gives an unjust result in one particular case. Equity is the adjustment that fixes that case.
+
+## Three definitions worth quoting
+:::define Aristotle
+Equity is a **correction of the law where it is defective because it is general**. A law-maker cannot foresee every case, so equity fills in what he would have said had he been there.
+:::
+
+:::define Maitland
+"Equity is that body of rules administered by our English courts of justice which, were it not for the operation of the Judicature Acts, would be administered only by those courts which would be known as Courts of Equity."
+:::
+
+:::define The textbook definition
+Equity is that portion of **natural justice** which, though suitable for enforcement by courts, was for historical reasons **not enforced by the common law courts**, and so was enforced by the Court of Chancery.
+:::
+
+## What equity does
+- It works **alongside** the common law, not against it. Maitland said equity came "not to destroy the law, but to fulfil it".
+- It acts **in personam**, on the conscience of the person, by ordering him to do or not to do something.
+- Its remedies are **discretionary**. You are entitled to damages for a breach as of right, but you are never entitled to an equitable remedy as of right.
+- It gave the law new remedies: **specific performance, injunctions, rectification, rescission**, and the whole law of **trusts**.
+
+:::remember
+Equity = **fairness + conscience + discretion**, used to fill the gaps that rigid rules leave.
+:::
+
+===
+
+# Part I: Where equity came from
+
+## 1. The common law got stuck
+After the Norman Conquest (1066), the king's courts built the **common law**. To start a case you needed a **writ**, a fixed formula for a fixed kind of claim. The **Provisions of Oxford (1258)** stopped new writs being freely created. The **Statute of Westminster II (1285)** allowed writs only "in like cases" (*in consimili casu*). So if your problem did not fit an existing writ, you had **no remedy at all**.
+
+The common law had other problems too:
+- **Only damages:** it could pay you money, but could not order a person to hand over land or complete a sale.
+- **Rigid procedure:** a tiny mistake in form could lose a good case.
+- **Powerful defendants** could bully or bribe juries.
+- **No recognition of trusts:** if you gave land to a friend "to hold for my children", the law saw only the friend as owner.
+
+## 2. Petitions to the king, then to the Chancellor
+People who could not get justice petitioned the **king**, the "fountain of justice". The king passed these petitions to his **Lord Chancellor**, usually a churchman, known as the **keeper of the king's conscience**. The Chancellor decided according to **conscience and fairness**, not strict writs.
+
+By the 15th century this had become a separate court: the **Court of Chancery**.
+
+## 3. "The length of the Chancellor's foot"
+Early equity depended on each Chancellor's own sense of fairness, so it was unpredictable. The writer **John Selden** famously mocked it: equity varied with the conscience of the Chancellor, as if the measure of a foot were the length of the Chancellor's own foot.
+
+## 4. The clash with the common law
+:::case Earl of Oxford's Case (1615)
+The common law courts, led by **Chief Justice Coke**, and the Chancery, led by **Lord Ellesmere**, clashed over whether the Chancellor could stop a party from enforcing a common law judgment obtained unfairly. **King James I** decided the dispute: **where common law and equity conflict, equity prevails.**
+:::
+
+## 5. Equity becomes a system
+**Lord Nottingham** (1673 to 1682), often called the father of modern equity, and later **Lord Eldon** (1801 to 1827) turned equity into a body of **settled principles and precedents**. By then equity was as fixed as the common law, and the "Chancellor's foot" jibe no longer fitted.
+
+## 6. Fusion: the Judicature Acts (1873 to 1875)
+These Acts merged the old courts into one **Supreme Court of Judicature**. Every court could now apply both law and equity, and the Acts confirmed that **if they conflict, equity prevails**. The courts were fused; the two bodies of rules still keep their own character.
+
+:::trick The equity timeline
+**Writs froze (1258), petitions went to the Chancellor, Chancery was born, Oxford's Case (1615) made equity win, Nottingham and Eldon fixed it, the Judicature Acts (1873–75) fused the courts.**
+:::
+
+===
+
+# Part I: The maxims of equity
+
+Equity's principles are summed up in short **maxims**. They explain why the Specific Relief Act works the way it does, so link them to sections in your answers.
+
+:::cram
+He who seeks equity must do equity || If you want the court's help, you must be fair to the other side too || A buyer must pay the price before getting the land (s. 24(b))
+He who comes into equity must come with clean hands || A party who acted unfairly in the matter is refused relief || Discretion under s. 22
+Delay defeats equity || The law helps those who are alert, not those who sleep on their rights || Limitation; refusal for long delay
+Equity follows the law || Equity does not override clear legal rules; it fills gaps || Relief only for a real contract (s. 4)
+Equity acts in personam || It orders the person to do or not do something || Specific performance and injunctions
+Where there is a right, there is a remedy || Equity steps in when the law gives no adequate remedy || Section 12
+Equity looks on that as done which ought to be done || A binding agreement to sell is treated as if the sale ought to happen || Specific performance itself
+Equity looks to the intent, not the form || Substance matters more than wording || Variation under s. 26
+Where the equities are equal, the first in time prevails || Between two equally innocent claimants, the earlier one wins || Section 27
+Equality is equity || Where no other rule fits, share equally
+:::
+
+:::trick The three you must never forget
+**Do equity, clean hands, delay defeats.** Almost every refusal of specific performance comes back to one of these three.
+:::
+
+===
+
+# Part I: Equity in the subcontinent and Pakistan
+
+## Justice, equity and good conscience
+When the British set up courts in India in the late 18th century, there were many gaps: no written law covered many disputes. So the courts were told that, where no law applied, they must decide according to **"justice, equity and good conscience"**. That phrase brought English equitable ideas into Indian law.
+
+## Codification
+Instead of a separate Court of Chancery, the subcontinent **wrote equity into statutes**:
+- the **Contract Act 1872**;
+- the **Specific Relief Act 1877**;
+- the **Transfer of Property Act 1882**; and
+- the **Trusts Act 1882**.
+
+There are no separate equity courts in Pakistan. The **same civil courts** apply both the strict law and these equitable statutes.
+
+## Pakistan today
+The **Specific Relief Act 1877 still applies in Pakistan**, with amendments. (India replaced its version with a new Specific Relief Act in 1963, so be careful when you read Indian books.) Pakistani courts still use equitable principles such as clean hands, readiness and willingness, and discretion every day, especially in suits for specific performance of agreements to sell land.
+
+Equity also sits comfortably with Islamic ideas of **'adl (justice) and ihsan (fairness and doing good)**, which the courts also draw on.
+
+:::remember
+In England, equity came from a separate court. In Pakistan, equity lives **inside statutes**, above all the **Specific Relief Act 1877**.
+:::
+
+===
+
+# Part I: The Specific Relief Act 1877: object, nature and scope
+
+## Object
+The preamble says it is expedient to **define and amend the law relating to certain kinds of specific relief obtainable in civil suits**.
+
+In simple words, the Act tells the civil courts **when and how they may give the actual thing** a person is entitled to, instead of only money. It turns English equitable remedies into written law.
+
+:::define Specific relief
+Relief by which the court gives the plaintiff **the very thing he is entitled to**, or makes the defendant **do or not do the very act** he is bound to, instead of awarding compensation.
+:::
+
+**Example:** A agrees to sell you his house for Rs 50 lakh, then refuses. Damages would give you money. Specific relief makes him **actually transfer the house** to you.
+
+## Nature
+1. **Equitable and discretionary:** most of its relief is granted at the court's discretion (see s. 22), not as of right.
+2. **Remedial:** it gives **remedies**, not new rights. The right itself comes from the contract or from property law; the Act supplies the way to enforce it.
+3. **In personam:** its orders act on the person: deliver this, do that, stop doing this.
+4. **Not exhaustive:** it covers "certain kinds" of specific relief. Other remedies, such as damages under the Contract Act, survive (s. 4).
+5. **Civil:** it is for civil suits, not for enforcing penal laws (s. 7).
+
+## Scope: what the Act covers
+:::cram
+Part I || Preliminary || Sections 1 to 7
+Part II || Specific relief: recovering possession (ss. 8 to 11), specific performance (ss. 12 onwards), rectification (s. 31), rescission (s. 35), cancellation (s. 39), declarations (s. 42), receivers (s. 44)
+Part III || Preventive relief: injunctions || Section 52 onwards
+:::
+
+:::tip Exam point
+For your mid-term, only sections **1 to 27** matter, but showing the examiner you know the Act's overall structure makes a strong introduction to any Part I answer.
+:::
+
+===
+
+# Part I: Sections 1 to 4
+
+:::law Section 1: Short title, extent and commencement
+This Act may be cited as the **Specific Relief Act, 1877**. It extends to the **whole of Pakistan**, and it came into force on **1 May 1877**.
+:::
+
+:::law Section 2: Repealed
+It originally repealed older enactments. It has itself been repealed, so it has no work to do today.
+:::
+
+:::law Section 3: Interpretation clause
+Unless the context says otherwise:
+- **"Obligation"** includes **every duty enforceable by law**.
+- **"Trust"** includes every kind of **express, implied or constructive fiduciary ownership**.
+- **"Trustee"** includes every person holding such fiduciary ownership, expressly, by implication or constructively.
+- **"Settlement"** means any instrument, **other than a will or codicil**, by which the destination or devolution of **successive interests** in movable or immovable property is disposed of or agreed to be disposed of.
+
+Words defined in the **Contract Act 1872** have the same meaning in this Act.
+:::
+
+**Why it matters:** "obligation" is wide. It covers duties arising from contract, trust, statute or tort. "Trust" is also wide: a person holding property for someone else in any fiduciary way counts, even without a formal trust deed. You will meet **trust** again in s. 12(a) and **settlement** again in ss. 24(d) and 25(c).
+
+:::law Section 4: Savings
+Unless the Act expressly says otherwise, nothing in it:
+1. gives a right to relief for an agreement that is **not a contract**;
+2. takes away any right to relief, **other than specific performance**, that a person has under a contract; or
+3. affects the operation of the **Registration Act** on documents.
+:::
+
+**In simple words:**
+1. No valid contract, no specific performance. An agreement void under the Contract Act cannot be enforced through this Act.
+2. Your other contractual remedies, like **damages**, stay alive.
+3. Registration rules still apply. The Act does not cure a document that the Registration Act says must be registered.
+
+===
+
+# Part I: Sections 5 to 7
+
+:::law Section 5: Specific relief, how given
+Specific relief is given:
+1. **(a)** by **taking possession** of certain property and **delivering** it to a claimant;
+2. **(b)** by ordering a party to **do the very act** he is under an obligation to do;
+3. **(c)** by **preventing** a party from doing what he is under an obligation not to do;
+4. **(d)** by **determining and declaring the rights** of parties, otherwise than by an award of compensation; or
+5. **(e)** by **appointing a receiver**.
+:::
+
+:::cram
+(a) Possession || Recover land or goods || Sections 8 to 11
+(b) Doing the act || Specific performance, rectification, mandatory injunction || Sections 12 onwards
+(c) Preventing an act || Injunctions || Section 52 onwards
+(d) Declaring rights || Declaratory decree || Section 42
+(e) Receiver || A neutral person takes charge of the property || Section 44
+:::
+
+:::trick Three Ps and a DR
+**P**ossession, **P**erformance, **P**revention, **D**eclaration, **R**eceiver.
+:::
+
+:::law Section 6: Preventive relief
+Specific relief granted under **clause (c) of section 5** is called **preventive relief**.
+:::
+
+So preventive relief means **stopping** someone from doing something, which is done through **injunctions**. Everything else in s. 5 is relief that gives or restores something.
+
+:::law Section 7: Relief not granted to enforce penal laws
+Specific relief **cannot be granted for the mere purpose of enforcing a penal law**.
+:::
+
+**Why:** criminal law is enforced by the state through prosecution and punishment, not by private civil suits. **Example:** you cannot file a suit under this Act asking the court to order your neighbour to obey a provision of the Pakistan Penal Code. Report it to the police. But if the same act also **violates your own civil right**, for example it damages your property, you may seek civil relief for **that** right.
+
+:::remember
+Section 7 blocks only the *mere* purpose of enforcing a penal law. If a private civil right is also hit, civil relief is still open.
+:::
+
+===
+
+# Part II: Recovering possession: the big picture
+
+Part II answers one question: **someone else has my property. How do I get it back?**
+
+The Act gives different routes for **immovable** property (land, houses, shops) and **movable** property (cars, jewellery, furniture, documents).
+
+:::cram
+Section 8 || Immovable property || Recover it on the strength of your **title** (ownership or right to possess)
+Section 9 || Immovable property || Recover it on the strength of your earlier **possession**, quickly, even against the owner
+Section 10 || Movable property || Recover it if you are entitled to possess it
+Section 11 || Movable property || Compel a non-owner holding it to deliver that particular thing, in four special cases
+:::
+
+:::law Section 8: Recovery of specific immovable property
+A person **entitled to the possession** of specific immovable property may recover it **in the manner prescribed by the Code of Civil Procedure**.
+
+**Explanation:** a **trustee** may sue under this section for possession of property in which his beneficiary has the beneficial interest.
+:::
+
+## How a section 8 suit works
+- It is an ordinary **title suit**. The plaintiff must prove he is **entitled** to possession, usually as owner, though a lessee or mortgagee with a right to possess can also sue.
+- **Title is fully in issue.** The defendant can defeat the claim by showing a better title.
+- It follows the **CPC** procedure: plaint, written statement, issues, evidence, decree, and a normal **appeal**.
+- **Limitation:** generally **12 years** (Limitation Act 1908, Articles 142 and 144).
+- It can be brought against **anyone**, including the government.
+
+**Example:** your late father owned a plot. A cousin has been occupying it for four years, claiming he inherited it. You file a section 8 suit, prove your inheritance and ownership, and get a decree for possession.
+
+===
+
+# Part II: Section 9: the six-month suit
+
+:::law Section 9: Suit by person dispossessed of immovable property
+If any person is **dispossessed without his consent** of immovable property **otherwise than in due course of law**, he, or any person claiming through him, may by suit **recover possession**, **notwithstanding any other title** that may be set up in the suit.
+
+- Nothing in this section bars any person from suing to **establish his title** and recover possession.
+- **No suit** under this section can be brought against the **Federal or a Provincial Government**.
+- **No appeal** lies from an order or decree in such a suit, and **no review** is allowed.
+:::
+
+## The idea behind it
+**Nobody may take the law into his own hands.** Even a true owner must use the courts. If he throws you out by force, you get possession back first, and then he can prove his title in a proper suit. Section 9 protects **peaceful possession** and discourages force.
+
+## What the plaintiff must prove
+1. He was **in possession** of the immovable property.
+2. He was **dispossessed**.
+3. It was **without his consent**.
+4. It was **otherwise than in due course of law**, meaning not under a court decree or a lawful legal process.
+5. He filed within **six months** of the dispossession (Limitation Act 1908, Article 3).
+
+:::trick IN, OUT, two WITHOUTs and a WITHIN
+He was **IN** possession, got pushed **OUT**, **WITHOUT** consent, **WITHOUT** due course of law, and sued **WITHIN** six months.
+:::
+
+## What the court does not ask
+**Who owns the property?** Title is irrelevant. That is the meaning of "**notwithstanding any other title**". The court looks only at **previous possession and wrongful dispossession**.
+
+**Example:** a landlord, angry about late rent, changes the locks while the tenant is away and throws out his things. Even though the landlord owns the shop, the tenant can sue under section 9 within six months and **get possession back**. The landlord must then use the proper legal process to evict him.
+
+## The special features
+- **Summary and quick**, because only possession is in issue.
+- **No appeal and no review.** In Pakistan, a **revision** under **section 115 CPC** can still be filed in the High Court.
+- **Not against the government.** A person dispossessed by the government must use an ordinary suit (s. 8) or other remedies.
+- **Not final on title.** The loser can still file a regular title suit under section 8.
+
+===
+
+# Part II: Section 8 versus section 9
+
+This comparison is one of the most likely questions from Part II. Learn the table.
+
+:::compare Section 8 | Section 9
+Based on **title** (entitlement to possession) || Based on **previous possession** only
+Title is **fully in issue** || Title is **irrelevant**: "notwithstanding any other title"
+Limitation about **12 years** (Articles 142 and 144) || Limitation **6 months** (Article 3)
+Can be brought against the **government** || **Cannot** be brought against the government
+Ordinary procedure with **appeal** || **No appeal, no review**; revision under s. 115 CPC
+The decree **settles the right** to possession || The decree is **temporary** in effect; the owner can still sue on title
+Plaintiff must be entitled || Even a trespasser in settled possession can use it against someone who throws him out by force
+:::
+
+## How the two work together
+Imagine A is the real owner and B is in possession. A throws B out by force.
+1. **B** sues A under **section 9** within six months and gets possession back, even though A owns the land.
+2. **A** then files a **section 8** suit, proves his title, and gets a decree.
+3. A then takes possession **through the court**, in due course of law.
+
+Section 9 does not decide who owns the land. It decides **how** possession may be taken: only by law, never by force.
+
+:::warn Don't miss this
+Section 9 does not protect against **lawful** dispossession, for example by the court's bailiff executing a decree. That is "due course of law".
+:::
+
+===
+
+# Part II: Movable property: sections 10 and 11
+
+:::law Section 10: Recovery of specific movable property
+A person **entitled to the possession** of specific movable property may **recover it** in the manner provided by the **Code of Civil Procedure**.
+
+- **Explanation 1:** a **trustee** may sue for possession of movable property in which his beneficiary has the beneficial interest.
+- **Explanation 2:** a **special or temporary right** to the present possession of property is **enough** to support a suit under this section.
+:::
+
+**In simple words:** you do not have to be the owner. Anyone with a **right to present possession** can sue: a pledgee, a bailee, a hirer, a warehouse-keeper, a carrier, or a trustee.
+
+**Example:** you hand your laptop to a repair shop. The shop has a **special right** to possess it while repairing it. If a stranger steals it from the shop, the shop itself can sue under section 10.
+
+The suit is for that **specific** thing, so the property must be identifiable. Under the CPC, the decree can be for the thing itself, or for its value if it cannot be delivered.
+
+:::law Section 11: Liability of a person in possession, not as owner, to deliver
+Any person who has possession or control of a particular article of movable property **of which he is not the owner** may be **compelled specifically to deliver** it to the person entitled to its immediate possession, in any of these cases:
+1. **(a)** the thing is held by the defendant as the **agent or trustee** of the claimant;
+2. **(b)** **compensation in money would not be adequate relief** for its loss;
+3. **(c)** it would be **extremely difficult to ascertain the actual damage** caused by its loss;
+4. **(d)** possession of the thing has been **wrongfully transferred** from the claimant.
+:::
+
+**Examples:**
+- **(a)** You leave your car with your manager while you are abroad, and he refuses to return it.
+- **(b) and (c)** A family heirloom, an old family Quran, a painting by a dead artist, or your grandfather's watch. Money cannot replace it, and its value cannot be measured.
+- **(d)** Someone takes your motorbike without your permission and passes it to a friend.
+
+:::trick The four As of section 11
+**A**gent or trustee, money not **A**dequate, damage hard to **A**scertain, wrongfully **A**lienated (transferred).
+:::
+
+:::compare Section 10 | Section 11
+A general right to recover movable property || A special remedy in four listed cases
+Defendant can be anyone, even one claiming as owner || Defendant must **not be the owner**
+The decree may be for the thing **or its value** || The court **compels delivery of the thing itself**
+Plaintiff needs a right to possession, even special or temporary || Plaintiff needs the right to **immediate** possession
+:::
+`;
+
+
+/* ==========================================================
+   EQUITY & SPECIFIC RELIEF (LLB 422)
+   Deep Read, part 2: Part III of the outline (sections 12 to 27)
+   ========================================================== */
+BOOKS.equity.deep += String.raw`
+===
+# Part III: What specific performance is
+
+:::define Specific performance
+An order of the court that makes a party to a contract **actually do what he promised**, instead of paying damages for breaking the promise.
+:::
+
+**Example:** A signs an agreement to sell you his plot for Rs 30 lakh and takes Rs 5 lakh as earnest money. The plot's price then doubles, and A refuses to transfer it. Damages would give you money, but you wanted **that plot**. A decree for specific performance orders A to execute the sale deed in your favour when you pay the balance.
+
+## Its character
+- It is an **equitable** remedy: it exists because damages are sometimes **not enough**.
+- It is **discretionary** (s. 22). Even with a valid contract and a clear breach, the court may refuse.
+- It acts **in personam**: it orders the defendant personally.
+- The plaintiff must have been **ready and willing** to perform his own part (s. 24(b)).
+- **Limitation:** **3 years** from the date fixed for performance or, if no date was fixed, from when the plaintiff learned that performance was refused (Limitation Act 1908, Article 113).
+
+## How Part III is arranged
+:::cram
+Sections 12 to 20 || **Which** contracts may be enforced, and how far
+Section 21 || Which contracts **cannot** be enforced
+Section 22 || The court's **discretion**
+Section 23 || **Who may** sue
+Sections 24 and 25 || **Who may not** sue
+Section 26 || Enforcement only **with a variation**
+Section 27 || **Against whom** it may be enforced
+:::
+
+:::trick The six questions of Part III
+**Which contract? Not which? Should the court? Who sues? Who can't? Against whom?** Answer any problem question in that order.
+:::
+
+===
+
+# Part III: Section 12: when specific performance may be granted
+
+:::law Section 12: Cases in which specific performance is enforceable
+Except as otherwise provided in this Chapter, specific performance of any contract may, **in the discretion of the court**, be enforced:
+1. **(a)** when the act agreed to be done is in performance, wholly or partly, of a **trust**;
+2. **(b)** when there is **no standard for ascertaining the actual damage** caused by non-performance;
+3. **(c)** when the act is such that **pecuniary compensation would not afford adequate relief**; or
+4. **(d)** when it is **probable that pecuniary compensation cannot be got** for non-performance.
+:::
+
+**Examples:**
+- **(a) Trust:** a trustee agrees, in carrying out his trust, to transfer trust property to the beneficiary, then refuses.
+- **(b) No standard:** a contract to sell a rare painting by a dead artist, or a rare antique. There is no market price to measure the loss.
+- **(c) Money not adequate:** a contract to sell a particular house or plot. Every piece of land is unique.
+- **(d) Money can't be got:** the defendant is insolvent or about to flee, so a decree for damages would be worthless.
+
+:::law Section 12, Explanation: the two presumptions
+Unless the contrary is proved, the court **shall presume**:
+- that breach of a contract to transfer **immovable property cannot** be adequately relieved by money; and
+- that breach of a contract to transfer **movable property can** be adequately relieved by money.
+:::
+
+**In simple words:** land is presumed unique, so **specific performance is the normal remedy** for land contracts. Goods are presumed replaceable, so **damages are the normal remedy**, unless the plaintiff proves the goods are special, like a rare item or shares not available in the market.
+
+:::trick TSAP: This Seller Ain't Paying
+**T**rust, no **S**tandard of damage, money not **A**dequate, money not **P**robable.
+:::
+
+:::remember
+Even when s. 12 applies, the words are "**may**, in the discretion of the court". Section 12 opens the door; s. 22 decides whether the court walks through it.
+:::
+
+===
+
+# Part III: Sections 13 to 17: part performance
+
+What if the contract can only be **partly** performed? Sections 13 to 17 answer this.
+
+:::law Section 13: Contract where part of the subject-matter has ceased to exist
+Notwithstanding section 56 of the Contract Act, a contract is **not wholly impossible** to perform just because **a portion of its subject-matter**, existing at its date, has **ceased to exist** at the time of performance.
+:::
+
+**Example:** A agrees to sell B a house with its land. Before the sale, the house burns down, but the land remains. The contract is not frustrated. It can still be performed for what remains, and B may be required to pay the price.
+
+:::law Section 14: Where the unperformed part is small
+Where a party cannot perform the whole of his part, but the part left unperformed is **small in value compared with the whole** and **can be compensated in money**, the court may, **at the suit of either party**, order performance of what can be done and award **compensation for the deficiency**.
+:::
+
+**Example:** A agrees to sell B 100 acres, but it turns out he owns only 98. Either party may sue, and B gets 98 acres with a reduction in price for the missing 2.
+
+:::law Section 15: Where the unperformed part is large
+Where the unperformed part is a **considerable portion** of the whole, or **cannot be compensated in money**, the defaulting party **cannot** get specific performance. But the **other party** may get performance of whatever part can be performed, **provided he gives up** all claim to further performance and all right to compensation for the deficiency or for any loss.
+:::
+
+**Example:** A agrees to sell B 100 acres, but 50 belong to someone else. A cannot force B to buy the 50. B can choose to take the 50 acres at the **full price**, giving up any claim for the rest and any compensation.
+
+:::compare Section 14: small part missing | Section 15: large part missing
+Either party may sue || Only the party **not** in default may sue
+The court orders performance plus compensation || The plaintiff takes what is available
+Compensation for the deficiency || **No compensation**: he must give it up
+98 of 100 acres || 50 of 100 acres
+:::
+
+:::law Section 16: An independent part
+When one part of a contract can and ought to be specifically performed, and it stands on a **separate and independent footing** from another part that cannot or ought not to be performed, the court may order performance of **the first part**.
+:::
+
+**Example:** in one agreement, A agrees to sell B a house for a fixed price and also to work as B's personal driver. The house sale is independent, so it can be enforced even though the personal service cannot be.
+
+:::law Section 17: Bar on part performance in other cases
+The court shall **not** order specific performance of **part** of a contract except in cases covered by **sections 14, 15 and 16**.
+:::
+
+:::trick 13 to 17 in one breath
+**13:** part gone, contract alive. **14:** small gap, either sues, pay the difference. **15:** big gap, only the innocent sues, and gets no compensation. **16:** a separate part can stand alone. **17:** no other part performance.
+:::
+
+===
+
+# Part III: Sections 18 to 20: title, compensation and penalties
+
+:::law Section 18: Purchaser's rights against a vendor with imperfect title
+Where a person contracts to sell or let property with only an **imperfect title**, the purchaser or lessee has these rights:
+1. **(a)** if the vendor later **acquires an interest** in the property, the purchaser can compel him to make good the contract out of that interest;
+2. **(b)** where other persons must **concur** to validate the title, and they are bound to concur at the vendor's request, the purchaser can compel the vendor to **procure their concurrence**;
+3. **(c)** where the vendor professed to sell **unencumbered** property but it is **mortgaged** for no more than the price, and the vendor only has a right to redeem, the purchaser can compel him to **redeem the mortgage** and get a conveyance from the mortgagee;
+4. **(d)** where the vendor sues for specific performance and the suit is **dismissed because of his imperfect title**, the defendant gets his **deposit back with interest**, his **costs**, and a **lien** on the vendor's interest in the property for them.
+:::
+
+**Examples:**
+- **(a)** A sells a plot he does not yet own, then later inherits it. B can force A to transfer it.
+- **(b)** A co-owns land with his brother, who has agreed to join any sale A makes. B can force A to get his brother's signature.
+- **(c)** A sells a "clear" house that is actually mortgaged to a bank for less than the price. B can make A pay off the bank.
+
+:::trick Acquire, Concur, Redeem, Refund
+The four rights under s. 18.
+:::
+
+:::law Section 19: Power to award compensation
+A plaintiff suing for specific performance **may also ask for compensation**, either **in addition to** or **instead of** performance.
+- If the court decides specific performance **ought not** to be granted, but there is a contract that the defendant broke, it **shall award compensation**.
+- If it decides specific performance **ought** to be granted but is **not enough** to do full justice, it **shall also award compensation**.
+- **Explanation:** the fact that the contract has become **incapable of specific performance** does not stop the court from awarding compensation.
+:::
+
+**Why it matters:** the plaintiff does not have to file a second suit for damages. One suit covers both. **Exam tip:** ask for compensation in the alternative in the plaint.
+
+:::law Section 20: A liquidated damages clause is no bar
+A contract otherwise fit for specific performance may be enforced **even though a sum is named in it** as payable on breach, and the party in default is **willing to pay that sum**.
+:::
+
+**Example:** a sale agreement says "if the seller backs out, he will pay Rs 2 lakh". The seller cannot escape by offering the Rs 2 lakh. The buyer can still get the land, unless the contract shows the parties really intended the seller to have a **choice** between selling and paying.
+
+===
+
+# Part III: Section 21: contracts that cannot be enforced
+
+:::law Section 21: Contracts not specifically enforceable
+The following contracts **cannot** be specifically enforced:
+1. **(a)** a contract for whose non-performance **compensation in money is adequate relief**;
+2. **(b)** a contract that runs into such **minute or numerous details**, or is so **dependent on the personal qualifications or volition** of the parties, or is otherwise by its nature such, that the court **cannot enforce its material terms**;
+3. **(c)** a contract whose terms the court **cannot find with reasonable certainty**;
+4. **(d)** a contract that is **by its nature revocable**;
+5. **(e)** a contract made by **trustees** in **excess of their powers** or in **breach of trust**;
+6. **(f)** a contract made by or for a **corporation or public company** created for special purposes, or by its promoters, that is **in excess of its powers**;
+7. **(g)** a contract whose performance involves a **continuous duty** lasting **longer than three years** from its date;
+8. **(h)** a contract where a **material part of the subject-matter**, supposed by both parties to exist, had **ceased to exist before** the contract was made.
+
+And, except as provided by the **Arbitration Act 1940**, no contract to refer differences to **arbitration** shall be specifically enforced. But if a party to such a contract refuses to arbitrate and sues on a matter he agreed to refer, the contract **bars his suit**.
+:::
+
+## Each clause in simple words
+- **(a) Money is enough:** a contract to buy 100 bags of ordinary cement. You can buy cement anywhere; just claim the extra cost.
+- **(b) Too detailed or too personal:** a contract to build a complex building, or for a famous singer to perform at your wedding. The court cannot supervise every brick, and cannot force someone to sing well.
+- **(c) Uncertain terms:** "I'll sell you some land at a fair price". Which land? What price? The court cannot guess.
+- **(d) Revocable:** a partnership at will, which either partner can end at any time. Ordering it to continue is pointless.
+- **(e) Trustees beyond their powers:** a trustee agrees to sell trust land when the trust deed forbids sale.
+- **(f) Companies beyond their powers:** an *ultra vires* contract of a company.
+- **(g) Continuous duty over 3 years:** a 10-year contract to supply water or maintain a building. The court cannot supervise it for years.
+- **(h) Subject-matter already gone:** both parties thought the cargo was safe, but the ship had already sunk before they signed.
+
+:::trick My Mother Usually Reads To Cute Children Stories
+**M**oney adequate, **M**inute or personal, **U**ncertain, **R**evocable, **T**rustees beyond powers, **C**ompanies beyond powers, **C**ontinuous over 3 years, **S**ubject-matter gone.
+:::
+
+:::compare Section 12 | Section 21
+When specific performance **may** be granted || When it **cannot** be granted
+Money is not adequate || 21(a): money is adequate
+Opens the door, subject to discretion || Shuts the door completely
+:::
+
+:::warn Section 13 versus section 21(h)
+**Section 13:** part of the subject-matter disappears **after** the contract, and the contract survives. **Section 21(h):** a material part had disappeared **before** the contract, and it cannot be enforced.
+:::
+
+===
+
+# Part III: Section 22: the discretion of the court
+
+:::law Section 22: Discretion as to decreeing specific performance
+The jurisdiction to decree specific performance is **discretionary**. The court is **not bound** to grant it merely because it is lawful to do so. But the discretion is **not arbitrary**: it must be **sound and reasonable**, guided by **judicial principles**, and capable of correction by a court of appeal.
+:::
+
+## When the court may refuse
+1. **Unfair advantage:** the circumstances in which the contract was made give the plaintiff an **unfair advantage** over the defendant, even without fraud or misrepresentation.
+2. **Unforeseen hardship:** performance would cause the defendant **hardship he did not foresee**, while refusal would cause **no such hardship** to the plaintiff.
+
+## When the court may grant it
+3. **Substantial acts:** the plaintiff has **done substantial acts or suffered losses** because of a contract capable of specific performance.
+
+## The two explanations
+- **Explanation 1:** mere **inadequacy of consideration**, or the mere fact that the contract is **onerous** or **improvident** for the defendant, is **not** by itself an unfair advantage or hardship. A bad bargain is still a bargain.
+- **Explanation 2:** hardship is judged by the circumstances **at the time of the contract**, unless the hardship was caused by the plaintiff's own act **after** the contract.
+
+**Examples:**
+- **Unfair advantage:** a buyer knows the government is about to build a motorway next to the land, but the illiterate seller does not, and the buyer hurries him into signing a cheap sale.
+- **Unforeseen hardship:** a seller agrees to sell part of his land, not realising that the sale would cut his remaining house off from the only road.
+- **Substantial acts:** a buyer, relying on the agreement, has been put in possession and has built a house on the plot.
+
+:::trick Two reasons to refuse, one reason to grant
+Refuse for **Unfair advantage** and **Unforeseen hardship**. Grant where the plaintiff did **Substantial acts**. A cheap price alone is never enough.
+:::
+
+## Other grounds courts weigh
+Courts also refuse where the plaintiff comes with **unclean hands**, was **not ready and willing**, or showed **long, unexplained delay**. These are the equity maxims at work.
+
+===
+
+# Part III: Section 23: who may obtain specific performance
+
+:::law Section 23: Who may obtain specific performance
+Except as otherwise provided in this Chapter, specific performance may be obtained by:
+1. **(a)** any **party** to the contract;
+2. **(b)** the **representative in interest** or the **principal** of any party, **but not** where the party's **learning, skill, solvency or any personal quality** is a material ingredient, or the contract **forbids assignment**, unless his part has **already been performed**;
+3. **(c)** where the contract is a **marriage settlement** or a **compromise of doubtful rights between members of the same family**, any person **beneficially entitled** under it;
+4. **(d)** where the contract was made by a **tenant for life** in due exercise of a power, the **remainderman**;
+5. **(e)** a **reversioner in possession**, where the agreement is a covenant with his predecessor in title and he is entitled to its benefit;
+6. **(f)** a **reversioner in remainder**, where he is entitled to the benefit of such a covenant and will suffer **material injury** from its breach;
+7. **(g)** where a public company made the contract and later **amalgamated** with another, the **new company**;
+8. **(h)** where the **promoters** of a public company made a contract before incorporation for the company's purposes, and it is warranted by the terms of incorporation, the **company**.
+:::
+
+## In simple words
+- **(a) The parties themselves.**
+- **(b) Their representatives:** legal heirs, assignees, executors, or a principal for whom an agent contracted. **Example:** a buyer dies after signing the sale agreement; his heirs can sue for specific performance. But if a famous architect agreed to design your house and dies, his heirs cannot insist on designing it in his place, because his personal skill was the heart of the contract.
+- **(c) Family beneficiaries:** a family settlement dividing land between brothers may be enforced by a family member who benefits from it, even if he did not sign it.
+- **(d) to (f) Future owners:** people who will own the property later (remaindermen and reversioners) can enforce covenants made for the property's benefit.
+- **(g) and (h) Companies:** an amalgamated company, or a company enforcing a pre-incorporation contract made by its promoters.
+
+:::trick Section 23 in four groups
+**Parties, their heirs, family beneficiaries, future owners, companies.** The heirs lose out only where personal skill matters or assignment is barred.
+:::
+
+===
+
+# Part III: Sections 24 and 25: who cannot obtain it
+
+:::law Section 24: Personal bars to relief
+Specific performance **cannot** be enforced in favour of a person:
+1. **(a)** who **could not recover compensation** for its breach;
+2. **(b)** who has become **incapable of performing**, or **violates**, any **essential term** of the contract that remains to be performed on his part;
+3. **(c)** who has **already chosen his remedy** and obtained **satisfaction** for the breach; or
+4. **(d)** who, before the contract, had **notice** that a **settlement** of the subject-matter (even without consideration) had been made and was then in force.
+:::
+
+## In simple words
+- **(a)** If you could not even claim damages, for example because the contract is void or you suffered no legal wrong, you cannot claim the stronger remedy.
+- **(b) Readiness and willingness:** this is the most important bar in practice. A buyer must show he was **ready and willing throughout** to pay the price. If he never had the money, or broke a key term himself, he gets nothing. **"He who seeks equity must do equity."** Pakistani courts often require the buyer to **deposit the balance price** in court to prove his readiness.
+- **(c) No second bite:** if you sued for damages and were paid, you cannot then ask for the property too.
+- **(d)** If you knew that the property had already been settled on someone else, such as a family settlement, and still contracted for it, you cannot enforce it.
+
+:::trick The four bars of section 24
+**No damages, no readiness, no second bite, no ignoring a settlement.**
+:::
+
+:::law Section 25: Vendor or lessor without title, or not a voluntary settlor
+A contract for the sale or letting of property, movable or immovable, **cannot** be specifically enforced in favour of a **vendor or lessor**:
+1. **(a)** who, **knowing he had no title**, contracted to sell or let it;
+2. **(b)** who believed he had good title, but **cannot**, at the time fixed for completion, give a **title free from reasonable doubt**; or
+3. **(c)** who, **before** the contract, had made a **settlement** of the subject-matter (even without consideration).
+:::
+
+**In simple words:** section 25 is aimed at **sellers and landlords**. A seller cannot force a buyer to accept property that the seller **had no right to sell**, **cannot give clean title** to, or **had already settled** on someone else. The buyer is not made to buy a lawsuit.
+
+:::compare Section 24 | Section 25
+Bars **any plaintiff** || Bars a **vendor or lessor** only
+Based on the plaintiff's conduct or position || Based on the seller's **title**
+Example: buyer not ready and willing || Example: seller with doubtful title
+:::
+
+:::remember Link to section 18
+Section 18 helps the **buyer** when the seller's title is imperfect. Section 25 stops the **seller** from forcing a buyer to take an imperfect title. Same problem, seen from both sides.
+:::
+
+===
+
+# Part III: Section 26: enforcement only with a variation
+
+:::law Section 26: Non-enforcement except with variation
+Where a plaintiff seeks specific performance of a **written** contract and the defendant **sets up a variation**, the plaintiff **cannot** get the performance he seeks **except with that variation**, in these cases:
+1. **(a)** where, by **fraud, mistake of fact or misrepresentation**, the written contract is in its terms or effect **different from what the parties agreed**, or does **not contain all the terms** on which the defendant agreed;
+2. **(b)** where the parties' object was to produce a **certain legal result** that the contract, as drafted, is **not calculated to produce**; or
+3. **(c)** where the parties have, **after** signing the contract, **agreed to vary** its terms.
+:::
+
+## In simple words
+The written paper is not always the whole truth. If the defendant proves that the real agreement was different, the plaintiff gets performance only **as actually agreed**, not as wrongly written.
+
+**Examples:**
+- **(a) Wrong paper:** the parties agreed on 5 marlas, but the typist wrote 7. The buyer cannot get 7.
+- **(b) Wrong legal result:** the parties meant to create a lease, but the document was drafted in a way that would make it a sale.
+- **(c) Later change:** after signing, the parties orally agreed to move the completion date or change the price.
+
+:::trick Wrong paper, wrong result, later change
+The three cases of section 26. Behind them sits the maxim: **equity looks to the intent, not the form.**
+:::
+
+:::tip Exam point
+Section 26 is the **defendant's shield**: he may resist a wrongly written contract. Under **section 31** (rectification, outside this mid-term), a party can ask the court to **correct** the document itself.
+:::
+
+===
+
+# Part III: Section 27: against whom it may be enforced
+
+:::law Section 27: Relief against parties and persons claiming under them by subsequent title
+Except as otherwise provided, specific performance may be enforced against:
+1. **(a)** **either party** to the contract;
+2. **(b)** any person **claiming under him by a title arising after the contract**, **except a transferee for value who paid his money in good faith and without notice of the original contract**;
+3. **(c)** any person claiming under a title which, though **prior** to the contract and **known to the plaintiff**, **might have been displaced** by the defendant;
+4. **(d)** where a public company made the contract and later **amalgamated**, the **new company**;
+5. **(e)** where the **promoters** made the contract before incorporation for the company's purposes and it is warranted by the terms of incorporation, the **company**, **provided** the company has **accepted** the contract and **communicated** its acceptance.
+:::
+
+## The most important clause: 27(b)
+Here is the classic Pakistani land problem. A signs an agreement to sell his plot to **B**. Then A sells the same plot to **C**. Can B still get it?
+- **Yes**, B can enforce the agreement **against C**, because C's title arose **after** B's contract.
+- **Unless** C is a **bona fide purchaser for value without notice**: he **paid** real money, acted in **good faith**, and did **not know** about B's agreement.
+
+:::define Bona fide purchaser for value without notice
+A later buyer who (1) paid **value**, (2) acted in **good faith**, and (3) had **no notice**, actual or constructive, of the earlier agreement. He is the **only** later buyer that section 27(b) protects.
+:::
+
+**Notice** can be **constructive**: if B was already in possession of the plot, or the agreement was registered, or C would have found out by making the usual enquiries, C is treated as knowing. In practice, the burden is on C to show he was a genuine buyer in good faith.
+
+**Example for 27(c):** before agreeing to sell to B, A had leased the land to D, and B knew this. If A had the right to end D's lease, B can enforce the sale against D too.
+
+:::trick Section 27 in one line
+**Against the seller, and everyone who came after him, except the honest buyer who paid and didn't know.** The BFP is the only shield.
+:::
+
+:::remember The maxim behind 27(b)
+**Where the equities are equal, the first in time prevails.** B came first. Only a completely innocent C, who paid value without notice, can beat him.
+:::
+
+===
+
+# Putting it together: a problem question
+
+**Question:** *A agreed in writing to sell his house in Karachi to B for Rs 1 crore and received Rs 10 lakh as earnest money. The completion date was 1 March. Before that date, A sold the house to C for Rs 1.3 crore. C knew of the agreement with B. B was always ready with the balance. Advise B.*
+
+Answer it with the **six questions of Part III**:
+
+1. **Which contract?** A contract to sell immovable property. Under the **Explanation to s. 12**, the court presumes money is **not** adequate relief, so specific performance is the normal remedy.
+2. **Not which?** None of the **s. 21** bars applies: the terms are certain, the contract is not personal or revocable, and there is no long continuous duty.
+3. **Should the court?** Under **s. 22**, there is no unfair advantage and no unforeseen hardship to A. A higher offer is not hardship (Explanation 1).
+4. **Who sues?** B is a **party**, so he can sue under **s. 23(a)**.
+5. **Any bar?** Under **s. 24(b)**, B was **ready and willing** throughout. He should offer to **deposit the balance** of Rs 90 lakh in court.
+6. **Against whom?** Against A, and against **C under s. 27(b)**, because C's title came after the contract and C **had notice**, so he is not a bona fide purchaser.
+
+**Limitation:** B must sue within **3 years** of 1 March (Article 113). **Compensation:** B may also claim compensation under **s. 19**, in addition or in the alternative.
+
+**Conclusion:** B is likely to get a decree for specific performance against both A and C. C must join in conveying the house to B.
+
+:::tip How to score
+Quote the **section number** at every step, use the statutory wording ("ready and willing", "bona fide purchaser for value without notice"), and end with a one-line conclusion advising the client.
+:::
+`;
+
+
+/* ==========================================================
+   EQUITY & SPECIFIC RELIEF (LLB 422): Clear Read
+   ========================================================== */
+BOOKS.equity.clear = String.raw`
+# Part I: Equity
+
+**Equity** is a body of rules that **corrects the harshness and gaps of the ordinary law**, so that justice is done in the individual case. It works on **conscience**, acts **in personam**, and its remedies are **discretionary**.
+
+**Definitions:** Aristotle, a correction of law where it is defective because it is general. Maitland, the rules that, but for the Judicature Acts, only Courts of Equity would apply. Equity came "not to destroy the law, but to fulfil it".
+
+## Origin and growth
+:::cram
+The common law got stuck || Fixed writs (Provisions of Oxford 1258; Westminster II 1285), only damages, rigid procedure, no trusts
+Petitions || To the king, then to the Lord Chancellor, the "keeper of the king's conscience"
+Court of Chancery || A separate court of conscience by the 15th century
+"The Chancellor's foot" || Selden's jibe: early equity was unpredictable
+Earl of Oxford's Case (1615) || Coke against Ellesmere; James I decided that equity prevails in a conflict
+Nottingham and Eldon || Turned equity into settled principles
+Judicature Acts (1873–75) || Courts fused; equity still prevails in a conflict
+:::
+
+## The maxims to quote
+He who seeks equity must do equity; clean hands; delay defeats equity; equity follows the law; equity acts in personam; equity looks on that as done which ought to be done; equity looks to intent, not form; where the equities are equal, the first in time prevails.
+
+## In Pakistan
+British courts decided gaps by **"justice, equity and good conscience"**. Equity was then **codified**: the Contract Act 1872, the **Specific Relief Act 1877**, the TPA 1882 and the Trusts Act 1882. Pakistan has no separate equity courts; ordinary civil courts apply it. The 1877 Act still applies in Pakistan (India replaced it in 1963).
+
+===
+
+# Part I: The Act and sections 1 to 7
+
+## Object, nature, scope
+- **Object (preamble):** to **define and amend the law relating to certain kinds of specific relief** in civil suits.
+- **Specific relief:** giving the **thing itself**, or making a person do or not do the very act, instead of money.
+- **Nature:** equitable, **discretionary**, **remedial** (no new rights), in personam, **not exhaustive** (other remedies survive), civil only.
+- **Scope:** Part I preliminary (ss. 1–7); Part II specific relief: possession (8–11), specific performance (12 onwards), rectification (31), rescission (35), cancellation (39), declarations (42), receivers (44); Part III preventive relief, injunctions (52 onwards).
+
+## The sections
+:::cram
+Section 1 || Title, extent (all of Pakistan), commencement (1 May 1877)
+Section 2 || Repealed
+Section 3 || "Obligation" = every duty enforceable by law; "trust" = express, implied or constructive fiduciary ownership; "settlement" = an instrument (not a will) disposing of successive interests || Contract Act meanings apply
+Section 4 || Savings: no relief for an agreement that is not a contract; other remedies such as damages survive; the Registration Act still applies
+Section 5 || Relief by possession, doing the act, preventing the act, declaring rights, appointing a receiver || Three Ps and a DR
+Section 6 || Relief under s. 5(c) is **preventive** relief (injunctions)
+Section 7 || No specific relief merely to enforce a **penal law**
+:::
+
+===
+
+# Part II: Recovering possession
+
+## Immovable property
+- **Section 8:** a person **entitled** to possession recovers it under the **CPC**. A title suit: title fully in issue, about 12 years' limitation, appeal allowed, works against the government. A **trustee** may sue for his beneficiary.
+- **Section 9:** a person **dispossessed without consent, otherwise than in due course of law**, may recover possession **notwithstanding any other title**. Within **6 months** (Article 3). **Not against the government. No appeal, no review** (revision under s. 115 CPC lies). The owner may still sue on title later.
+
+:::trick Section 9: IN, OUT, two WITHOUTs and a WITHIN
+**IN** possession, pushed **OUT**, **WITHOUT** consent, **WITHOUT** due course of law, sued **WITHIN** six months.
+:::
+
+**Why section 9 exists:** nobody, not even an owner, may take the law into his own hands. **Example:** a landlord who changes the locks on his tenant must give the shop back first, and evict through the court.
+
+:::compare Section 8 | Section 9
+Title || Previous possession
+About 12 years || 6 months
+Appeal allowed || No appeal, no review
+Against anyone, including the government || Not against the government
+Final on the right || Owner can still sue on title
+:::
+
+## Movable property
+- **Section 10:** a person **entitled** to possession recovers it under the CPC. Explanations: a **trustee** may sue; a **special or temporary right** (pledgee, bailee, repairer) is enough.
+- **Section 11:** a person holding a thing, **not as owner**, can be **compelled to deliver it** where (a) he holds it as **agent or trustee**, (b) money is **not adequate**, (c) damage is **hard to ascertain**, (d) possession was **wrongfully transferred**.
+
+:::trick The four As of section 11
+**A**gent or trustee, not **A**dequate, hard to **A**scertain, wrongfully **A**lienated.
+:::
+
+**Section 10 vs 11:** s. 10 is general, against anyone, and the decree can be for the thing or its value. s. 11 is against a **non-owner**, in four cases, and forces delivery of the **thing itself** (the family heirloom, a dead artist's painting).
+
+===
+
+# Part III: Sections 12 to 20
+
+**Specific performance:** an order to do what you promised. Equitable, **discretionary**, in personam. Limitation **3 years** (Article 113).
+
+## Section 12: may be enforced
+(a) **trust**; (b) **no standard** to measure damage; (c) money **not adequate**; (d) money **probably can't be got**.
+**Explanation:** the court presumes breach of a contract to transfer **land cannot** be relieved by money, and breach for **goods can**, unless proved otherwise.
+
+:::trick TSAP: This Seller Ain't Paying
+**T**rust, no **S**tandard, not **A**dequate, not **P**robable.
+:::
+
+## Part performance
+:::cram
+Section 13 || Part of the subject-matter ceases to exist **after** the contract || The contract is not wholly impossible (overrides Contract Act s. 56)
+Section 14 || Unperformed part is **small** and compensable || **Either** party sues; performance plus compensation
+Section 15 || Unperformed part is **large** or not compensable || Only the **other** party sues, gives up compensation, takes what exists
+Section 16 || An **independent** part || Can be enforced separately
+Section 17 || No part performance || Except under ss. 14 to 16
+:::
+
+## Sections 18 to 20
+- **Section 18:** against a seller with **imperfect title**, the buyer can make him (a) use a title he **later acquires**, (b) get others to **concur**, (c) **redeem a mortgage**; (d) if the seller's own suit fails for bad title, the buyer gets his **deposit, interest, costs and a lien**. *Acquire, Concur, Redeem, Refund.*
+- **Section 19:** compensation **in addition to or instead of** performance, in the same suit, even if performance has become impossible.
+- **Section 20:** a sum named for breach (**liquidated damages**) is **no bar**. The seller cannot buy his way out by paying it.
+
+===
+
+# Part III: Sections 21 and 22
+
+## Section 21: cannot be enforced
+:::cram
+(a) || Money is adequate || Ordinary goods
+(b) || Minute details, or personal qualifications or volition || Building works, a singer's performance
+(c) || Terms not reasonably certain || "Some land at a fair price"
+(d) || Revocable by nature || Partnership at will
+(e) || Trustees beyond powers or in breach of trust
+(f) || Company or promoters beyond powers (ultra vires)
+(g) || Continuous duty over **3 years** || Long supply or maintenance contracts
+(h) || Material subject-matter had gone **before** the contract || The ship had already sunk
+Arbitration || Agreements to arbitrate not enforced (save under the Arbitration Act 1940), but they **bar** a suit on the same matter
+:::
+
+:::trick My Mother Usually Reads To Cute Children Stories
+Money, Minute, Uncertain, Revocable, Trustees, Companies, Continuous, Subject gone.
+:::
+
+## Section 22: discretion
+Specific performance is **discretionary**, not a right, but the discretion must be **sound, reasonable, judicial** and open to correction on appeal.
+- **May refuse:** (I) **unfair advantage** to the plaintiff, even without fraud; (II) **unforeseen hardship** to the defendant, with none to the plaintiff.
+- **May grant:** (III) the plaintiff did **substantial acts** or suffered losses relying on the contract.
+- **Explanation 1:** **mere inadequacy of price** or a bad bargain is not unfair advantage or hardship.
+- **Explanation 2:** hardship is judged **at the time of the contract**, unless the plaintiff caused it later.
+
+===
+
+# Part III: Sections 23 to 27
+
+## Section 23: who may sue
+(a) any **party**; (b) a **representative in interest** (heirs, assignees) or a **principal**, but **not** where **personal skill, learning or solvency** matters, or assignment is barred, unless his part is already performed; (c) beneficiaries of a **marriage settlement** or **family compromise**; (d) a **remainderman**; (e) and (f) **reversioners**; (g) an **amalgamated** company; (h) a **company** on its promoters' pre-incorporation contract.
+
+## Section 24: who may not sue
+(a) one who **couldn't claim damages**; (b) one **incapable of performing**, or who **violates an essential term**: the **readiness and willingness** rule; (c) one who already **chose his remedy** and got satisfaction; (d) one who knew of an earlier **settlement**.
+
+:::trick The four bars of section 24
+No damages, no readiness, no second bite, no ignoring a settlement.
+:::
+
+## Section 25: sellers who can't enforce
+A **vendor or lessor** cannot enforce if he (a) **knew he had no title**, (b) cannot give a title **free from reasonable doubt** at completion, or (c) had earlier **settled** the property.
+
+## Section 26: only with variation
+For a **written** contract, where the defendant proves a variation: (a) **fraud, mistake or misrepresentation** made the paper differ from the deal, (b) it fails to produce the **intended legal result**, (c) the terms were **varied later**. *Wrong paper, wrong result, later change.*
+
+## Section 27: against whom
+(a) either **party**; (b) anyone claiming under him by a **later title**, **except a bona fide transferee for value without notice**; (c) a holder of a **prior title, known** to the plaintiff, that the defendant **could have displaced**; (d) an **amalgamated** company; (e) the **company**, if it **accepted and communicated** acceptance of the promoters' contract.
+
+:::remember
+The classic case: A agrees to sell to B, then sells to C. **B wins against C** unless C paid value, in good faith, **without notice**. Where the equities are equal, the first in time prevails.
+:::
+`;
+
+
+/* ==========================================================
+   EQUITY & SPECIFIC RELIEF (LLB 422): Last-Minute Read
+   ========================================================== */
+BOOKS.equity.quick = String.raw`
+# Parts I and II in five minutes
+
+## Part I: Introduction
+:::cram
+Equity || Fairness that corrects rigid law || Conscience, in personam, discretionary
+Origin || Frozen writs, petitions to the Chancellor, Court of Chancery || Keeper of the king's conscience
+Earl of Oxford's Case (1615) || Equity prevails over common law in a conflict
+Judicature Acts (1873–75) || Courts fused; equity still prevails
+Maxims || Do equity; clean hands; delay defeats; first in time prevails
+Pakistan || "Justice, equity and good conscience", then codified in statutes || SRA 1877 still applies
+SRA object || Define and amend the law on certain kinds of specific relief
+Nature || Discretionary, remedial, in personam, not exhaustive, civil
+Section 3 || Obligation, trust, trustee, settlement
+Section 4 || No contract, no relief; damages survive; Registration Act applies
+Section 5 || Possession, Performance, Prevention, Declaration, Receiver || Three Ps and a DR
+Section 6 || Preventive relief = s. 5(c) = injunctions
+Section 7 || No relief merely to enforce a penal law
+:::
+
+## Part II: Recovering possession
+:::cram
+Section 8 || Immovable, on title, CPC || About 12 years, appeal allowed
+Section 9 || Dispossessed without consent, not by law || 6 months; title irrelevant; not against government; no appeal or review; revision under s. 115 CPC
+Section 10 || Movable, on a right to possession || A special or temporary right is enough; a trustee may sue
+Section 11 || Non-owner compelled to deliver || Agent or trustee, money not Adequate, hard to Ascertain, wrongfully Alienated
+:::
+
+===
+
+# Part III in five minutes
+
+:::cram
+Specific performance || An order to do what was promised || Discretionary; 3 years (Article 113)
+Section 12 || Trust, no Standard, not Adequate, not Probable || Land presumed unique, goods not
+Section 13 || Part of the subject-matter gone after the contract || Contract still alive
+Section 14 || Small part missing || Either party sues, with compensation
+Section 15 || Large part missing || Only the innocent party sues, no compensation
+Sections 16 and 17 || An independent part can be enforced || No other part performance
+Section 18 || Seller with imperfect title || Acquire, Concur, Redeem, Refund
+Section 19 || Compensation in addition to or instead of performance
+Section 20 || A named penalty sum is no bar
+Section 21 || My Mother Usually Reads To Cute Children Stories || Money, Minute, Uncertain, Revocable, Trustees, Companies, Continuous over 3 years, Subject gone
+Section 22 || Refuse: unfair advantage, unforeseen hardship. Grant: substantial acts || A low price alone is not enough
+Section 23 || Parties, heirs (not where personal skill matters), family beneficiaries, reversioners, companies
+Section 24 || No damages, no readiness, no second bite, no ignoring a settlement
+Section 25 || Seller without title, with doubtful title, or after a settlement
+Section 26 || Wrong paper, wrong result, later change
+Section 27 || Party and later claimants, except a bona fide purchaser for value without notice
+:::
+
+===
+
+# If you remember only this
+
+:::remember Ten lines to walk in with
+1. Equity **corrects rigid law**; it is conscience, in personam and discretionary.
+2. **Oxford's Case (1615):** equity prevails. **Judicature Acts:** courts fused.
+3. **Section 5:** Three Ps and a DR. **Section 6:** preventive = injunctions. **Section 7:** no penal laws.
+4. **Section 9:** IN, OUT, two WITHOUTs, WITHIN six months; title irrelevant; no appeal; not against the government.
+5. **Section 11:** the four As, aimed at a **non-owner**.
+6. **Section 12:** TSAP; land is presumed unique.
+7. **Sections 14 and 15:** small gap, either sues with compensation; big gap, only the innocent sues, without compensation.
+8. **Section 21:** My Mother Usually Reads To Cute Children Stories.
+9. **Section 22:** unfair advantage and unforeseen hardship refuse; substantial acts grant; a low price is never enough.
+10. **Section 24(b):** ready and willing. **Section 27(b):** only the bona fide purchaser for value without notice escapes.
+:::
+
+:::tip The formula for every answer
+Quote the section, explain it in simple words, give an example, link an equity maxim, conclude in one line.
+:::
+`;
+
+
+/* ==========================================================
+   EQUITY & SPECIFIC RELIEF (LLB 422): Tips & Tricks
+   ========================================================== */
+BOOKS.equity.tips = String.raw`
+# How to score in Equity
+
+:::tip The paper is part-wise
+Sir will ask **one or two questions from each Part**, and nothing outside the outline. Don't skip a Part. Even an average answer in every Part beats a perfect answer in one.
+:::
+
+- **Quote the section.** This is a statute paper. Write "Section 9 of the Specific Relief Act 1877 provides that...", then explain it in your own words.
+- **Use the Act's own words** for key phrases: "otherwise than in due course of law", "notwithstanding any other title", "ready and willing", "transferee for value in good faith without notice".
+- **Give an example for every section.** Simple Pakistani ones work best: a plot, a shop, a landlord changing the locks, an agreement to sell with earnest money.
+- **Link a maxim.** "He who seeks equity must do equity" for s. 24(b); "where the equities are equal, the first in time prevails" for s. 27(b).
+- **Draw a table** for comparison questions: s. 8 vs s. 9, s. 10 vs s. 11, s. 14 vs s. 15, s. 12 vs s. 21, s. 24 vs s. 25.
+- **Problem questions:** use the six questions: which contract (s. 12), not which (s. 21), should the court (s. 22), who sues (s. 23), any bar (ss. 24 and 25), against whom (s. 27). Then limitation (Article 113) and compensation (s. 19).
+
+## Plan your 75 minutes
+- **First 5 minutes:** read the paper and mark the question you'll answer from each Part.
+- **Split the rest equally between the Parts.**
+- **Last 5 to 10 minutes:** check that every answer names its section and has an example.
+
+===
+
+# Numbers that win marks
+
+:::cram
+1 May 1877 || The Act came into force
+Section 3 || Obligation, trust, trustee, settlement
+Section 5 || Five ways relief is given
+Section 6 || Preventive relief = s. 5(c)
+Section 7 || No penal laws
+Sections 8 and 9 || Immovable property
+Sections 10 and 11 || Movable property
+Article 3, Limitation Act 1908 || **6 months** for a s. 9 suit
+Articles 142 and 144 || About **12 years** for a title suit
+Article 113 || **3 years** for specific performance
+Section 115 CPC || Revision against a s. 9 decree
+Section 21(g) || A continuous duty over **3 years**
+Section 56, Contract Act || Frustration; overridden by s. 13
+Section 31 || Rectification (outside the mid-term)
+Section 42 || Declaration (outside the mid-term)
+Section 52 onwards || Injunctions (outside the mid-term)
+1615 || Earl of Oxford's Case
+1873 to 1875 || Judicature Acts
+:::
+
+===
+
+# Memory tricks
+
+:::trick Three Ps and a DR (section 5)
+**P**ossession, **P**erformance, **P**revention, **D**eclaration, **R**eceiver.
+:::
+
+:::trick IN, OUT, two WITHOUTs and a WITHIN (section 9)
+In possession, pushed out, without consent, without due course of law, within six months.
+:::
+
+:::trick Section 9's three NOs and one YES
+**No** government, **no** appeal, **no** review, but **yes** to revision.
+:::
+
+:::trick The four As (section 11)
+**A**gent or trustee, not **A**dequate, hard to **A**scertain, wrongfully **A**lienated.
+:::
+
+:::trick TSAP: This Seller Ain't Paying (section 12)
+**T**rust, no **S**tandard, not **A**dequate, not **P**robable.
+:::
+
+:::trick Small gap, big gap (sections 14 and 15)
+**Small gap:** either sues, pay the difference. **Big gap:** only the innocent sues, and takes it as it is.
+:::
+
+:::trick Acquire, Concur, Redeem, Refund (section 18)
+The buyer's four rights against a seller with imperfect title.
+:::
+
+:::trick My Mother Usually Reads To Cute Children Stories (section 21)
+Money adequate, Minute or personal, Uncertain, Revocable, Trustees, Companies, Continuous over 3 years, Subject-matter gone.
+:::
+
+:::trick Two refuse, one grants (section 22)
+**U**nfair advantage and **U**nforeseen hardship refuse; **S**ubstantial acts grant. A low price alone is never enough.
+:::
+
+:::trick No damages, no readiness, no second bite, no ignoring a settlement (section 24)
+The four personal bars.
+:::
+
+:::trick Wrong paper, wrong result, later change (section 26)
+The three cases where the contract is enforced only with the variation.
+:::
+
+:::trick The BFP is the only shield (section 27)
+Against the seller and everyone after him, except the honest buyer who paid and didn't know.
+:::
+
+===
+
+# Common mistakes
+
+:::warn Arguing title in a section 9 answer
+Title is **irrelevant** under s. 9: "notwithstanding any other title". Even the owner loses if he dispossessed by force.
+:::
+
+:::warn Saying no remedy at all lies against a section 9 decree
+There is no **appeal** and no **review**, but a **revision** under s. 115 CPC lies, and the loser can still file a **title suit** under s. 8.
+:::
+
+:::warn Forgetting the six-month limit
+A s. 9 suit must be filed within **six months** of dispossession. After that, only a title suit is left.
+:::
+
+:::warn Confusing section 10 and section 11
+Section 11 works only against a **non-owner** and forces delivery of the **thing itself**. Section 10 is general.
+:::
+
+:::warn Calling specific performance a right
+It is **discretionary** (s. 22), even with a valid contract. But the discretion must be judicial, not arbitrary.
+:::
+
+:::warn Thinking a low price defeats specific performance
+Under Explanation 1 to s. 22, **mere inadequacy of consideration** is not unfair advantage or hardship.
+:::
+
+:::warn Mixing up section 13 and section 21(h)
+Section 13: part lost **after** the contract, still enforceable. Section 21(h): material part lost **before** the contract, not enforceable.
+:::
+
+:::warn Mixing up sections 14 and 15
+Under s. 15, the plaintiff must **give up all compensation**. Under s. 14, he gets compensation for the deficiency.
+:::
+
+:::warn Mixing up sections 24 and 25
+Section 24 bars **any plaintiff** for his conduct. Section 25 bars only a **seller or lessor** for his title.
+:::
+
+:::warn Protecting every later buyer under section 27
+Only a buyer who **paid value, in good faith, without notice** is protected. A buyer who knew, or should have known, loses.
+:::
+
+===
+
+# Likely questions: Parts I and II
+
+Tap a question to see an answer outline.
+
+:::q Define equity. Trace its origin and growth.
+Meaning (fairness that corrects rigid law), Aristotle and Maitland. Origin: frozen writs, the defects of the common law, petitions to the Chancellor, the Court of Chancery. Growth: the Chancellor's foot, Earl of Oxford's Case (1615), Nottingham and Eldon, the Judicature Acts (1873–75). Then the subcontinent: justice, equity and good conscience, codification. Conclude.
+:::
+
+:::q Explain the maxims of equity.
+Introduce maxims as equity's principles. Explain at least six with an example each, and link each to a section: do equity (s. 24(b)), clean hands (s. 22), delay defeats, acts in personam, intent not form (s. 26), first in time (s. 27). Conclude.
+:::
+
+:::q Discuss the object, nature and scope of the Specific Relief Act 1877.
+Preamble and object; define specific relief with an example. Nature: discretionary, remedial, in personam, not exhaustive, civil. Scope: the structure of Parts I to III. Then ss. 4, 5, 6 and 7 briefly. Pakistan context. Conclude.
+:::
+
+:::q In how many ways is specific relief given? Explain sections 5 to 7.
+Section 5's five modes with a section reference and example for each. Section 6: preventive relief. Section 7: no penal laws, with an example and the caveat about a private civil right. Conclude.
+:::
+
+:::q Explain section 9. How does it differ from section 8?
+The text of s. 9, its object (no self-help), the five ingredients, "notwithstanding any other title", the limits (no government, no appeal or review, revision allowed), and the landlord example. Then a s. 8 vs s. 9 table, and how they work together (the owner sues on title later). Conclude.
+:::
+
+:::q Explain the recovery of movable property under sections 10 and 11.
+Section 10 and its two explanations (trustee; special or temporary right), with the repairer example. Section 11's four cases with examples (agent, heirloom, painting, wrongful transfer). A s. 10 vs s. 11 table. Conclude.
+:::
+
+===
+
+# Likely questions: Part III
+
+:::q When may specific performance of a contract be enforced?
+Define specific performance; it is discretionary. Section 12's four cases with examples, and the Explanation's presumptions for land and goods. Then ss. 13 to 17 (part performance), 18 (imperfect title), 19 (compensation) and 20 (named sum no bar). Conclude.
+:::
+
+:::q Which contracts cannot be specifically enforced?
+Section 21(a) to (h), each with an example; the arbitration rule; the contrast with s. 12; the s. 13 vs s. 21(h) point. Conclude.
+:::
+
+:::q "Specific performance is a discretionary relief." Discuss.
+Section 22's opening words: discretionary, but sound, reasonable and judicial. Cases to refuse (unfair advantage, unforeseen hardship) and to grant (substantial acts), with examples. Explanations 1 and 2. Equity maxims: clean hands, delay. Conclude.
+:::
+
+:::q Who may and who may not obtain specific performance?
+Section 23(a) to (h), especially heirs and the personal-skill proviso. Section 24's four bars, stressing readiness and willingness and the deposit of the balance. Section 25's three bars on sellers. Section 26's variation cases. Conclude.
+:::
+
+:::q Against whom may specific performance be enforced?
+Section 27(a) to (e). Explain the bona fide purchaser for value without notice: the three elements and constructive notice. Use the A, B, C plot example and the maxim of first in time. Conclude.
+:::
+
+:::q Problem: A agrees to sell his house to B, takes earnest money, then sells it to C, who knew of the agreement. Advise B.
+Use the six questions: ss. 12 (the land presumption), 21, 22, 23(a), 24(b) (ready, willing, deposit), 27(b) (C had notice, so he is not protected). Add limitation (Article 113, 3 years) and compensation (s. 19). Conclude: a decree against A and C.
+:::
+`;
 
 
 /* ==========================================================
@@ -3998,6 +5233,7 @@ function cardAsk(prefill){
       <button class="btn btn-brass" type="submit">Enter the chambers</button>
     </form>
     <p class="card-foot"><i>Res ipsa loquitur.</i> The notes speak for themselves.</p>
+    <p class="card-by">Put together by <span>Shahid</span></p>
     ${PREVIEW ? '<p class="card-preview">Preview edition: the class list isn\'t loaded yet, so any name gets in.</p>' : ''}
     <div class="stamp ok" id="stamp" aria-hidden="true">Leave granted</div>`;
   const inp = $('#cardName');
