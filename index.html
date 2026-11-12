@@ -934,6 +934,16 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
 }
 .toast.show{ opacity: 1; transform: translate(-50%, 0); }
 
+/* a model legal document inside the notes */
+.deed{ position: relative; margin: 1.4em 0; padding: 1.4em 1.3em 1.1em; border: 1px solid var(--p-rule); outline: 1px solid var(--p-rule); outline-offset: -6px; border-radius: 3px; background: color-mix(in srgb, var(--paper-2) 70%, var(--paper)); }
+.deed-h{ margin: 0 0 .9em; text-align: center; font: 700 1.18em/1.25 var(--f-display); letter-spacing: .06em; text-transform: uppercase; color: var(--p-ink); }
+.deed-h::after{ content: ""; display: block; width: 70px; height: 2px; margin: .5em auto 0; background: var(--acc); }
+.deed-b{ font-size: .95em; line-height: 1.7; }
+.deed-b p{ margin: 0 0 .85em; }
+.deed-b h4{ margin: 1.1em 0 .35em; font: 700 .9em/1.3 var(--f-display); font-style: normal; letter-spacing: .05em; text-transform: uppercase; color: var(--acc); }
+.deed-b ol > li, .deed-b ul > li{ margin: .45em 0; }
+.deed-b > :last-child{ margin-bottom: 0; }
+
 </style>
 </head>
 <body class="locked">
@@ -1126,9 +1136,9 @@ const LIBRARY = [
   { id: 'crpc', title: 'Criminal Procedure II', short: 'CrPC II', code: 'LLB 424', color: '#5c3a1a', emblem: 'gavel',
     blurb: 'How a criminal case moves from FIR to judgment under the Code of Criminal Procedure 1898.' },
   { id: 'evidence', title: 'Law of Evidence II', short: 'Evidence II', code: 'LLB 425', color: '#1f5966', emblem: 'lens',
-    blurb: 'What can be proved, how, and by whom, under the Qanun-e-Shahadat Order 1984.' },
+    blurb: 'Articles 85 to 129 of the Qanun-e-Shahadat Order 1984: documents and presumptions (Article 95 in depth), the written word, estoppel and the burden of proof.' },
   { id: 'drafting', title: 'Legal Drafting II', short: 'Drafting II', code: 'LLB 426', color: '#3d4654', emblem: 'quill',
-    blurb: 'Writing pleadings, deeds and legal documents the way courts expect to read them.' }
+    blurb: 'Conveyancing theory, plus model drafts of a sale deed, an agreement to sell and a lease deed, ready to adapt to any scenario.' }
 ];
 
 /* The notes for each book live in BOOKS.<id> (see the books files). */
@@ -2421,6 +2431,696 @@ O. 38 r. 1(b) arrest and security; O. 38 r. 5 attachment before judgment; O. 39 
 
 
 /* ==========================================================
+   LEGAL DRAFTING II (LLB 426)
+   Deep Read: conveyancing theory + three model drafts
+   (sale deed, agreement to sell, lease deed). Names, numbers and
+   places in the drafts are invented for practice.
+   ========================================================== */
+BOOKS.drafting = { deep: '', clear: '', quick: '', tips: '' };
+
+BOOKS.drafting.deep = String.raw`
+# Start here: the map of the mid-term
+
+:::cram
+1. Conveyancing deed || **Theory** || What conveyancing is, the parts of a deed, the principles of drafting, the law behind it
+2. Sale deed || **Draft** || Transferring ownership of property for a price
+3. Agreement to sell || **Draft** || A promise to sell later, usually with earnest money
+4. Lease deed || **Draft** || Renting property for a fixed time, for rent
+:::
+
+**Sir's note:** for the drafts, you may **choose any scenario**. So this book gives you **one ready-made scenario** for each draft, with every clause explained, which you can memorise and adapt.
+
+:::remember The story behind the three drafts
+To make them easy to remember, two of the drafts tell **one story**:
+1. **Kamran** agrees to sell his house in Karachi to **Faisal** and takes earnest money: the **Agreement to Sell**.
+2. Faisal pays the balance, and Kamran transfers the house: the **Sale Deed**.
+3. Separately, **Nadia** rents her shop to **Usman** for his bookshop: the **Lease Deed**.
+:::
+
+:::tip Names and numbers
+Every name, CNIC, address and amount in these drafts is **invented** for practice. In the exam, keep CNIC numbers as **42101-XXXXXXX-X** style placeholders, or invent your own.
+:::
+
+===
+
+# Conveyancing: what it is
+
+:::define Conveyance
+A **written instrument** by which **property**, or an interest in it, is **transferred** from one living person to another. Sale deeds, gift deeds, mortgage deeds, lease deeds and exchange deeds are all conveyances.
+:::
+
+:::define Conveyancing
+The **art and science** of preparing such instruments. It includes **investigating the title** to the property, **drafting** the deed, and seeing it through **execution, stamping and registration**.
+:::
+
+## Who does it?
+In Pakistan, conveyancing is done by **advocates** and by licensed **deed writers** (*wasiqa navees*), who work near the registry offices. A good conveyancer needs:
+- **knowledge of the law**: property, contract, stamp and registration law;
+- **command of language**: clear, precise, unambiguous English or Urdu;
+- **care with facts**: names, CNICs, measurements, boundaries, amounts; and
+- **foresight**: anticipating disputes and drafting clauses to prevent them.
+
+## Kinds of conveyance
+:::cram
+Sale deed || Ownership for a price || TPA s. 54
+Gift deed (*hibanama*) || Ownership without a price || TPA ss. 122 to 129; under Muslim law, a gift needs declaration, acceptance and delivery of possession
+Mortgage deed || An interest as security for a loan || TPA s. 58
+Lease deed || The right to enjoy property for a time, for rent || TPA s. 105
+Exchange deed || Ownership of one thing for another || TPA s. 118
+Partition deed, release deed, settlement deed || Dividing, giving up, or settling interests
+:::
+
+:::warn Agreement to sell is not a conveyance
+An **agreement to sell** transfers **nothing**. It is only a **contract** that a sale will happen later (TPA s. 54). The **sale deed** is the conveyance.
+:::
+
+===
+
+# The law behind every deed
+
+:::cram
+Transfer of Property Act 1882 || **s. 5:** transfer of property; **s. 54:** sale; **s. 53A:** part performance; **s. 105:** lease; **s. 107:** how leases are made; **s. 108:** rights and duties of lessor and lessee
+Contract Act 1872 || **s. 10:** what makes a valid contract; **s. 74:** compensation and earnest money
+Registration Act 1908 || **s. 17:** documents that must be **registered**; **s. 23:** present for registration within **four months** of execution; **s. 49:** an unregistered compulsory document doesn't affect the property
+Stamp Act 1899 || Every deed must be on **stamp paper** of the right value; an unstamped document is not admissible in evidence until stamp duty and penalty are paid
+Qanun-e-Shahadat Order 1984 || **Article 17:** documents of **financial or future obligations** must be attested by **two men, or one man and two women**; **Article 79:** proved by calling the attesting witnesses
+Specific Relief Act 1877 || Agreements to sell can be **specifically enforced** (s. 12); a later buyer with notice is bound (s. 27)
+Rent laws || Sindh Rented Premises Ordinance 1979; Punjab Rented Premises Act 2009 (for leases)
+:::
+
+## Section 54 TPA: the key definitions
+:::law Section 54: Sale
+**"Sale"** is a **transfer of ownership** in exchange for a **price paid or promised, or part-paid and part-promised**.
+
+- A sale of **tangible immovable property** of the value of **one hundred rupees or more** can be made **only by a registered instrument**.
+- A **contract for the sale** of immovable property is a contract that a sale shall take place on terms settled between the parties. **It does not, of itself, create any interest in or charge on the property.**
+:::
+
+:::law Section 105: Lease
+A **lease** of immovable property is a **transfer of a right to enjoy** it, made for a **certain time**, in consideration of a **price** paid or promised, or of money or other value to be given **periodically**. The transferor is the **lessor**, the transferee the **lessee**, the price the **premium**, and the periodic payment the **rent**.
+:::
+
+:::law Section 107: Leases, how made
+A lease from **year to year**, or for **any term exceeding one year**, or reserving a **yearly rent**, can be made **only by a registered instrument**.
+:::
+
+===
+
+# The anatomy of a deed
+
+A traditional deed has a fixed order of parts. Learn them in order: they are the skeleton of every draft you write.
+
+:::cram
+1. Title || The name of the deed || "SALE DEED", "LEASE DEED"
+2. Date and place || When and where it is executed || "This deed is made at Karachi on the ___ day of ___ 2026"
+3. Parties || Full names, parentage, CNIC, address; and who is called what || "...hereinafter called the VENDOR"
+4. Recitals || The background: how the seller got title, and why the deed is made || Begin with "WHEREAS"
+5. Testatum || The words introducing the operative part || "NOW THIS DEED WITNESSETH AS FOLLOWS"
+6. Consideration and receipt || The price, and acknowledgement that it was paid || "for a total sale consideration of Rs..."
+7. Operative words || The words that actually transfer || "hereby sells, conveys, transfers and assigns"
+8. Parcels || The full description of the property || Number, area, location, boundaries; often in a Schedule
+9. Exceptions and reservations || Anything kept back by the transferor || A right of way kept
+10. Habendum || The extent of the interest given || "TO HAVE AND TO HOLD... absolutely and forever"
+11. Reddendum || **Leases only:** the rent reserved || "YIELDING AND PAYING monthly rent of Rs..."
+12. Covenants || The promises of each side || Title clear, no encumbrance, indemnity, paying dues
+13. Provisos and conditions || What happens on default, forfeiture, termination
+14. Testimonium || The closing words before signatures || "IN WITNESS WHEREOF the parties have signed..."
+15. Signatures || Of each party, with thumb impressions
+16. Attestation || **Two witnesses**, with names, CNICs and addresses || QSO Articles 17 and 79
+17. Schedule || The detailed description of the property, at the end
+:::
+
+:::trick Open, Story, Deal, Promise, Prove
+**Open:** title, date, parties. **Story:** recitals. **Deal:** testatum, consideration, operative words, parcels, exceptions, habendum, reddendum. **Promise:** covenants and provisos. **Prove:** testimonium, signatures, witnesses, schedule.
+:::
+
+## The old Latin and English words, in plain terms
+- **Recital** = the background story. **Testatum** = "this deed witnesses". **Habendum** = "to have": how much you get. **Reddendum** = "to give back": the rent. **Testimonium** = "in witness whereof".
+
+===
+
+# Principles of good drafting, and the steps of conveyancing
+
+## The principles
+1. **Clarity:** short sentences; plain words; one idea per clause.
+2. **Precision:** exact names, CNICs, measurements and amounts. Write amounts **in figures and words**.
+3. **Consistency:** once you call someone "the Vendor", **always** call him that. Don't switch to "seller" halfway.
+4. **Definitions:** define key words once ("the Property means...").
+5. **Completeness:** cover what happens if something goes wrong: default, delay, a defect in title, death of a party.
+6. **No ambiguity:** avoid "etc.", "and/or", and vague words like "reasonable time" where you can give a date.
+7. **Lawfulness:** the deed must comply with the TPA, the Stamp Act and the Registration Act, and its object must be lawful.
+8. **Logical order:** follow the anatomy: opening, story, deal, promises, proof.
+
+:::trick The 3 Cs of drafting
+**Clear, Correct, Consistent.**
+:::
+
+## The steps of conveyancing (for a sale)
+1. **Investigate the title:** check the seller's ownership documents, the chain of title, the registry and revenue records (*fard*, mutation), and the society or development authority's records.
+2. **Check encumbrances:** any mortgage, lien, pending litigation or unpaid dues. Get a **no-objection certificate (NOC)** where needed.
+3. **Agreement to sell:** fix the price, the earnest money and the completion date.
+4. **Draft the sale deed.**
+5. **Engross** it on **stamp paper** of the right value.
+6. **Execute:** the parties sign and give thumb impressions before **two witnesses**.
+7. **Register** it before the **Sub-Registrar**, within **four months** of execution (Registration Act s. 23); pay registration fees and taxes.
+8. **Mutation / transfer:** record the new owner in the revenue records or the society's register.
+9. **Hand over** possession and original documents.
+
+:::remember
+**Investigate, agree, draft, stamp, sign, register, mutate, hand over.**
+:::
+
+===
+
+# Sale deed: the law and the checklist
+
+:::define Sale deed
+A **registered** document by which the **vendor** (seller) **transfers ownership** of property to the **vendee** (purchaser) in exchange for a **price**.
+:::
+
+## What the law requires
+- **TPA s. 54:** a sale of immovable property worth **Rs 100 or more** needs a **registered instrument**.
+- **Registration Act s. 17:** compulsory registration; **s. 23:** within **four months**; **s. 49:** unregistered, it doesn't transfer the property.
+- **Stamp Act:** proper **stamp duty**, calculated on the value of the property.
+- **QSO Article 17:** attested by **two witnesses**.
+- After registration: **mutation** or transfer in the records.
+
+## The clauses a sale deed must have
+:::cram
+Parties || Vendor and vendee: full names, parentage, CNIC, addresses
+Recitals || How the vendor became owner; that he is the absolute owner; the earlier agreement to sell
+Consideration || The price in figures and words, and the vendor's acknowledgement that he has received it in full
+Operative clause || "hereby sells, conveys, transfers and assigns" the property absolutely
+Description || Plot or house number, area, location, and **boundaries on all four sides**, in a Schedule
+Title covenant || The vendor has good title and the right to sell
+No encumbrance || The property is free from mortgage, lien, litigation and charges
+Indemnity || The vendor will compensate the vendee if anyone else claims the property
+Dues || The vendor has paid all taxes, utility bills and society charges up to the date of sale
+Possession || Handed over on execution, with original documents
+Mutation || The vendee may get the property transferred into his name; the vendor will cooperate
+Costs || Who pays stamp duty, registration fee and taxes (usually the vendee)
+Testimonium, signatures, two witnesses, Schedule
+:::
+
+:::trick The vendor's three big promises
+**Title** (it's mine to sell), **Clear** (nothing hangs on it), **Cover** (if anyone claims it, I'll pay you back).
+:::
+
+===
+
+# Sale deed: the model draft
+
+:::deed Sale Deed
+*(On stamp paper of the value required under the Stamp Act)*
+
+THIS DEED OF SALE is made at **Karachi** on this ___ day of ________, 2026,
+
+### Between
+**Mr. Kamran Aziz**, son of Abdul Aziz, Muslim, adult, holding CNIC No. 42101-XXXXXXX-1, resident of House No. B-27, Block 3, Sunrise Cooperative Housing Society, Karachi (hereinafter called the **"VENDOR"**, which expression shall, unless repugnant to the context, include his heirs, legal representatives and assigns) of the **ONE PART**;
+
+### And
+**Mr. Faisal Mahmood**, son of Mahmood Ahmed, Muslim, adult, holding CNIC No. 42201-XXXXXXX-3, resident of Flat No. 12, Rose Apartments, Shahrah-e-Faisal, Karachi (hereinafter called the **"VENDEE"**, which expression shall, unless repugnant to the context, include his heirs, legal representatives and assigns) of the **OTHER PART**.
+
+### Recitals
+**WHEREAS** the Vendor is the sole, absolute and lawful owner in possession of the house more fully described in the Schedule below (hereinafter called **"the Property"**), having purchased it through a registered sale deed No. ___, dated ___, registered with the Sub-Registrar, Karachi;
+
+**AND WHEREAS** the Property has been transferred in the Vendor's name in the records of the Sunrise Cooperative Housing Society;
+
+**AND WHEREAS** the Vendor agreed to sell the Property to the Vendee by an Agreement to Sell dated 1 October 2026, for a total sale consideration of **Rs 2,50,00,000 (Rupees two crore fifty lakh only)**, of which the Vendee paid **Rs 25,00,000 (Rupees twenty-five lakh only)** as earnest money;
+
+**AND WHEREAS** the Vendee has now paid the balance, and the Vendor has agreed to execute this deed.
+
+### Now this deed witnesseth as follows
+1. **Consideration and receipt.** In consideration of the sum of **Rs 2,50,00,000 (Rupees two crore fifty lakh only)**, paid by the Vendee to the Vendor as follows: Rs 25,00,000 as earnest money on 1 October 2026, and Rs 2,25,00,000 by pay order No. ___ dated ___ drawn on ___ Bank, the receipt of which the Vendor hereby **acknowledges in full**, the Vendor hereby **sells, conveys, transfers and assigns** the Property to the Vendee, together with all rights, easements, fittings and fixtures attached to it.
+2. **Habendum.** The Vendee shall **have and hold** the Property **absolutely and forever** as its full owner, without any claim or interruption by the Vendor or any person claiming through him.
+3. **Title.** The Vendor covenants that he has a **good, clear and marketable title** to the Property and full right and authority to sell it.
+4. **No encumbrance.** The Vendor covenants that the Property is **free from all encumbrances**, mortgages, liens, charges, attachments, litigation and claims of any kind, and has not been sold, gifted, leased or agreed to be transferred to anyone else.
+5. **Indemnity.** If the Vendee is deprived of the Property, or any part of it, because of any defect in the Vendor's title or any claim through the Vendor, the Vendor and his heirs shall **indemnify** the Vendee for the full sale price, costs and damages.
+6. **Dues.** The Vendor has paid all property taxes, utility bills, and society maintenance and transfer charges up to the date of this deed. Any dues relating to the period before this deed are the Vendor's responsibility.
+7. **Possession.** The Vendor has today delivered **vacant physical possession** of the Property to the Vendee, together with all **original title documents**, the receipt of which the Vendee acknowledges.
+8. **Mutation.** The Vendee is entitled to get the Property **transferred and mutated** into his name in the records of the Society and all other authorities, and the Vendor shall sign any document needed for that purpose.
+9. **Costs.** Stamp duty, registration fee, and transfer charges and taxes on this sale shall be borne by the **Vendee**.
+10. **Further assurance.** The Vendor and his heirs shall do and sign anything further reasonably required to perfect the Vendee's title.
+
+**IN WITNESS WHEREOF** the Vendor and the Vendee have signed this deed at Karachi on the date first written above, in the presence of the witnesses below.
+
+### Signatures
+**VENDOR:** _______________ (Kamran Aziz), with right thumb impression
+
+**VENDEE:** _______________ (Faisal Mahmood), with right thumb impression
+
+### Witnesses
+1. _______________ Name: Mr. Adeel Raza, s/o Raza Hussain, CNIC No. 42101-XXXXXXX-5, Address: ___________
+2. _______________ Name: Mr. Hamza Tariq, s/o Tariq Mehmood, CNIC No. 42301-XXXXXXX-7, Address: ___________
+
+### Schedule of the property
+**House No. B-27**, measuring **240 square yards**, Block 3, Sunrise Cooperative Housing Society, Karachi, constructed with a ground-plus-one storey house, bounded as follows:
+- **North:** House No. B-26
+- **South:** House No. B-28
+- **East:** 40-foot wide road
+- **West:** House No. B-40
+:::
+
+===
+
+# Agreement to sell: the law and the checklist
+
+:::define Agreement to sell
+A **contract** by which the owner **promises to sell** property to a buyer **in future**, on agreed terms, usually after the buyer pays **earnest money** (*bayana*). It does **not** transfer ownership.
+:::
+
+:::compare Agreement to sell | Sale deed
+A **promise** to sell in future || The **actual** transfer
+Creates **no interest** in the property (TPA s. 54) || Transfers **ownership**
+Earnest money paid, balance later || Full price paid
+Remedy on breach: **specific performance** or damages || Remedy on breach of covenants: indemnity and damages
+Usually not registered as a conveyance || **Must be registered** if worth Rs 100 or more
+Ownership and risk stay with the seller || Ownership passes to the buyer
+:::
+
+## The link with your Equity book
+If the seller backs out, the buyer can sue for **specific performance** (Specific Relief Act s. 12), within **three years** (Limitation Act, Article 113). He must show he was **ready and willing** to pay (s. 24(b)). If the seller sells to someone else who **knew** of the agreement, the buyer can enforce it against him too (s. 27(b)). So draft the agreement clearly: courts will read it closely.
+
+## Part performance
+If the buyer has been put **in possession** under a **written, signed** agreement and is willing to perform his part, **TPA s. 53A** protects his possession against the seller.
+
+## The clauses an agreement to sell must have
+:::cram
+Parties || Seller and purchaser: full particulars
+Property || Full description and boundaries, in a Schedule
+Price || Total price in figures and words
+Earnest money || Amount paid now, and the seller's receipt for it
+Balance || Amount, and the **date** by which it must be paid
+Completion || When and where the **sale deed** will be executed and registered
+Title documents || The seller hands over or shows copies; the buyer checks title
+Seller's warranties || Good title, no encumbrance, no other agreement
+Seller's default || Buyer may sue for **specific performance**, or the seller **refunds double** the earnest money
+Buyer's default || Seller may **forfeit** the earnest money and cancel
+Possession || Stays with the seller until the sale deed, unless agreed otherwise
+Dues and costs || Who pays which taxes and charges
+Disputes || Jurisdiction of the courts at the place of the property
+Signatures and **two witnesses**
+:::
+
+:::warn Earnest money and section 74
+Forfeiting **reasonable** earnest money on the buyer's default is accepted. But a clause forfeiting a very **large** sum may be treated as a **penalty** under Contract Act s. 74, and the court may allow only reasonable compensation.
+:::
+
+===
+
+# Agreement to sell: the model draft
+
+:::deed Agreement to Sell
+*(On stamp paper of the value required under the Stamp Act)*
+
+THIS AGREEMENT TO SELL is made at **Karachi** on this **1st day of October, 2026**,
+
+### Between
+**Mr. Kamran Aziz**, son of Abdul Aziz, adult, CNIC No. 42101-XXXXXXX-1, resident of House No. B-27, Block 3, Sunrise Cooperative Housing Society, Karachi (hereinafter called the **"SELLER"**, which expression shall include his heirs, legal representatives and assigns) of the **ONE PART**;
+
+### And
+**Mr. Faisal Mahmood**, son of Mahmood Ahmed, adult, CNIC No. 42201-XXXXXXX-3, resident of Flat No. 12, Rose Apartments, Shahrah-e-Faisal, Karachi (hereinafter called the **"PURCHASER"**, which expression shall include his heirs, legal representatives and assigns) of the **OTHER PART**.
+
+### Recitals
+**WHEREAS** the Seller is the sole and absolute owner in possession of the house described in the Schedule below (**"the Property"**);
+
+**AND WHEREAS** the Seller wishes to sell, and the Purchaser wishes to purchase, the Property on the terms below.
+
+### Now it is hereby agreed as follows
+1. **Price.** The Seller agrees to sell and the Purchaser agrees to purchase the Property for a total price of **Rs 2,50,00,000 (Rupees two crore fifty lakh only)**.
+2. **Earnest money.** The Purchaser has today paid the Seller **Rs 25,00,000 (Rupees twenty-five lakh only)** as **earnest money** (*bayana*) by cheque No. ___ drawn on ___ Bank, the receipt of which the Seller hereby acknowledges.
+3. **Balance.** The Purchaser shall pay the balance of **Rs 2,25,00,000 (Rupees two crore twenty-five lakh only)** on or before **30 November 2026**, at the time of execution of the sale deed.
+4. **Sale deed.** On payment of the balance, the Seller shall **execute and register** a sale deed in favour of the Purchaser, or his nominee, before the Sub-Registrar, Karachi, and deliver **vacant possession** and all original title documents.
+5. **Title and warranties.** The Seller declares that he has a **good and marketable title**; that the Property is **free from all encumbrances**, charges, liens and litigation; and that he has **not entered into any agreement** to sell, gift, lease or mortgage it with anyone else. He shall not do so while this Agreement is in force.
+6. **Documents.** The Seller has handed the Purchaser **photocopies** of all title documents for verification, and shall obtain the Society's **NOC** for transfer before the completion date.
+7. **Seller's default.** If the Seller fails or refuses to complete the sale, the Purchaser may, at his option, either (a) sue for **specific performance** of this Agreement, or (b) recover **double the earnest money**, that is Rs 50,00,000, from the Seller.
+8. **Purchaser's default.** If the Purchaser fails to pay the balance by the date fixed, the Seller may cancel this Agreement by written notice and **forfeit the earnest money**.
+9. **Possession and risk.** Possession of the Property shall remain with the Seller until the sale deed is executed. Until then, the Seller shall maintain the Property in its present condition.
+10. **Dues and costs.** The Seller shall clear all taxes, bills and society dues up to the date of the sale deed. Stamp duty, registration fee and transfer charges on the sale deed shall be borne by the Purchaser.
+11. **Jurisdiction.** Any dispute under this Agreement shall be subject to the jurisdiction of the courts at **Karachi**.
+
+**IN WITNESS WHEREOF** the parties have signed this Agreement at Karachi on the date first written above.
+
+### Signatures
+**SELLER:** _______________ (Kamran Aziz), with thumb impression
+
+**PURCHASER:** _______________ (Faisal Mahmood), with thumb impression
+
+### Witnesses
+1. _______________ Name: Mr. Adeel Raza, CNIC No. 42101-XXXXXXX-5, Address: ___________
+2. _______________ Name: Mr. Hamza Tariq, CNIC No. 42301-XXXXXXX-7, Address: ___________
+
+### Schedule of the property
+**House No. B-27**, measuring **240 square yards**, Block 3, Sunrise Cooperative Housing Society, Karachi, bounded: **North** House No. B-26; **South** House No. B-28; **East** 40-foot road; **West** House No. B-40.
+:::
+
+===
+
+# Lease deed: the law and the checklist
+
+:::define Lease deed
+A document by which the **lessor** (owner) transfers to the **lessee** (tenant) the **right to enjoy** immovable property for a **certain time**, in return for **rent** (TPA s. 105). Ownership **stays** with the lessor.
+:::
+
+## What the law requires
+- **TPA s. 107 and Registration Act s. 17:** a lease for **more than one year**, from year to year, or reserving a yearly rent, must be made by a **registered** instrument.
+- **TPA s. 108:** the default rights and duties of lessor and lessee, which the deed can change.
+- **Rent laws:** in Sindh, the **Sindh Rented Premises Ordinance 1979**; in Punjab, the **Punjab Rented Premises Act 2009**. These control eviction, rent increases and deposits, and override contrary terms.
+- **Stamp Act:** stamp duty based on the rent, deposit and term.
+- **Two witnesses** (QSO Article 17).
+
+:::compare Lease | Licence
+Transfers an **interest** in the property (a right to enjoy it) || Only a **personal permission** to use it; no interest
+Lessee has **exclusive possession** || Licensee has no exclusive possession
+Binds the lessor's successors || Usually ends if the property is transferred
+A tenant's room in a house, a shop on rent || A hostel bed, a stall in a fair
+:::
+
+## The clauses a lease deed must have
+:::cram
+Parties || Lessor and lessee, with full particulars; for a business, its name and owner
+Demise || The lessor **leases** (demises) the premises to the lessee
+Premises || Full description, in a Schedule
+Term || Start date, end date, and length (for example 3 years)
+Rent || Amount, due date (for example by the 10th of each month), mode of payment
+Increase || Yearly increase (for example 10%)
+Security deposit || Amount, interest-free, refundable at the end after deductions for damage or dues
+Use || The purpose for which the premises may be used; no illegal use
+Utilities || Who pays electricity, gas, water and maintenance
+Repairs || Minor repairs by the lessee; structural repairs by the lessor
+Sub-letting || **Not** without the lessor's written consent
+Alterations || **Not** without written consent
+Inspection || The lessor may inspect with notice
+Termination || Notice period; termination for default in rent or breach
+Handover || Vacant possession in the same condition, fair wear and tear excepted
+Renewal || By mutual agreement, on new terms
+Signatures, **two witnesses**, Schedule
+:::
+
+:::trick The lessee's four don'ts
+**Don't sub-let, don't alter, don't misuse, don't delay the rent.**
+:::
+
+===
+
+# Lease deed: the model draft
+
+:::deed Lease Deed
+*(On stamp paper of the value required under the Stamp Act)*
+
+THIS LEASE DEED is made at **Karachi** on this **1st day of December, 2026**,
+
+### Between
+**Mrs. Nadia Hussain**, wife of Hussain Ali, adult, CNIC No. 42101-XXXXXXX-2, resident of House No. A-14, Block 6, Sunrise Cooperative Housing Society, Karachi (hereinafter called the **"LESSOR"**, which expression shall include her heirs, legal representatives and assigns) of the **ONE PART**;
+
+### And
+**Mr. Usman Ali**, son of Ali Ahmed, adult, CNIC No. 42201-XXXXXXX-9, sole proprietor of **M/s Bright Books**, resident of Flat No. 4, Green View Apartments, Karachi (hereinafter called the **"LESSEE"**, which expression shall include his heirs and legal representatives, but not his assigns) of the **OTHER PART**.
+
+### Recitals
+**WHEREAS** the Lessor is the absolute owner of **Shop No. 5**, Ground Floor, Crescent Plaza, University Road, Karachi, more fully described in the Schedule below (**"the Premises"**);
+
+**AND WHEREAS** the Lessee has requested the Lessor to let the Premises to him for running a **bookshop**, and the Lessor has agreed on the terms below.
+
+### Now this deed witnesseth as follows
+1. **Demise and term.** The Lessor hereby **leases** the Premises to the Lessee for a period of **three (3) years**, commencing on **1 December 2026** and ending on **30 November 2029**.
+2. **Rent.** The Lessee shall pay a monthly rent of **Rs 80,000 (Rupees eighty thousand only)**, in advance, on or before the **10th day** of each month, by bank transfer to the Lessor's account.
+3. **Increase.** The rent shall **increase by 10%** at the end of each year of the lease.
+4. **Security deposit.** The Lessee has paid the Lessor an interest-free security deposit of **Rs 2,40,000 (Rupees two lakh forty thousand only)**, the receipt of which the Lessor acknowledges. It shall be **refunded** when the Lessee hands over vacant possession, after deducting any unpaid rent, utility dues or the cost of repairing damage beyond fair wear and tear.
+5. **Use.** The Lessee shall use the Premises **only for a bookshop and stationery business**, and not for any illegal, immoral or hazardous purpose.
+6. **Utilities.** The Lessee shall pay all charges for electricity, gas, water, telephone and internet, and the building's monthly maintenance charges, for the period of the lease.
+7. **Repairs.** The Lessee shall carry out **minor day-to-day repairs** at his own cost. **Structural** repairs shall be the Lessor's responsibility.
+8. **Sub-letting.** The Lessee shall **not sub-let, assign or part with possession** of the Premises, or any part of them, without the Lessor's **prior written consent**.
+9. **Alterations.** The Lessee shall make **no structural alteration** without the Lessor's prior written consent. He may install shelves, fixtures and signboards, which he may remove at the end, making good any damage.
+10. **Inspection.** The Lessor may inspect the Premises at a reasonable time after giving **24 hours' notice**.
+11. **Termination.** Either party may end this lease before its term by giving **three months' written notice**. If the Lessee fails to pay rent for **two consecutive months**, or breaches any term, the Lessor may end the lease and seek eviction in accordance with the **Sindh Rented Premises Ordinance 1979**.
+12. **Handover.** At the end of the lease, the Lessee shall hand over **vacant and peaceful possession** of the Premises in good condition, fair wear and tear excepted.
+13. **Renewal.** The lease may be renewed by **mutual written agreement** on terms then agreed.
+14. **Costs.** Stamp duty and registration charges for this deed shall be shared **equally** by the parties.
+15. **Governing law.** This lease is governed by the laws of Pakistan, including the Sindh Rented Premises Ordinance 1979, and the courts at Karachi shall have jurisdiction.
+
+**IN WITNESS WHEREOF** the parties have signed this Lease Deed at Karachi on the date first written above.
+
+### Signatures
+**LESSOR:** _______________ (Nadia Hussain), with thumb impression
+
+**LESSEE:** _______________ (Usman Ali), for and on behalf of M/s Bright Books, with thumb impression
+
+### Witnesses
+1. _______________ Name: Mr. Saad Khan, CNIC No. 42101-XXXXXXX-4, Address: ___________
+2. _______________ Name: Ms. Ayesha Noor, CNIC No. 42301-XXXXXXX-6, Address: ___________
+
+### Schedule of the premises
+**Shop No. 5**, Ground Floor, Crescent Plaza, University Road, Karachi, covered area **350 square feet**, with one attached washroom and electricity meter No. ________, bounded: **North** Shop No. 4; **South** Shop No. 6; **East** main corridor; **West** service lane.
+:::
+
+===
+
+# Make it your own: changing the scenario
+
+Sir lets you choose any scenario. The safest plan: **memorise these three drafts**, then change only the details. Here is what to swap, and what must never be missing.
+
+:::cram
+Names and parentage || Any names you like; always give "son of" or "wife of"
+CNIC || Use placeholders like 42101-XXXXXXX-X
+City and court || Karachi, Lahore, Islamabad: change the court's jurisdiction and the rent law to match (Sindh vs Punjab)
+Property || A plot, house, flat, shop or agricultural land; for land, use *kanal* and *marla* and the *khasra* or *khewat* number
+Price and rent || Any amount, always in **figures and words**
+Dates || Completion date in the agreement; term dates in the lease
+:::
+
+:::warn Never leave out
+**Title of the deed, date and place, full parties with "hereinafter called", recitals starting with WHEREAS, the operative words, the price or rent in figures and words, the property's boundaries, covenants, IN WITNESS WHEREOF, signatures, two witnesses, and the Schedule.**
+:::
+
+## Quick swaps by property type
+- **Agricultural land (Punjab):** "land measuring 2 kanal 10 marla, comprised in Khasra No. ___, Khewat No. ___, Mauza ___, Tehsil ___, District ___". Add a clause for **mutation** in the revenue record.
+- **Flat:** add the floor, the building's name, the covered area, and the share in common areas and the land underneath.
+- **House on rent (residential lease):** use "residential purposes only", and a shorter notice period.
+
+:::tip Presentation counts in drafting
+Write the **title in capitals**, use **headings** for each part, **number** the clauses, **underline** key terms, and leave space for signatures. A neat, complete draft scores far higher than a long, messy one.
+:::
+`;
+
+
+/* ==========================================================
+   LEGAL DRAFTING II (LLB 426): Clear Read, Last-Minute Read, Tips
+   ========================================================== */
+BOOKS.drafting.clear = String.raw`
+# Conveyancing: the theory
+
+- **Conveyance:** a written instrument **transferring property** between living persons: sale, gift, mortgage, lease, exchange.
+- **Conveyancing:** the **art and science** of preparing it: investigating title, drafting, and seeing it through stamping, execution and registration. Done by advocates and deed writers (*wasiqa navees*).
+- **An agreement to sell is not a conveyance:** it transfers nothing (TPA s. 54).
+
+## The law
+**TPA 1882:** s. 54 sale (registered if Rs 100 or more; an agreement creates no interest), s. 53A part performance, s. 105 lease, s. 107 leases over a year registered, s. 108 rights and duties. **Registration Act 1908:** s. 17 compulsory registration, s. 23 within **four months**, s. 49 effect of non-registration. **Stamp Act 1899.** **QSO Articles 17 and 79:** **two witnesses**. **Contract Act** s. 10 and s. 74. **Specific Relief Act** ss. 12, 24, 27. **Rent laws:** Sindh 1979, Punjab 2009.
+
+## The parts of a deed
+:::cram
+Open || Title, date and place, parties ("hereinafter called")
+Story || Recitals ("WHEREAS")
+Deal || Testatum ("NOW THIS DEED WITNESSETH"), consideration and receipt, operative words, parcels, exceptions, habendum ("to have and to hold"), reddendum (rent, leases only)
+Promise || Covenants, provisos and conditions
+Prove || Testimonium ("IN WITNESS WHEREOF"), signatures and thumb impressions, two witnesses, Schedule
+:::
+
+## Principles
+Clear, correct, consistent; define terms; figures **and** words; plan for default; lawful; logical order.
+
+## Steps
+Investigate title and encumbrances, agree, draft, stamp, sign before witnesses, **register within four months**, mutate, hand over.
+
+===
+
+# Sale deed and agreement to sell
+
+## Sale deed: skeleton
+1. Title, date and place.
+2. **Vendor** and **vendee**, with full particulars.
+3. **Recitals:** the vendor's title, the earlier agreement to sell.
+4. **Consideration and receipt** in figures and words; "**hereby sells, conveys, transfers and assigns**".
+5. **Habendum:** absolutely and forever.
+6. **Covenants:** title, no encumbrance, **indemnity**, dues cleared.
+7. **Possession** and original documents; **mutation**; costs; further assurance.
+8. **IN WITNESS WHEREOF**, signatures, **two witnesses**, **Schedule** with boundaries.
+
+**Law:** registered (TPA s. 54; Registration Act s. 17); within four months; stamp duty; mutation afterwards.
+
+## Agreement to sell: skeleton
+1. Title, date and place; **seller** and **purchaser**.
+2. Recitals: the seller's ownership and the wish to sell.
+3. **Price**; **earnest money** (*bayana*) received; **balance** and its **date**.
+4. Sale deed to be executed on payment; vacant possession and documents.
+5. Seller's **warranties**: title, no encumbrance, no other agreement; NOC.
+6. **Seller's default:** specific performance, or **double the earnest money**.
+7. **Buyer's default:** **forfeit** the earnest money.
+8. Possession stays with the seller; dues and costs; jurisdiction.
+9. Signatures, two witnesses, Schedule.
+
+:::compare Agreement to sell | Sale deed
+Promise to sell later || Actual transfer
+No interest created || Ownership passes
+Earnest money || Full price
+Specific performance on breach || Indemnity on breach of covenants
+:::
+
+===
+
+# Lease deed
+
+## Skeleton
+1. Title, date and place; **lessor** and **lessee** (and the business name).
+2. Recitals: the lessor's ownership; the purpose.
+3. **Demise** and **term** (start and end dates).
+4. **Rent**, due date, payment mode; yearly **increase**.
+5. **Security deposit**, refundable after deductions.
+6. **Use** only for the stated purpose.
+7. **Utilities** and maintenance.
+8. **Repairs:** minor by the lessee, structural by the lessor.
+9. **No sub-letting** and **no alterations** without written consent.
+10. **Inspection** on notice.
+11. **Termination:** notice period; default in rent; eviction under the rent law.
+12. **Handover** in good condition; **renewal** by agreement; costs; governing law.
+13. Signatures, two witnesses, Schedule.
+
+**Law:** TPA s. 105 (definition), s. 107 (over a year: registered), s. 108 (rights and duties); Sindh Rented Premises Ordinance 1979 or Punjab Rented Premises Act 2009; stamp duty.
+
+:::compare Lease | Licence
+An interest in the property || Personal permission only
+Exclusive possession || No exclusive possession
+:::
+
+:::trick The lessee's four don'ts
+Don't sub-let, don't alter, don't misuse, don't delay the rent.
+:::
+`;
+
+BOOKS.drafting.quick = String.raw`
+# The three drafts on one page
+
+:::cram
+Every deed || Title, date and place, parties "hereinafter called", WHEREAS recitals, NOW THIS DEED WITNESSETH, numbered clauses, IN WITNESS WHEREOF, signatures and thumb impressions, **two witnesses** with CNIC, **Schedule** with four boundaries
+Sale deed || Price in figures and words; receipt; "hereby sells, conveys, transfers and assigns"; absolutely and forever; title; no encumbrance; indemnity; dues; possession and documents; mutation; costs
+Agreement to sell || Price; earnest money received; balance by a date; sale deed on payment; warranties; NOC; seller default (specific performance or double earnest); buyer default (forfeit earnest); possession stays; jurisdiction
+Lease deed || Demise; term dates; rent and due date; yearly increase; deposit; use; utilities; repairs; no sub-letting; no alterations; inspection; termination and notice; handover; renewal; rent law
+:::
+
+===
+
+# Theory in five minutes
+
+:::cram
+Conveyance || A written transfer of property between living persons
+Conveyancing || Investigating title, drafting, stamping, executing, registering
+TPA s. 54 || Sale of immovable property worth Rs 100 or more: registered instrument; an agreement to sell creates no interest
+TPA ss. 105 and 107 || Lease defined; a lease over one year must be registered
+TPA s. 53A || A buyer in possession under a written agreement is protected
+Registration Act ss. 17, 23, 49 || Compulsory registration; within 4 months; unregistered means no effect on the property
+Stamp Act 1899 || Stamp paper of the right value
+QSO Articles 17 and 79 || Two witnesses
+Parts of a deed || Open, Story, Deal, Promise, Prove
+Principles || Clear, Correct, Consistent
+Steps || Investigate, agree, draft, stamp, sign, register, mutate, hand over
+:::
+
+:::remember Walk in with this
+Memorise **one** scenario per draft; never miss the **parties, recitals, operative words, price in words, boundaries, covenants, two witnesses and Schedule**.
+:::
+`;
+
+BOOKS.drafting.tips = String.raw`
+# How to score in Drafting
+
+- **Choose your scenario before the exam,** and practise writing each draft **once by hand** with a timer. Sir lets you pick, so use the scenarios in the Deep Read, or your own.
+- **Structure is half the marks.** Every draft should show all the parts: title, date and place, parties, recitals, operative part, covenants, testimonium, signatures, witnesses, schedule.
+- **Use the formal words correctly:** "hereinafter called", "WHEREAS", "NOW THIS DEED WITNESSETH", "hereby sells, conveys, transfers and assigns", "TO HAVE AND TO HOLD", "IN WITNESS WHEREOF".
+- **Amounts in figures and words**, every time.
+- **Boundaries on all four sides** in the Schedule.
+- **Two witnesses** with names, parentage, CNIC and address.
+- **Mention the law in a theory answer:** TPA ss. 54, 105, 107; Registration Act ss. 17, 23; Stamp Act; QSO Article 17.
+- **Neatness:** headings, numbered clauses, underlined key terms, space for signatures.
+
+## Plan your time
+Find out the paper's pattern from your classmates if you can. As a rule, spend about **a third** of the time on theory and **two-thirds** on the draft or drafts, and keep 5 minutes to check the parties, amounts and witnesses.
+
+===
+
+# Memory tricks and common mistakes
+
+:::trick Open, Story, Deal, Promise, Prove
+The five groups of parts in every deed.
+:::
+
+:::trick The vendor's three promises
+**Title** (it's mine), **Clear** (nothing hangs on it), **Cover** (I'll pay you back if anyone claims it).
+:::
+
+:::trick The two defaults in an agreement to sell
+**Seller backs out:** specific performance, or **double** the earnest. **Buyer backs out:** **forfeit** the earnest.
+:::
+
+:::trick The lessee's four don'ts
+Don't sub-let, don't alter, don't misuse, don't delay the rent.
+:::
+
+:::warn Calling an agreement to sell a transfer
+It only **promises** a sale. Ownership passes by the **registered sale deed**.
+:::
+
+:::warn Forgetting registration
+A sale deed (Rs 100 or more) and a lease **over one year** must be **registered**, within **four months** of execution.
+:::
+
+:::warn Switching names halfway
+If you defined "the Vendor", don't later write "the seller". Keep every defined term consistent.
+:::
+
+:::warn Missing the boundaries or the Schedule
+A property description without boundaries is the most common reason drafts lose marks.
+:::
+
+:::warn One witness, or none
+Write **two** witnesses, with full particulars.
+:::
+
+:::warn Mixing up habendum and reddendum
+**Habendum:** what the buyer or lessee gets ("to have and to hold"). **Reddendum:** the **rent** reserved, in **leases** only.
+:::
+
+===
+
+# Likely questions
+
+Tap a question to see an answer outline.
+
+:::q What is conveyancing? Explain the component parts of a deed.
+Define conveyance and conveyancing; who does it; kinds of conveyance. The 17 parts in order, each with the formal words. Principles of drafting. Conclude.
+:::
+
+:::q Explain the principles of drafting and the steps in conveyancing.
+Clarity, precision, consistency, definitions, completeness, no ambiguity, lawfulness, order. The steps: title investigation, agreement, draft, stamp, execution, registration (four months), mutation, handover. The law behind each step. Conclude.
+:::
+
+:::q Distinguish an agreement to sell from a sale deed.
+TPA s. 54 definitions; a comparison table; remedies (specific performance under the Specific Relief Act ss. 12, 24, 27; s. 53A part performance); registration. Conclude.
+:::
+
+:::q Draft a sale deed for a house.
+Use the model: title, date and place, parties, recitals, consideration and receipt, operative words, habendum, covenants (title, no encumbrance, indemnity, dues), possession, mutation, costs, testimonium, signatures, two witnesses, Schedule.
+:::
+
+:::q Draft an agreement to sell.
+Use the model: parties, recitals, price, earnest money, balance and date, sale deed on payment, warranties, NOC, defaults both ways, possession, dues, jurisdiction, signatures, witnesses, Schedule.
+:::
+
+:::q Draft a lease deed for a shop.
+Use the model: parties, recitals, demise and term, rent, increase, deposit, use, utilities, repairs, no sub-letting, no alterations, inspection, termination, handover, renewal, costs, law, signatures, witnesses, Schedule.
+:::
+`;
+
+
+/* ==========================================================
    EQUITY & SPECIFIC RELIEF (LLB 422)
    Deep Read, part 1: start page + Part I + Part II of the outline
    Written from the Specific Relief Act 1877 and sir's mid-term
@@ -3643,6 +4343,856 @@ Section 27(a) to (e). Explain the bona fide purchaser for value without notice: 
 
 :::q Problem: A agrees to sell his house to B, takes earnest money, then sells it to C, who knew of the agreement. Advise B.
 Use the six questions: ss. 12 (the land presumption), 21, 22, 23(a), 24(b) (ready, willing, deposit), 27(b) (C had notice, so he is not protected). Add limitation (Article 113, 3 years) and compensation (s. 19). Conclude: a decree against A and C.
+:::
+`;
+
+
+/* ==========================================================
+   LAW OF EVIDENCE II (LLB 425)
+   Deep Read, part 1: Articles 85 to 101 of the Qanun-e-Shahadat
+   Order 1984 (Article 95 in depth). Checked against the Sindh
+   Judicial Academy's updated text (2025).
+   ========================================================== */
+BOOKS.evidence = { deep: '', clear: '', quick: '', tips: '' };
+
+BOOKS.evidence.deep += String.raw`
+# Start here: the map of Articles 85 to 129
+
+Your syllabus is **Articles 85 to 129** of the **Qanun-e-Shahadat Order 1984 (QSO)**, and sir has flagged **Article 95** as important. Here is how that stretch of the Order fits together:
+
+:::cram
+Articles 85 to 89 || **Public and private documents**, certified copies, and how to prove them
+Articles 90 to 101 || **Presumptions as to documents** || Article 95: powers-of-attorney; Article 100: documents 30 years old
+Articles 102 to 110 || **Exclusion of oral by documentary evidence** || Once it's in writing, the writing speaks
+Articles 111 to 113 || **Facts that need not be proved** || Judicial notice and admissions
+Articles 114 to 116 || **Estoppel**
+Articles 117 to 127 || **Burden of proof**
+Article 128 || **Legitimacy**: birth during marriage
+Article 129 || The court **may presume** certain facts
+:::
+
+## Three words you must know: may, shall, conclusive
+Many of these Articles create **presumptions**: things the court takes as true without full proof. They come in three strengths, defined in Article 2 of the QSO:
+
+:::compare Type of presumption | What the court does
+**"May presume"** || The court **may** treat the fact as proved, or may ask for proof. It has a **choice**.
+**"Shall presume"** || The court **must** treat the fact as proved, **unless and until it is disproved**.
+**"Conclusive proof"** || The court must treat the fact as proved and **will not allow evidence** to disprove it.
+:::
+
+:::cram
+Shall presume || Articles 90, 91, 92, 93, 94, **95**, 99
+May presume || Articles 96, 97, 98, 100, 101, 129
+Conclusive proof || Article 128 (legitimacy)
+:::
+
+:::trick May, shall, conclusive: a door that opens three ways
+**May** = the door is unlocked; the judge decides whether to walk through. **Shall** = the door is open, but the other side can shut it with evidence. **Conclusive** = the door is welded open.
+:::
+
+:::tip A note on these notes
+These are written from the QSO itself, checked against the Sindh Judicial Academy's updated text (2025). There were no class notes, so if sir taught something differently, follow sir.
+:::
+
+===
+
+# Articles 85 and 86: Public and private documents
+
+:::law Article 85: Public documents
+The following documents are **public documents**:
+1. documents forming the **acts, or records of the acts**, of the **sovereign authority**, of **official bodies and tribunals**, and of **public officers** (legislative, judicial and executive), of Pakistan or of a foreign country;
+2. **public records** kept in Pakistan of **private documents**;
+3. documents that **public servants are required by law to keep**;
+4. **registered documents** whose **execution is not disputed**; and
+5. certificates deposited under the **Electronic Transactions Ordinance 2002**.
+:::
+
+:::law Article 86: Private documents
+**All other documents are private.**
+:::
+
+## Examples
+- **Public:** an Act of Parliament, a court judgment or order sheet, an FIR register, a revenue record (*jamabandi*, *fard*), a birth certificate from the union council, a land registry's record of a registered sale deed.
+- **Private:** a will, a private letter, an unregistered agreement to sell, a receipt, a company's own minutes.
+
+:::remember A Pakistani twist
+Under Article 85, a **registered document whose execution is not disputed** counts as a **public document**. So a registered sale deed that nobody challenges can be proved by a **certified copy** from the registry, without calling its witnesses.
+:::
+
+## Why the difference matters
+:::compare Public document | Private document
+Proved by a **certified copy** (Article 88) || Generally proved by the **original** (primary evidence)
+Often enjoys **presumptions** of genuineness (Articles 90 to 94) || Its **execution must be proved**: signature, handwriting, attesting witnesses (Articles 78 to 84)
+Kept by a public officer || Kept by private persons
+:::
+
+===
+
+# Articles 87 to 89: Certified copies and proof
+
+:::law Article 87: Certified copies of public documents
+Every **public officer** having custody of a public document that any person has a **right to inspect** shall, on demand and on payment of the legal fee, give that person a **copy**, with a **certificate** written at its foot that it is a **true copy**. The certificate is **dated** and **signed** by the officer with his name and official title, and sealed where he has a seal. Such copies are called **certified copies**.
+
+**Explanation:** an officer who is authorised to issue copies is treated as having **custody** for this purpose.
+:::
+
+:::law Article 88: Proof of documents by production of certified copies
+Certified copies may be produced **in proof of the contents** of the public documents, or parts of them, of which they are copies.
+:::
+
+**In simple words:** you don't need to bring the original revenue register from the Patwari's office to court. A **certified copy** proves its contents.
+
+:::law Article 89: Proof of other public documents
+Certain public documents may also be proved in particular ways, for example:
+1. **Government orders and notifications:** by records of the department certified by its head, or by a document printed by the Government's order;
+2. **Proceedings of legislatures:** by their journals, published Acts or abstracts, or copies printed by the Government's order;
+3. **Acts of a foreign country's executive or legislature:** by journals published by its authority, or copies certified under its seal;
+4. **Proceedings of municipal bodies:** by a copy certified by their legal keeper, or a printed book published by their authority; and
+5. **Public documents of a foreign country:** by the original, or by a copy certified by the legal keeper, with a certificate of a **notary public** or a **Pakistani consular officer** that the copy is duly certified.
+:::
+
+:::trick Public documents in one line
+**Public** = made or kept by the state. **Prove** it with a **certified copy** (Article 88). **Presume** it's genuine (Article 90).
+:::
+
+===
+
+# Articles 90 to 94: Presumptions the court shall make
+
+These Articles let the court **assume genuineness** of certain official documents, because officials are presumed to do their jobs properly. All of them are **"shall presume"**: the court must presume the fact, **until it is disproved**.
+
+:::cram
+Article 90 || **Certified copies** || Genuine, if in the form required by law and signed by an officer of the Federal or a Provincial Government; and the signer held the office claimed
+Article 91 || **Records of evidence** || A record of evidence or a statement taken by a judge, magistrate or authorised officer is genuine, and its statements about how it was taken are true
+Article 92 || **Documents kept under any law** || Genuine, if kept in the form the law requires and produced from **proper custody**
+Article 93 || **Government maps and plans** || Made by the Government's authority are presumed accurate; maps made **for a particular case** must be **proved** accurate
+Article 94 || **Collections of laws and law reports** || Books published under a government's authority containing its laws or court decisions are presumed genuine
+:::
+
+**Examples:**
+- **Article 90:** a certified copy of a *fard* from the revenue department is presumed genuine. The other side may try to disprove it.
+- **Article 91:** a statement of a witness recorded by a magistrate is presumed to be genuine and properly recorded.
+- **Article 93:** a survey map of a village made by the Government is presumed accurate. A map drawn by a private surveyor for the lawsuit must be proved.
+
+:::remember Why "shall presume" here
+Public officers are presumed to have acted **regularly** in their official duties. That saves the court from calling every clerk and officer as a witness.
+:::
+
+===
+
+# Article 95: Presumption as to powers-of-attorney
+
+**This is the article sir has flagged. Know it inside out.**
+
+:::law Article 95: Presumption as to powers-of-attorney
+The court **shall presume** that every document purporting to be a **power-of-attorney**, and to have been **executed before, and authenticated by**, a **Notary Public**, or any **Court, Judge, Magistrate**, **Pakistan Consul or Vice-Consul**, or **representative of the Federal Government**, was **so executed and authenticated**.
+:::
+
+## What is a power-of-attorney?
+:::define Power-of-attorney
+A document by which one person, the **principal** (or donor), authorises another, the **attorney** (or agent), to **act on his behalf**, for example to sell property, appear in court, sign documents or collect rent. In Pakistan it is governed by the **Powers of Attorney Act 1882**, read with the law of agency in the **Contract Act 1872**.
+:::
+
+- A **general** power-of-attorney authorises many kinds of acts.
+- A **special** power-of-attorney authorises one particular act, such as selling one plot.
+
+## The elements of Article 95
+For the presumption to arise, the document must:
+1. **purport to be a power-of-attorney**;
+2. purport to have been **executed before** one of the listed authorities; and
+3. purport to have been **authenticated by** that authority.
+
+The listed authorities are a **Notary Public**, a **Court**, a **Judge**, a **Magistrate**, a **Pakistan Consul or Vice-Consul**, or a **representative of the Federal Government**.
+
+:::trick Who can authenticate: "NJ-MCR"
+**N**otary, **J**udge or Court, **M**agistrate, **C**onsul or Vice-Consul, **R**epresentative of the Federal Government.
+:::
+
+## What is presumed
+The court presumes that the power-of-attorney **was executed** (signed by the principal) and **was authenticated** (certified) before that authority. So the party relying on it **does not need to call** the notary or the attesting witnesses to prove its execution.
+
+**Example:** Ahmed, living in Dubai, signs a power-of-attorney before the **Pakistani Consulate** authorising his brother Bilal to sell his plot in Karachi. In court, Bilal produces it. Under Article 95, the court **shall presume** that Ahmed executed it before the Consul and that the Consul authenticated it. Bilal does not have to bring the Consul or Ahmed to prove the signature.
+
+===
+
+# Article 95: Its limits, and how it is used in practice
+
+## 1. The presumption is rebuttable
+"**Shall presume**" means the court must accept execution and authentication **unless the contrary is proved**. The other side can still show, for example, that:
+- the principal's signature was **forged**;
+- the principal was **not present** before the notary;
+- the notary's stamp or seal was **fake**; or
+- the principal was a **minor** or of **unsound mind**, or the document was obtained by **fraud or coercion**.
+
+## 2. It covers execution and authentication only
+Article 95 presumes **how the document was made**, not **what it lawfully allows**. It does **not** presume:
+- that the attorney **acted within his authority** in a particular transaction;
+- that the power was **still in force** when he acted (it may have been **revoked**, or the principal may have **died**); or
+- that the transaction itself was **genuine** or **for value**.
+
+## 3. Without authentication, no presumption
+A power-of-attorney **not** executed before one of the listed authorities gets **no** Article 95 presumption. Its execution must be proved in the ordinary way: by the **signature and handwriting** of the principal (Article 78), and, where it creates financial or future obligations, by the **attesting witnesses** (Articles 17 and 79).
+
+:::compare Authenticated power-of-attorney | Unauthenticated power-of-attorney
+Executed before a notary, court, judge, magistrate, consul or federal representative || Signed privately, with no listed authority
+Court **shall presume** execution and authentication (Article 95) || **No presumption**
+No need to call the notary or witnesses || Execution must be **proved** (Articles 78 and 79)
+The other side may **rebut** it || The party relying on it must **prove** it
+:::
+
+## 4. How courts read powers-of-attorney
+Pakistani courts read a power-of-attorney **strictly**. The attorney can do **only** what the document clearly authorises. A power to **manage** property does not include a power to **sell** it. And where an attorney sells the principal's property to **himself or his relatives**, courts expect clear proof that the principal knew and agreed.
+
+## 5. Related rules
+- **Registration:** a power-of-attorney authorising the sale of immovable property is often **registered** as well; registration and notarisation are separate things.
+- **Foreign powers-of-attorney:** a power executed abroad is normally authenticated by the **Pakistani consulate** there, which is exactly what brings it within Article 95.
+- **Stamp duty:** a power-of-attorney must be properly **stamped** under the Stamp Act 1899.
+
+:::remember Article 95 in one paragraph
+A power-of-attorney **executed before and authenticated by** a notary, court, judge, magistrate, Pakistani consul or vice-consul, or federal representative is **presumed** to have been so executed and authenticated. The presumption is **mandatory** ("shall") but **rebuttable**. It covers only **execution and authentication**, not the scope of authority or the validity of what the attorney later does. Without authentication, the document must be **proved** under Articles 78 and 79.
+:::
+
+===
+
+# Articles 96 to 99: More presumptions
+
+:::cram
+Article 96 || **Certified copies of foreign judicial records** || **May** presume genuine and accurate, if certified in the manner usual in that country, and the certificate is confirmed by a Federal Government representative there
+Article 97 || **Books, maps and charts** || **May** presume that a published book, map or chart of public interest was written and published by the person, and at the time and place, it claims
+Article 98 || **Telegraphic messages** || **May** presume the message received matches the one handed in at the sending office; but **not** who handed it in
+Article 99 || **Documents not produced** || **Shall** presume that a document called for and not produced after notice was **attested, stamped and executed** as the law requires
+:::
+
+## Article 98: one trap
+The court may presume **what** the message said, but **not who sent it**. If you claim a particular person sent it, you must prove that separately.
+
+## Article 99: the penalty for hiding a document
+**Example:** A asks B, after a formal notice to produce, to bring the original agreement to court. B refuses. Under Article 99, the court **shall presume** that the agreement was properly **attested, stamped and executed**. A party cannot gain by hiding a document.
+
+:::trick Shall or may?
+Only **Article 99** in this group is "**shall**". Articles 96, 97 and 98 are all "**may**".
+:::
+
+===
+
+# Articles 100 and 101: Documents thirty years old
+
+:::law Article 100: Presumption as to documents thirty years old
+Where any document purporting or proved to be **thirty years old** is produced from any custody which the court, in the particular case, considers **proper**, the court **may presume** that:
+- the **signature** and every other part of it, which purports to be in a particular person's handwriting, is in that person's handwriting; and
+- in the case of a document **executed or attested**, it was **duly executed and attested** by the persons by whom it purports to be executed and attested.
+:::
+
+:::law Explanation: proper custody
+Documents are in **proper custody** if they are in the place where, and under the care of the person with whom, they would **naturally be**. But no custody is improper if it is proved to have had a **legitimate origin**, or if the circumstances make such an origin **probable**.
+:::
+
+**The Article's own examples of proper custody:**
+- A has been in possession of landed property for a long time and produces **deeds relating to the land** from his own custody: proper custody.
+- A produces deeds about land of which he is the **mortgagee**, and the mortgagor is in possession: proper custody.
+- A, a relative of B, produces deeds about B's land that B **deposited with him for safe keeping**: proper custody.
+
+:::law Article 101: Certified copies of documents thirty years old
+The rule in Article 100 also applies to **certified copies** (under Article 87) of documents that are at least **thirty years old**.
+:::
+
+## Why 30 years?
+After 30 years, the people who signed or witnessed a document are often **dead or untraceable**. Without this presumption, old title deeds could never be proved. So the law lets the court presume they are genuine if they come from the **right place**.
+
+:::warn It is "may", and custody matters
+The presumption is **discretionary**, and only for documents from **proper custody**. A 30-year-old deed produced by a stranger with no link to the property gets no presumption. And Article 100 is about **execution**, not about whether the deed's **contents** are true or whether it passed **title**.
+:::
+`;
+
+
+/* ==========================================================
+   LAW OF EVIDENCE II (LLB 425)
+   Deep Read, part 2: Articles 102 to 129
+   ========================================================== */
+BOOKS.evidence.deep += String.raw`
+===
+# Articles 102 and 103: When the writing speaks for itself
+
+Chapter VI is about the **exclusion of oral by documentary evidence**. The idea is simple: **once the parties put their deal in writing, the writing is the best evidence of it.**
+
+:::law Article 102: Evidence of terms of contracts, grants and dispositions reduced to writing
+When the terms of a **contract**, a **grant** or any other **disposition of property** have been reduced to the form of a **document**, and in all cases where the law **requires** a matter to be in writing, **no evidence** may be given to prove those terms **except the document itself**, or **secondary evidence** of its contents where secondary evidence is admissible.
+
+**Exceptions:** the **appointment of a public officer** may be proved without the written appointment, where it is shown that a particular person has acted as such officer; and a **will admitted to probate** may be proved by the probate.
+:::
+
+**Example:** A and B sign a written lease. To prove the rent, you must produce the **lease**, not a witness who says "I heard them agree on Rs 50,000".
+
+:::law Article 103: Exclusion of evidence of oral agreement
+Once the terms are proved by the document under Article 102, **no evidence of any oral agreement or statement** may be admitted, **between the parties** or their representatives, to **contradict, vary, add to, or subtract from** its terms.
+:::
+
+## The six provisos: when oral evidence is still allowed
+:::cram
+Proviso 1 || Facts that would **invalidate** the document, or entitle a party to a decree about it || Fraud, intimidation, illegality, lack of due execution, lack of capacity, failure of consideration, mistake
+Proviso 2 || A **separate oral agreement** on a matter on which the document is **silent**, and not inconsistent with it || The court considers how formal the document is
+Proviso 3 || A separate oral agreement making a **condition precedent** to any obligation under it || "This sale only takes effect if my father agrees"
+Proviso 4 || A **later oral agreement** to **rescind or modify** the contract || Not where the law requires writing, or where the document is registered
+Proviso 5 || A **usage or custom** annexing incidents to contracts of that kind, if not inconsistent with the express terms
+Proviso 6 || Any fact showing **how the language relates to existing facts**
+:::
+
+:::trick The six exceptions: "FSC-LUL"
+**F**raud and invalidity, **S**ilent-point side deal, **C**ondition precedent, **L**ater change, **U**sage, **L**anguage linked to facts.
+:::
+
+:::remember Who is bound?
+Article 103 binds only **the parties and their representatives**. Under **Article 109**, a **stranger** to the document whose interests are affected can prove an oral agreement varying it.
+:::
+
+===
+
+# Articles 104 to 110: Explaining the words of a document
+
+These Articles deal with **ambiguity**: what to do when the words of a document don't fit the facts neatly.
+
+:::cram
+Article 104 || Language **plain** and applies **accurately** to existing facts || **No evidence** to show it was meant to apply to something else
+Article 105 || Language **plain** but **unmeaning** in reference to existing facts || Evidence may show it was used in a **peculiar sense**
+Article 106 || Language could apply to **only one of several** persons or things || Evidence may show **which one** was meant
+Article 107 || Language applies **partly** to one set of facts and **partly** to another, but **wholly** to neither || Evidence may show which was meant
+Article 108 || **Illegible** characters, or **technical, local, provincial, foreign, abbreviated or obsolete** terms || Evidence may show their meaning
+Article 109 || A **stranger** to the document || May prove a contemporaneous agreement varying its terms, if it affects his interests
+Article 110 || **Wills** || This Chapter does not affect the **Succession Act 1925** rules on interpreting wills
+:::
+
+## Examples
+- **Article 104:** "I sell my house at 12-B, Block 4, Gulshan." There is such a house and A owns it. A cannot bring evidence that he really meant his other house.
+- **Article 105:** A sells B "my house in Lahore". A has no house in Lahore, but he does have a house in Sheikhupura, which B has occupied ever since the deed was signed. Evidence can show the deed meant the Sheikhupura house.
+- **Article 106:** A agrees to sell B "my white horse". A has two white horses. Evidence can show which one was meant.
+- **Article 107:** A agrees to sell B "my land at X, in the occupation of Y". A has land at X not occupied by Y, and land occupied by Y not at X. Evidence can show which was meant.
+- **Article 108:** a trader's ledger uses trade abbreviations, or a deed uses old local land-measure words like *kanal* and *marla*. Evidence can explain them.
+
+:::trick Plain and fits: no evidence. Anything else: evidence allowed
+Only Article 104 shuts the door. Articles 105 to 108 open it, to help the court understand the words.
+:::
+
+===
+
+# Articles 111 to 113: Facts that need not be proved
+
+## Judicial notice
+:::law Article 111: Fact judicially noticeable need not be proved
+No fact of which the court will take **judicial notice** need be proved.
+:::
+
+:::law Article 112: Facts of which the court must take judicial notice
+These include, among others: **all laws** in force in Pakistan; the course of **proceedings of legislatures**; **seals** of courts and of notaries; the **accession to office, names and signatures** of public officers notified in the Gazette; the existence and **national flag** of every state recognised by Pakistan; the **divisions of time** and the **geographical divisions** of the world; **public holidays** notified in the Gazette; the **territories** of Pakistan; the beginning, continuance and end of **hostilities** between Pakistan and another state; the names of **court officers and advocates**; and the **rule of the road**, on land or at sea.
+
+The court may consult appropriate books or documents of reference for help, and may refuse to take notice unless the person asking produces such a book or document.
+:::
+
+**Example:** you don't need a witness to prove that 23 March is a gazetted public holiday, or that the Pakistan Penal Code is in force. The court **knows** these.
+
+## Admitted facts
+:::law Article 113: Facts admitted need not be proved
+No fact need be proved that the parties, or their agents, **agree to admit** at the hearing, or **agree to admit in writing** before the hearing, or are treated as having **admitted by their pleadings**. But the court **may, in its discretion**, require the admitted facts to be proved otherwise.
+:::
+
+:::remember
+Two shortcuts to proof: **the court already knows it** (Articles 111 and 112), or **both sides already agree** (Article 113).
+:::
+
+===
+
+# Articles 114 to 116: Estoppel
+
+:::law Article 114: Estoppel
+When one person has, by his **declaration, act or omission**, **intentionally caused or permitted** another person to **believe a thing to be true** and to **act upon that belief**, neither he nor his representative shall be allowed, in any suit or proceeding between himself and that person or his representative, to **deny the truth** of that thing.
+:::
+
+## The elements of estoppel
+1. A **representation** of fact, by declaration, act or omission.
+2. Made **intentionally**, causing or permitting the other to believe it.
+3. The other person **believed** it.
+4. He **acted on it**, usually to his detriment.
+5. The person who made it now tries to **deny** it.
+
+**The Article's kind of example:** A intentionally and falsely leads B to believe that certain land belongs to A, and so induces B to buy and pay for it. Later, the land becomes A's property, and A seeks to recover it from B on the ground that he had no title when he sold it. A is **not allowed** to prove his want of title.
+
+:::trick Estoppel: "You said it, he relied, you can't take it back"
+Representation, belief, action, then no denial.
+:::
+
+:::law Article 115: Estoppel of tenant and of licensee
+- A **tenant**, or anyone claiming through him, may not, during the tenancy, deny that the **landlord had title** at the **beginning** of the tenancy.
+- A person who came onto property by the **licence** of the person in possession may not deny that person's **title to possession** at the time the licence was given.
+:::
+
+**Example:** a tenant who has paid rent to his landlord for five years cannot suddenly refuse to pay, saying "you never owned this shop". This comes up constantly in Pakistani rent cases.
+
+:::law Article 116: Estoppel of acceptor of bill of exchange, bailee or licensee
+- The **acceptor** of a bill of exchange may not deny that the drawer had **authority** to draw it or to endorse it.
+- A **bailee or licensee** may not deny that his **bailor or licensor** had authority to make the bailment or grant the licence when it began.
+
+**Explanations:** the acceptor may deny that the bill was **really drawn** by the person who appears to have drawn it; and a bailee who delivers the goods to someone other than the bailor may prove that person had a **right** to them.
+:::
+
+:::warn Estoppel is a rule of evidence, not a cause of action
+Estoppel **stops a person denying** something. It does not, on its own, create a right to sue. And there is **no estoppel against a statute**: a person cannot be estopped from relying on a clear rule of law.
+:::
+
+===
+
+# Articles 117 to 122: Burden of proof
+
+:::law Article 117: Burden of proof
+Whoever desires any court to give judgment as to any **legal right or liability** dependent on the existence of facts he **asserts** must **prove that those facts exist**. When a person is bound to prove the existence of any fact, the **burden of proof** lies on him.
+:::
+
+:::law Article 118: On whom the burden lies
+The burden of proof in a suit or proceeding lies on **the person who would fail if no evidence at all were given on either side**.
+:::
+
+**Example:** A sues B for land that B possesses, saying A's father left it to him by will. If no evidence is given, B keeps the land. So **the burden is on A**.
+
+:::law Article 119: Burden of proof as to a particular fact
+The burden of proving a **particular fact** lies on the person who wishes the court to **believe** in its existence, unless a law provides that it lies on someone else.
+:::
+
+**Example:** A prosecutes B for theft and wants the court to believe B **admitted** the theft to C. A must prove the admission. If B wants the court to believe he was **elsewhere** (an alibi), B must prove that.
+
+:::law Article 120: Burden of proving a fact needed to make evidence admissible
+The burden of proving any fact necessary to make evidence **admissible** lies on the person who wishes to give that evidence.
+:::
+
+**Example:** to give a **dying declaration** in evidence, you must first prove the person is **dead**. To give **secondary evidence** of a document, you must first prove the original is **lost**.
+
+:::law Article 121: Burden of proving that the case of the accused comes within the exceptions
+When a person is **accused** of an offence, the burden of proving circumstances that bring his case within the **General Exceptions** of the Pakistan Penal Code, or within any special exception or proviso, is **on him**, and the court shall **presume the absence** of such circumstances.
+:::
+
+**Example:** an accused who pleads **insanity** or **private self-defence** must prove the facts of that defence. But the prosecution must still prove its own case **beyond reasonable doubt** first; the accused's burden is lighter, on a balance of probabilities.
+
+:::law Article 122: Burden of proving a fact especially within knowledge
+When any fact is **especially within the knowledge** of any person, the burden of proving it is **upon him**.
+:::
+
+**Example:** a person found travelling without a ticket must prove that he **had** a ticket, because only he knows.
+
+:::trick The burden in one line
+**He who asserts must prove** (117), **the one who'd lose with no evidence** (118), **each fact by the one who needs it** (119), **the gateway fact by the one who wants the evidence in** (120), **the defence by the accused** (121), **the secret by the one who knows it** (122).
+:::
+
+===
+
+# Articles 123 to 127: Special burdens
+
+## Alive or dead?
+:::law Article 123: Burden of proving the death of a person known to have been alive within thirty years
+When the question is whether a man is alive or dead, and it is shown that he was **alive within thirty years**, the burden of proving that he is **dead** is on the person who **affirms** it.
+:::
+
+:::law Article 124: Burden of proving that a person is alive who has not been heard of for seven years
+But when it is proved that he has **not been heard of for seven years** by those who would naturally have heard of him if he had been alive, the burden of proving that he is **alive** shifts to the person who **affirms** it.
+:::
+
+:::compare Article 123 | Article 124
+Alive within **30 years** || Not heard of for **7 years**
+Presumed **alive** || Presumed **dead**
+Burden on the person saying he's **dead** || Burden on the person saying he's **alive**
+:::
+
+:::warn Article 124 presumes death, not the date of death
+The presumption is only that he is **dead now**, not that he died on any particular **date**. Whoever relies on a particular date of death must prove it.
+:::
+
+## Relationships and ownership
+:::law Article 125: Burden of proof as to relationship of partners, landlord and tenant, principal and agent
+When it is shown that people have been **acting as** partners, landlord and tenant, or principal and agent, the burden of proving that they **do not stand**, or have **ceased to stand**, in that relationship is on the person who **affirms** it.
+:::
+
+:::law Article 126: Burden of proof as to ownership
+When the question is whether a person is the **owner** of anything of which he is shown to be **in possession**, the burden of proving that he is **not** the owner is on the person who **affirms** it.
+:::
+
+**Possession is evidence of ownership.** The person in possession doesn't have to prove his title first; the person challenging him does.
+
+## Positions of trust
+:::law Article 127: Proof of good faith in transactions where one party is in a relation of active confidence
+Where there is a question as to the **good faith** of a transaction between parties, one of whom stands to the other in a position of **active confidence**, the burden of proving the **good faith** of the transaction is on the party who is in the position of active confidence.
+:::
+
+**The Article's kind of examples:** an **advocate** buys property from his **client**; a **father** buys property from his son who has **just come of age**. In each, the advocate or father must prove the deal was fair.
+
+:::remember Pakistani courts and Article 127
+Courts apply the same idea to transactions with **pardanashin** (secluded) or **illiterate women**: the person taking the benefit must prove that she **understood** the deal and acted with **free will**, often with **independent advice**.
+:::
+
+===
+
+# Article 128: Legitimacy
+
+:::law Article 128: Birth during marriage conclusive proof of legitimacy
+The fact that a person was born:
+- during the continuance of a **valid marriage** between his mother and any man, and **not earlier than six lunar months** from the date of the marriage; or
+- **within two years after its dissolution**, the mother remaining **unmarried**,
+
+shall be **conclusive proof** that he is the **legitimate child** of that man, **unless** the man **disowned** the child, or the child was born after six lunar months from the date on which the woman **accepted that her iddat had ended**.
+
+Under clause (2), nothing in this Article applies to a **non-Muslim** if it is inconsistent with his faith.
+:::
+
+## The rule in simple words
+:::cram
+Born at least 6 lunar months after the marriage, during the marriage || Conclusively legitimate
+Born within 2 years after divorce or the husband's death, mother not remarried || Conclusively legitimate
+Unless || The husband **disowned** the child (by *li'an*), or the child was born more than 6 lunar months after the mother accepted that her iddat was over
+:::
+
+:::trick 6 and 2
+**Six** lunar months after the wedding, **two** years after it ends. Inside that window, the child is legitimate, **conclusively**.
+:::
+
+:::remember Why it is "conclusive"
+This is the strongest presumption in the QSO: **no evidence** may be given to disprove it (other than the exceptions in the Article itself). The law protects children from the stigma of illegitimacy. Compare the Evidence Act 1872 (s. 112), which used a different rule (280 days). The QSO follows **Islamic law**.
+:::
+
+===
+
+# Article 129: The court may presume certain facts
+
+:::law Article 129: Court may presume existence of certain facts
+The court **may presume** the existence of any fact it thinks **likely to have happened**, having regard to the **common course of natural events, human conduct, and public and private business**, in their relation to the facts of the particular case.
+:::
+
+## The illustrations: the court may presume that
+:::cram
+(a) || A man in **possession of stolen goods** soon after the theft is the **thief** or knowingly **received** them, unless he can account for his possession
+(b) || An **accomplice** is **unworthy of credit** unless he is **corroborated** in material particulars
+(c) || A **bill of exchange**, accepted or endorsed, was accepted or endorsed for **good consideration**
+(d) || A thing or state of things shown to exist **continues** to exist, within the usual time such things last
+(e) || **Judicial and official acts** have been **regularly performed**
+(f) || The **common course of business** has been followed in particular cases
+(g) || **Evidence that could be produced, and is not**, would be **unfavourable** to the person who withholds it
+(h) || If a man **refuses to answer** a question he is not compelled by law to answer, the answer would have been **unfavourable** to him
+(i) || When a document creating an **obligation** is in the hands of the **obligor**, the obligation has been **discharged**
+:::
+
+## But they are only "may"
+The Article itself warns that the court must also consider facts that point the **other way**. For example:
+- for **(a)**: a shopkeeper has a stolen rupee note in his till soon after a theft, but he **handles many notes in his business**;
+- for **(b)**: the accomplice is a person of **good character**, or the crime was committed under **duress**;
+- for **(g)**: the person didn't produce the evidence because it was **private** or would injure an innocent third party.
+
+:::trick The most-quoted illustration: (g)
+"**Withhold the evidence, lose the presumption.**" If you could have produced a witness or document and didn't, the court may presume it would have hurt you. This is used in civil and criminal cases all the time.
+:::
+
+:::compare Article 129 | Articles 90 to 99
+General, flexible presumptions of **fact** || Specific presumptions about **documents**
+Always "**may** presume" || Mostly "**shall** presume"
+Based on **common sense and experience** || Based on **official regularity**
+:::
+
+===
+
+# Putting it together: a model answer on Article 95
+
+**Question:** *Explain Article 95 of the Qanun-e-Shahadat Order 1984. Is the presumption under it conclusive?*
+
+1. **Introduction:** Article 95 is one of the presumptions as to documents (Articles 90 to 101). It makes proof of powers-of-attorney easier.
+2. **Text:** the court **shall presume** that every document purporting to be a power-of-attorney, and to have been **executed before and authenticated by** a Notary Public, Court, Judge, Magistrate, Pakistan Consul or Vice-Consul, or representative of the Federal Government, was so executed and authenticated.
+3. **Meaning of power-of-attorney:** principal and attorney; general and special; the Powers of Attorney Act 1882.
+4. **Elements:** purports to be a power-of-attorney; purports to be executed before a listed authority; purports to be authenticated by it.
+5. **Effect:** no need to call the notary or witnesses to prove execution; a short example (a power signed at the Pakistani consulate in Dubai).
+6. **Nature: "shall presume", not conclusive.** Explain may / shall / conclusive. It is **mandatory but rebuttable**: it can be disproved by evidence of forgery, absence of the principal, fake seal, incapacity or fraud.
+7. **Limits:** it covers only **execution and authentication**, not the **scope** of authority, **revocation**, or the **genuineness of transactions** done under it. Powers-of-attorney are **read strictly**.
+8. **Unauthenticated powers:** no presumption; prove under **Articles 78 and 79**, with attesting witnesses where Article 17 applies.
+9. **Conclusion:** Article 95 is a **rebuttable presumption of due execution and authentication**, not conclusive proof, and does not validate what the attorney does.
+
+:::tip How to score
+Quote the Article, explain "shall presume" against "may presume" and "conclusive proof", give an example, state the limits, and end with one line answering the exact question.
+:::
+`;
+
+
+/* ==========================================================
+   LAW OF EVIDENCE II (LLB 425): Clear Read, Last-Minute Read, Tips
+   ========================================================== */
+BOOKS.evidence.clear = String.raw`
+# Articles 85 to 94: Documents and official presumptions
+
+**May presume:** the court may accept or ask for proof. **Shall presume:** it must accept until disproved. **Conclusive proof:** no evidence allowed against it.
+
+## Public and private documents
+- **Article 85: public documents:** acts and records of the sovereign authority, official bodies, tribunals and public officers (of Pakistan or a foreign country); public records of private documents; documents public servants must keep; **registered documents whose execution isn't disputed**; certificates under the Electronic Transactions Ordinance 2002.
+- **Article 86:** all other documents are **private**.
+- **Article 87: certified copy:** given by the officer with custody, on payment, certified as a true copy, dated, signed, with name and title.
+- **Article 88:** a certified copy **proves the contents** of a public document.
+- **Article 89:** special modes of proving Government orders, legislative proceedings, foreign acts, municipal records, and foreign public documents (certified, with a notary or Pakistani consul's certificate).
+
+## "Shall presume": official documents
+:::cram
+Article 90 || Certified copies genuine; the signer held the office
+Article 91 || Records of evidence taken by a judge or magistrate genuine and properly taken
+Article 92 || Documents kept under any law genuine, if in the proper form and from proper custody
+Article 93 || Government maps accurate; maps made for the case must be proved
+Article 94 || Official collections of laws and law reports genuine
+:::
+
+===
+
+# Article 95: Powers-of-attorney
+
+:::law Article 95
+The court **shall presume** that every document purporting to be a **power-of-attorney**, and to have been **executed before and authenticated by** a **Notary Public, Court, Judge, Magistrate, Pakistan Consul or Vice-Consul, or representative of the Federal Government**, was so executed and authenticated.
+:::
+
+- **Power-of-attorney:** a document by which a **principal** authorises an **attorney** to act for him; general or special; Powers of Attorney Act 1882.
+- **Elements:** purports to be a power-of-attorney; executed before a listed authority; authenticated by it. *NJ-MCR.*
+- **Effect:** execution and authentication **presumed**; no need to call the notary or witnesses.
+- **Nature:** "**shall presume**": **mandatory but rebuttable**; not conclusive. Rebutted by forgery, the principal's absence, a fake seal, incapacity, fraud.
+- **Limits:** covers **execution and authentication only**, not the **scope** of authority, **revocation** or **death** of the principal, or the genuineness of the attorney's transactions. Powers are **read strictly**; a power to manage is not a power to sell.
+- **No authentication, no presumption:** prove by signature and handwriting (Article 78) and attesting witnesses (Articles 17 and 79).
+
+===
+
+# Articles 96 to 110: More presumptions, and the written word
+
+## Presumptions
+:::cram
+Article 96 || **May** presume foreign judicial records genuine, if certified in that country's usual way and confirmed by a Federal Government representative
+Article 97 || **May** presume published books, maps and charts were written and published as they claim
+Article 98 || **May** presume a telegram received matches the one sent, but **not** who sent it
+Article 99 || **Shall** presume a document not produced after notice was duly attested, stamped and executed
+Article 100 || **May** presume a **30-year-old** document from **proper custody** was duly signed, executed and attested
+Article 101 || Article 100 also applies to **certified copies** of 30-year-old documents
+:::
+
+**Proper custody:** where the document would **naturally** be; or any custody with a **legitimate origin**.
+
+## Oral evidence excluded by documents
+- **Article 102:** terms of a contract, grant or disposition reduced to writing are proved **only by the document** (or secondary evidence). Exceptions: appointment of a public officer; a probated will.
+- **Article 103:** no oral evidence **between the parties** to contradict, vary, add to or subtract from its terms, **except** under six provisos: **F**raud and invalidity, **S**eparate oral term on a silent point, **C**ondition precedent, **L**ater oral rescission or modification (not if writing or registration is required), **U**sage, **L**anguage linked to facts. *FSC-LUL.*
+- **Article 104:** plain language that fits the facts: **no** evidence to change it.
+- **Articles 105 to 108:** evidence **allowed** where plain language doesn't fit the facts (105), fits one of several (106), fits two sets partly (107), or is illegible, technical, local or abbreviated (108).
+- **Article 109:** a **stranger** may prove an agreement varying the document.
+- **Article 110:** wills are governed by the Succession Act 1925.
+
+===
+
+# Articles 111 to 129: Judicial notice, estoppel, burden, presumptions
+
+## No proof needed
+- **Articles 111 and 112:** facts of **judicial notice**: laws, legislatures, seals, gazetted officials, flags, time, holidays, territory, hostilities, court officers, the rule of the road.
+- **Article 113:** **admitted** facts need no proof, but the court may still require it.
+
+## Estoppel
+- **Article 114:** a person who **intentionally** caused another to **believe** something and **act** on it can't **deny** it later.
+- **Article 115:** a **tenant** can't deny the landlord's title at the start of the tenancy; a **licensee** can't deny the licensor's title.
+- **Article 116:** an **acceptor** of a bill can't deny the drawer's authority; a **bailee or licensee** can't deny the bailor's or licensor's authority.
+
+## Burden of proof
+:::cram
+Article 117 || He who **asserts** must prove
+Article 118 || On the one who would **fail if no evidence** were given
+Article 119 || A particular fact: on the one who wants it **believed**
+Article 120 || A fact needed to make evidence **admissible**: on the one offering it
+Article 121 || An **accused** relying on an exception (e.g. insanity, self-defence) must prove it; absence presumed
+Article 122 || A fact **especially within knowledge**: on the one who knows
+Articles 123 and 124 || Alive within **30 years**: whoever says dead proves it. Not heard of for **7 years**: whoever says alive proves it
+Article 125 || Acting as partners, landlord and tenant, principal and agent: whoever denies the relationship proves it
+Article 126 || **Possession** is evidence of ownership: whoever denies proves it
+Article 127 || The party in **active confidence** proves good faith (advocate and client, father and son)
+:::
+
+## Legitimacy and general presumptions
+- **Article 128:** birth during a valid marriage (**not before six lunar months**) or within **two years** after it ends (mother unmarried) is **conclusive proof** of legitimacy, unless **disowned**, or born after six lunar months from when the mother accepted her iddat was over.
+- **Article 129:** the court **may presume** facts from natural events, human conduct and business: (a) stolen goods, (b) an accomplice needs corroboration, (c) bills for consideration, (d) continuance, (e) official acts regular, (f) course of business, (g) **withheld evidence is unfavourable**, (h) refusal to answer, (i) an obligation discharged when the document is with the obligor.
+`;
+
+BOOKS.evidence.quick = String.raw`
+# Articles 85 to 110 in five minutes
+
+:::cram
+May / shall / conclusive || Choice / must, until disproved / no evidence allowed against it
+Article 85 || Public documents: sovereign, official, public officers; records of private documents; registered and undisputed
+Article 86 || Everything else is private
+Articles 87 and 88 || Certified copy proves a public document
+Articles 90 to 94 || **Shall** presume: certified copies, records of evidence, documents under law, Government maps, law reports
+**Article 95** || **Shall** presume a power-of-attorney executed before and authenticated by a Notary, Court, Judge, Magistrate, Consul or federal representative was so executed || Rebuttable; execution only, not scope
+Articles 96 to 98 || **May** presume: foreign records, books and maps, telegrams (not the sender)
+Article 99 || **Shall** presume a document not produced after notice was duly executed
+Articles 100 and 101 || **May** presume a 30-year-old document from proper custody is genuine; also certified copies
+Article 102 || Writing proves the terms
+Article 103 || No oral variation between the parties, except the six provisos (FSC-LUL)
+Article 104 || Plain and fits: no evidence
+Articles 105 to 108 || Doesn't fit, one of several, two sets, illegible or technical: evidence allowed
+Article 109 || Strangers may vary
+:::
+
+===
+
+# Articles 111 to 129 in five minutes
+
+:::cram
+Articles 111 and 112 || Judicial notice: laws, seals, flags, holidays, territory, rule of the road
+Article 113 || Admitted facts need no proof
+Article 114 || Estoppel: representation, belief, action, no denial
+Article 115 || Tenant can't deny the landlord's title
+Article 116 || Acceptor, bailee and licensee estoppel
+Articles 117 and 118 || Asserter proves; the one who'd lose with no evidence
+Articles 119 and 120 || Particular fact; admissibility fact
+Article 121 || Accused proves the exception
+Article 122 || Special knowledge
+Articles 123 and 124 || 30 years alive vs 7 years unheard
+Articles 125 and 126 || Relationship; possession means ownership
+Article 127 || Active confidence proves good faith
+Article 128 || Conclusive legitimacy: 6 lunar months after the wedding, up to 2 years after it ends
+Article 129 || May presume: stolen goods, accomplice, withheld evidence (g)
+:::
+
+===
+
+# If you remember only this
+
+:::remember Ten lines to walk in with
+1. **May** = choice. **Shall** = must, until disproved. **Conclusive** = no rebuttal.
+2. **Article 85:** public documents; a registered, undisputed document counts. **Article 88:** prove it with a certified copy.
+3. **Article 95:** a power-of-attorney executed before and authenticated by a **N**otary, **J**udge or court, **M**agistrate, **C**onsul, or federal **R**epresentative is presumed so executed.
+4. **Article 95 is shall, not conclusive:** rebuttable, and covers **execution, not authority**.
+5. **Article 100:** 30 years plus proper custody means the court **may** presume genuineness.
+6. **Article 103:** no oral variation of a written deal, except FSC-LUL.
+7. **Article 114:** estoppel. **Article 115:** a tenant can't deny the landlord's title.
+8. **Articles 117 and 118:** whoever asserts proves; whoever would lose without evidence carries the burden.
+9. **Articles 123 and 124:** 30 years alive vs 7 years unheard. **Article 126:** possession means ownership.
+10. **Article 128:** conclusive legitimacy (6 and 2). **Article 129(g):** withheld evidence is presumed unfavourable.
+:::
+
+:::tip The formula for every answer
+Quote the Article, say whether it is may, shall or conclusive, give an example, state its limits, conclude in one line.
+:::
+`;
+
+BOOKS.evidence.tips = String.raw`
+# How to score in Evidence II
+
+- **Article 95 is flagged. Prepare a full answer on it:** the text, the meaning of power-of-attorney, the elements, the effect, "shall presume" vs "conclusive", the limits, and unauthenticated powers. See the model answer at the end of the Deep Read.
+- **Always say whether a presumption is may, shall or conclusive.** It is the single most important classification in this syllabus.
+- **Quote the Article number and its key words.** "Proper custody", "active confidence", "especially within the knowledge", "contradict, vary, add to or subtract from".
+- **Give the Article's own kind of example.** The white horse (106), the advocate buying from his client (127), the stolen goods (129(a)).
+- **Mention the Evidence Act 1872 equivalent** when it helps, and note where the QSO differs, such as legitimacy (Article 128 vs the old s. 112).
+- **Draw tables** for comparisons: public vs private documents, may vs shall vs conclusive, Article 123 vs 124, Article 104 vs 105 to 108.
+
+## Plan your 75 minutes
+- **First 5 minutes:** read every question; if Article 95 is there, do it first while you're fresh.
+- **Split the rest by marks.**
+- **Last 10 minutes:** check every answer has the Article number, its strength (may, shall, conclusive) and an example.
+
+===
+
+# Memory tricks
+
+:::trick May, shall, conclusive: a door
+**May:** unlocked, the judge chooses. **Shall:** open, but the other side can shut it with evidence. **Conclusive:** welded open.
+:::
+
+:::trick Article 95: NJ-MCR
+**N**otary, **J**udge or court, **M**agistrate, **C**onsul or vice-consul, federal **R**epresentative.
+:::
+
+:::trick Which presumptions are "shall"?
+**90, 91, 92, 93, 94, 95 and 99.** The rest of 96 to 101, and 129, are "may". Only 128 is conclusive.
+:::
+
+:::trick Article 103's provisos: FSC-LUL
+**F**raud and invalidity, **S**ilent-point side deal, **C**ondition precedent, **L**ater change, **U**sage, **L**anguage linked to facts.
+:::
+
+:::trick Estoppel
+"You said it, he relied, you can't take it back."
+:::
+
+:::trick 30 and 7
+Seen alive within **30** years: presumed alive. Unheard of for **7** years: presumed dead.
+:::
+
+:::trick 6 and 2 (Article 128)
+Born **six** lunar months or more after the wedding, or within **two** years after it ends: conclusively legitimate.
+:::
+
+:::trick Article 129(g)
+"Withhold the evidence, lose the presumption."
+:::
+
+===
+
+# Common mistakes
+
+:::warn Calling Article 95 conclusive
+It says "**shall presume**": mandatory, but **rebuttable** by evidence of forgery, fraud, or the principal's absence.
+:::
+
+:::warn Thinking Article 95 validates the attorney's acts
+It presumes **execution and authentication** of the power only, not its **scope**, whether it was **revoked**, or whether a sale under it was genuine.
+:::
+
+:::warn Applying Article 95 to any power-of-attorney
+Only to powers **executed before and authenticated by** a listed authority. Others must be **proved** under Articles 78 and 79.
+:::
+
+:::warn Forgetting proper custody in Article 100
+A 30-year-old document gets the presumption only if it comes from **proper custody**, and it is only "**may**".
+:::
+
+:::warn Saying Article 103 binds everyone
+It binds **the parties and their representatives**. A **stranger** may prove a varying agreement (Article 109).
+:::
+
+:::warn Treating estoppel as a cause of action
+Estoppel **stops a denial**; it doesn't create a right to sue. And there is **no estoppel against a statute**.
+:::
+
+:::warn Article 124 and the date of death
+After 7 years unheard, death is presumed, but **not the date** of death.
+:::
+
+:::warn Using the old 280-day rule for legitimacy
+The QSO (Article 128) uses **six lunar months** after the marriage and **two years** after it ends, not the Evidence Act's 280 days.
+:::
+
+===
+
+# Likely questions
+
+Tap a question to see an answer outline.
+
+:::q Explain Article 95. Is the presumption conclusive?
+Text; meaning of power-of-attorney; the elements; the listed authorities; the effect; may vs shall vs conclusive; rebuttable; limits (execution only, scope, revocation, strict reading); unauthenticated powers under Articles 78 and 79. Conclude: mandatory but rebuttable.
+:::
+
+:::q Distinguish public and private documents. How are public documents proved?
+Article 85's categories, Article 86. A table of differences. Certified copies (Articles 87 and 88), other modes (Article 89), and presumptions (Article 90). Examples. Conclude.
+:::
+
+:::q Distinguish "may presume", "shall presume" and "conclusive proof", with examples from the Qanun-e-Shahadat.
+Define each (Article 2). Examples: may (Articles 96 to 98, 100, 129), shall (Articles 90 to 95, 99), conclusive (Article 128). A table. Conclude.
+:::
+
+:::q Discuss the presumption as to documents thirty years old.
+Article 100's text, the reason for it, "proper custody" and its examples, "may presume", Article 101 (certified copies). Limits: execution, not truth of contents or title. Conclude.
+:::
+
+:::q Explain the rule excluding oral evidence by documentary evidence, with its exceptions.
+Articles 102 and 103; the six provisos with examples; who is bound (Article 109); Articles 104 to 108 on interpreting language. Conclude.
+:::
+
+:::q What is estoppel? Explain its kinds under the QSO.
+Article 114's elements with the land example; tenant and licensee (Article 115); acceptor, bailee, licensee (Article 116). Estoppel is a rule of evidence; no estoppel against statute. Conclude.
+:::
+
+:::q On whom does the burden of proof lie? Discuss Articles 117 to 127.
+The general rule (Articles 117 and 118); particular facts (119 to 122) with examples; special burdens (123 to 127). Conclude.
+:::
+
+:::q Write notes on Article 128 and Article 129.
+Article 128: the rule, 6 and 2, the exceptions, conclusive, the contrast with the old s. 112. Article 129: the general power to presume and illustrations (a) to (i), especially (g), with their limits. Conclude.
 :::
 `;
 
@@ -6270,6 +7820,7 @@ function block(type, arg, body){
       return `<div class="table-wrap"><table class="compare"><thead><tr><th>${inline(a)}</th><th>${inline(b)}</th></tr></thead><tbody>${cells(body).map(r => `<tr><td>${inline(r[0] || '')}</td><td>${inline(r[1] || '')}</td></tr>`).join('')}</tbody></table></div>`;
     }
     case 'cram': return `<div class="cram">${cells(body).map(r => `<div class="cram-row"><span class="c1">${inline(r[0] || '')}</span><span class="c2">${inline(r[1] || '')}</span>${r[2] ? `<span class="c3">${inline(r[2])}</span>` : ''}</div>`).join('')}</div>`;
+    case 'deed': return `<div class="deed"><div class="deed-h">${inline(arg)}</div><div class="deed-b">${inner()}</div></div>`;
     case 'q': return `<details class="qcard"><summary><span class="q">Q.</span><span>${inline(arg)}</span></summary><div class="q-body">${inner()}</div></details>`;
     default: return `<div>${inner()}</div>`;
   }
