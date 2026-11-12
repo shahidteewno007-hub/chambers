@@ -921,6 +921,19 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
 .foot .by span{ color: var(--brass); font-size: 1.75em; vertical-align: -2px; }
 .act-sign .sign{ display: inline-block; margin-top: 6px; color: #1d3b8a; transform: rotate(-3deg); }
 
+/* copy buttons and the little confirmation toast */
+.r-copy span{ font: 500 13.5px/1 var(--f-text); }
+@media (max-width: 640px){ .r-copy span{ display: none; } }
+.copy-all{ margin-top: 16px; }
+.copy-all svg.i{ width: 17px; height: 17px; }
+.toast{
+  position: fixed; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 300; width: max-content; max-width: calc(100vw - 32px); text-align: center;
+  padding: 11px 18px; border-radius: 999px; background: #ecd08c; color: #1c1508; font: 600 14.5px/1.3 var(--f-text);
+  box-shadow: 0 14px 30px -10px rgba(0,0,0,.6); transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  transition: opacity .25s, transform .25s var(--ease);
+}
+.toast.show{ opacity: 1; transform: translate(-50%, 0); }
+
 </style>
 </head>
 <body class="locked">
@@ -1037,6 +1050,7 @@ a.read:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(
       <button type="button" data-mode="book" aria-pressed="true" title="Turn the pages"><i data-icon="book"></i><span>Pages</span></button>
       <button type="button" data-mode="scroll" aria-pressed="false" title="Read the whole thing in one scroll"><i data-icon="scroll"></i><span>Whole thing</span></button>
     </div>
+    <button type="button" class="r-btn r-copy" data-act="copy" aria-label="Copy the whole of this read" title="Copy the whole of this read"><i data-icon="copy"></i><span>Copy</span></button>
     <button type="button" class="r-btn r-aa" data-act="prefs" aria-label="Reading settings" title="Reading settings" aria-expanded="false" aria-controls="prefs">Aa</button>
     <button type="button" class="r-btn" data-act="toc" aria-label="Contents" title="Contents"><i data-icon="list"></i></button>
   </div>
@@ -1108,7 +1122,7 @@ const LIBRARY = [
   { id: 'equity', title: 'Equity & Specific Relief', short: 'Equity', code: 'LLB 422', color: '#1d5b4b', emblem: 'scales',
     blurb: 'Where equity came from, and sections 1 to 27 of the Specific Relief Act 1877: getting property back and specific performance.' },
   { id: 'cpc', title: 'Civil Procedure II', short: 'CPC II', code: 'LLB 423', color: '#57295f', emblem: 'court',
-    blurb: 'How a civil case moves through the courts under the Code of Civil Procedure 1908.' },
+    blurb: 'Execution of decrees, commissions, arrest and attachment before judgment, temporary injunctions, and suits involving the Government: Orders 21, 26, 27, 38 and 39.' },
   { id: 'crpc', title: 'Criminal Procedure II', short: 'CrPC II', code: 'LLB 424', color: '#5c3a1a', emblem: 'gavel',
     blurb: 'How a criminal case moves from FIR to judgment under the Code of Criminal Procedure 1898.' },
   { id: 'evidence', title: 'Law of Evidence II', short: 'Evidence II', code: 'LLB 425', color: '#1f5966', emblem: 'lens',
@@ -1145,6 +1159,1265 @@ const DAILY = [
   ['Lex semper dabit remedium', 'The law will always give a remedy.', 'Panic has a remedy too: the Last-Minute Read.'],
   ['Cessante ratione legis cessat ipsa lex', 'When the reason for a law ends, the law ends too.', 'When the exams end, so does the stress.']
 ];
+
+
+/* ==========================================================
+   CIVIL PROCEDURE II (LLB 423)
+   Deep Read, part 1: start page + Order XXI (execution)
+   Written from the Code of Civil Procedure 1908 as it applies in
+   Pakistan, following the mid-term syllabus (no class notes).
+   ========================================================== */
+BOOKS.cpc = { deep: '', clear: '', quick: '', tips: '' };
+
+BOOKS.cpc.deep += String.raw`
+# Start here: the map of the mid-term
+
+Your mid-term covers **five Orders** of the First Schedule to the **Code of Civil Procedure 1908 (CPC)**:
+
+:::cram
+Order XXI || **Execution** of decrees and orders || How a winner actually gets what the court gave him
+Order XXVI || **Commissions** || Examining witnesses, local investigations, accounts, partition
+Order XXXVIII || **Arrest and attachment before judgment** || Stopping a defendant from running away or hiding his property during the suit
+Order XXXIX || **Temporary injunctions** and interlocutory orders || Keeping things as they are until the suit is decided
+Order XXVII || Suits **by or against the Government** or public officers || The special rules when the state is a party
+:::
+
+:::remember The big picture
+A civil case has three stages: **before** judgment, **judgment**, and **after** judgment. Orders **38 and 39** protect the plaintiff **before** judgment. Order **21** gives him the fruit of his decree **after** judgment. Order **26** helps the court **find the facts**. Order **27** adjusts the procedure when **the Government** is a party.
+:::
+
+## Sections and Orders
+The CPC has two parts: the **sections** (the body of the Code, which create powers and rights) and the **Orders and rules** in the First Schedule (which set out procedure). Good answers mention both. For example, **section 51** lists the modes of execution, and **Order 21** explains how each one works.
+
+:::tip A note on these notes
+There were no class notes, so this book is written from the **CPC as it applies in Pakistan**. Rule numbers and small details sometimes differ between editions and amendments. If your bare act or sir's lecture shows something different, follow them.
+:::
+
+===
+
+# Order 21: What execution means
+
+A decree on paper does not put money in the plaintiff's pocket or land under his feet. **Execution** is the process by which the court **enforces** its decree, giving the decree-holder what the court awarded.
+
+:::define Execution
+The enforcement of a decree or order by the process of the court, so that the decree-holder obtains the **fruits of his decree**.
+:::
+
+## The key words
+- **Decree-holder (DH):** the person in whose favour the decree was passed (s. 2(3)).
+- **Judgment-debtor (JD):** the person against whom the decree was passed (s. 2(10)).
+- **Executing court:** the court that carries out the decree, either the court that passed it or the court it is sent to (s. 38).
+
+## The sections behind Order 21
+:::cram
+Section 36 || The execution provisions also apply to **orders**
+Section 37 || "Court which passed a decree" includes the first instance court, even after an appeal
+Section 38 || A decree may be executed by the court that **passed it** or the court it is **sent to**
+Section 39 || When a decree may be **transferred** to another court
+Section 47 || All questions between the parties **relating to execution** are decided **by the executing court**, not by a separate suit
+Section 51 || The **modes** of execution
+Section 55 || Rules on **arrest**
+Section 60 || What property **can and cannot be attached**
+Section 64 || A private transfer of property after **attachment** is **void** against the decree-holder
+:::
+
+## Section 51: the five modes of execution
+The court may order execution:
+1. **(a)** by **delivery** of any property specifically decreed;
+2. **(b)** by **attachment and sale**, or by sale without attachment, of any property;
+3. **(c)** by **arrest and detention** in civil prison;
+4. **(d)** by appointing a **receiver**; or
+5. **(e)** in such **other manner** as the nature of the relief requires.
+
+:::trick Section 51 in five words
+**Deliver, Attach-and-sell, Arrest, Receiver, Otherwise.** Think: "**DAARO**", meaning "scare" in Urdu, because execution is how the court makes a judgment-debtor take the decree seriously.
+:::
+
+:::warn Section 47: a favourite exam point
+Questions about **execution, discharge or satisfaction** of a decree, between the parties or their representatives, must be decided **by the executing court** itself. A **separate suit** on such questions is barred.
+:::
+
+===
+
+# Order 21: Payment under a decree (rules 1 and 2)
+
+Not every decree needs force. Often the judgment-debtor simply **pays**.
+
+:::law Rule 1: Modes of paying money under a decree
+All money payable under a decree shall be paid:
+1. **(a)** by **deposit into the court** whose duty it is to execute the decree;
+2. **(b)** **out of court** to the decree-holder; or
+3. **(c)** **otherwise**, as the court that made the decree directs.
+:::
+
+:::law Rule 2: Payment out of court to decree-holder
+- Where money is paid **out of court**, or the decree is otherwise **adjusted** (settled) to the decree-holder's satisfaction, the **decree-holder shall certify** the payment or adjustment to the court.
+- The **judgment-debtor** may also inform the court and apply for a **notice** to the decree-holder to show cause why the payment should not be recorded as certified.
+- A payment or adjustment that has **not been certified or recorded** shall **not be recognised** by any court executing the decree.
+:::
+
+**Why it matters:** imagine a JD pays Rs 2 lakh to the DH in cash, with no receipt and no report to the court. The DH can still apply for execution of the full decree, and the court **will not recognise** the payment. The lesson for the JD: **pay into court**, or get the payment **certified** quickly.
+
+:::remember
+Uncertified payment = **no payment** in the eyes of the executing court. Get it certified.
+:::
+
+===
+
+# Order 21: Which court executes? (rules 3 to 9)
+
+A decree may need to be executed far from the court that passed it, for example where the JD's property lies in another district.
+
+:::cram
+Rule 3 || Land in more than one jurisdiction || Any of those courts may attach and sell it
+Rule 4 || Transfer to a Court of Small Causes || Limits on what it may execute
+Rule 5 || Mode of transfer || The decree is sent directly, or through the District Court
+Rule 6 || Procedure when sending a decree to another court || Send a copy of the decree, a certificate of non-satisfaction, and a copy of any order for execution
+Rule 7 || The receiving court files the copies || No further proof needed
+Rule 8 || Execution by the court it is sent to || As if it had passed the decree itself
+Rule 9 || Execution by a High Court of a transferred decree
+:::
+
+## When a decree is transferred (section 39)
+The court that passed the decree may send it to another court if:
+- the **JD lives or works** within that court's limits;
+- he has **no property** within the first court's limits enough to satisfy the decree, but has property within the other's;
+- the decree directs **sale or delivery of immovable property** situated within the other court's limits; or
+- for any other reason, which the court records in writing.
+
+:::trick Why transfer? Follow the JD
+**Where he lives, where his property is, where the land is.** Execution goes to the judgment-debtor; it doesn't wait for him to come.
+:::
+
+===
+
+# Order 21: Applying for execution (rules 10 to 17 and 22)
+
+:::law Rule 10: Application for execution
+The decree-holder applies to the **court that passed the decree**, or to the court to which it has been **sent**.
+:::
+
+:::law Rule 11: Oral and written applications
+- **Oral:** where the decree is for **payment of money**, the court may, on an oral application **when the decree is passed**, order the **immediate arrest** of the JD before he leaves the courtroom.
+- **Written:** every other application must be **in writing**, signed and verified, and must state particulars, including: the suit number, the parties' names, the date of the decree, whether an appeal was filed, any payment or adjustment, previous applications, the amount due with interest, costs, the person against whom execution is sought, and the **mode** of the court's assistance (delivery, attachment and sale, arrest, receiver, or otherwise).
+:::
+
+:::cram
+Rule 12 || Attachment of movable property **not in the JD's possession** || The application must include an **inventory** of it
+Rule 13 || Attachment of **immovable** property || Must describe the property and the JD's share or interest
+Rule 14 || The court may require a certified extract of the land records
+Rule 15 || **Joint decree-holders** || One may apply for execution of the **whole decree for the benefit of all**
+Rule 16 || **Transferee** of a decree || May apply, but **notice** must go to the transferor and the JD
+Rule 17 || Procedure on receiving the application || Check rules 11 to 14; reject or allow amendment; then admit and order execution
+:::
+
+:::law Rule 22: When a show-cause notice must issue
+Before executing, the court must issue a **notice to the JD to show cause** why the decree should not be executed where:
+1. the application is made **long after the decree** (more than **one year** after it, in the Pakistani text); or
+2. execution is sought against the JD's **legal representative**; or
+3. execution is sought against an **assignee or receiver in insolvency**.
+
+No notice is needed if it would cause **unreasonable delay** or **defeat the ends of justice**, but the court must record its reasons.
+:::
+
+:::law Rule 23: After the notice
+If the person does not appear, or does not show cause, the court **orders execution**. If he objects, the court **decides the objection** first.
+:::
+
+===
+
+# Order 21: Cross-decrees and stay (rules 18 to 29)
+
+## Cross-decrees (rules 18 to 20)
+Where two parties hold **decrees against each other** for money, the court sets them off.
+
+**Example:** A holds a decree against B for Rs 5 lakh, and B holds a decree against A for Rs 3 lakh. Execution goes ahead only for the **difference of Rs 2 lakh**, in A's favour. If the two amounts are **equal**, both decrees are treated as satisfied.
+
+Rule 19 applies the same idea to **cross-claims under the same decree**, and rule 20 to **mortgage** decrees.
+
+## Simultaneous execution (rule 21)
+The court may, in its discretion, **refuse simultaneous execution** against the **person** and the **property** of the JD.
+
+## Stay of execution
+:::cram
+Rule 26 || The court a decree was **sent to** may stay execution for a **reasonable time** || So the JD can apply to the court that passed it, or to the appellate court, for a stay
+Rule 27 || If the JD is released on a stay, his **liability is not discharged**
+Rule 28 || An order of the court that passed the decree, or of the appellate court, **binds** the court applied to
+Rule 29 || Where a **suit is pending** by the JD against the DH || The court may stay execution until that suit is decided, on security
+:::
+
+## Kinds of decree, and how each is executed (rules 30 to 36)
+:::cram
+Rule 30 || Decree for **payment of money** || Detention in civil prison, or attachment and sale, or both
+Rule 31 || Decree for **specific movable property** || Seizure and delivery; or detention, or attachment, or both
+Rule 32 || Decree for **specific performance** or **injunction** || Detention, or attachment of property, or both; or the act may be done by someone else at the **JD's cost**
+Rule 34 || Decree to **execute a document** || If the JD refuses, the **court executes** the document itself
+Rule 35 || Decree for **immovable property** || The court puts the DH in possession, removing anyone bound by the decree
+Rule 36 || Immovable property **occupied by a tenant** || Delivery by fixing a copy of the warrant and proclaiming it, a "symbolic" possession
+:::
+
+:::trick Match the decree to the mode
+**Money** goes to prison or sale. **Goods** get seized. **Performance and injunction**: prison, attachment, or someone else does it at the JD's cost. **A document**: the court signs it. **Land**: the bailiff hands it over.
+:::
+
+===
+
+# Order 21: Arrest and detention (rules 37 to 41)
+
+Arrest is the **harshest** mode of execution, so the law surrounds it with safeguards.
+
+:::law Rule 37: Notice instead of arrest
+For a decree for payment of money, instead of issuing an arrest warrant straight away, the court **may first issue a notice** asking the JD to appear and **show cause** why he should not be committed to civil prison.
+:::
+
+:::cram
+Rule 38 || The arrest warrant || Directs the officer to bring the JD before the court
+Rule 39 || **Subsistence allowance** || The DH must pay into court the JD's daily allowance for food while he is detained; no allowance, no detention
+Rule 40 || Proceedings when the JD appears || The court hears him and may detain or release him
+Rule 41 || **Examination of the JD** as to his property || The court may examine him on oath about his assets and means
+:::
+
+## The safeguards in section 55
+- A JD may be arrested **at any hour, on any day**.
+- But **no dwelling-house** may be entered **after sunset and before sunrise**.
+- The **outer door** of a dwelling-house may not be broken open, unless the JD occupies it and **refuses access**.
+- A room occupied by a **woman** who does not appear in public, by custom, may not be entered until she has been given notice and a chance to withdraw.
+
+:::remember The purpose of detention
+Detention is **not punishment**. It is pressure on a JD who **can pay but refuses**. Courts will not imprison a JD who genuinely has **no means** to pay.
+:::
+
+## Who is exempt from arrest?
+Section 56 protects **women** from arrest in execution of a **money decree**. Members of legislatures are protected during sessions, and certain persons are exempt by other laws.
+
+===
+
+# Order 21: Attachment of property (rules 41 to 57)
+
+**Attachment** means the court takes legal control of the JD's property, so he **cannot sell or transfer it**, until it is sold to satisfy the decree.
+
+## How each kind of property is attached
+:::cram
+Movable property in the JD's possession (rule 43) || **Actual seizure** by the court's officer, who keeps it safe
+Agricultural produce (rules 44 and 45) || A copy of the warrant is fixed on the land or crop; the produce is protected until harvest and sale
+Debts, shares and property not in the JD's possession (rule 46) || A written **prohibitory order** stopping the creditor from recovering, or the holder from paying or transferring
+Share in movables owned jointly (rule 47) || A notice prohibiting the JD from transferring his share
+Salary (rule 48) || An order to the employer to withhold the attachable portion each month
+Partnership property (rule 49) || Charge on the partner's interest in the firm, not on the firm's property itself
+Negotiable instruments (rule 51) || Actual seizure and bringing the instrument into court
+Property in the custody of a court or public officer (rule 52) || A notice asking it to be held subject to the court's further orders
+Decrees (rule 53) || A notice to the court that passed the decree, or by prohibitory order
+Immovable property (rule 54) || An order **prohibiting transfer or charge**, proclaimed at the property and in public
+:::
+
+:::law Rule 55: Removal of attachment after satisfaction
+When the decree is **satisfied**, or the amount is paid into court, or the decree is set aside, the attachment is **withdrawn**.
+:::
+
+:::law Rule 57: Determination of attachment
+If the execution application is **dismissed**, the court states whether the attachment continues or ends.
+:::
+
+## Section 60: what cannot be attached
+Some property is **exempt**, so that a judgment-debtor is not left destitute. The list includes:
+- **necessary wearing clothes**, cooking vessels, beds and bedding of the JD, his wife and children;
+- **tools of artisans**;
+- for an agriculturist, his **implements of husbandry**, cattle and seed-grain, and the **houses** he occupies;
+- **books of account**;
+- a mere **right to sue** for damages;
+- **pensions** and stipends of the kind listed in the section; and
+- **wages** of labourers and domestic servants, and part of a **salary**.
+
+## Section 64: transfers after attachment are void
+Once property is attached, **any private transfer or charge** by the JD is **void against claims enforceable under the attachment**. The JD cannot defeat the decree by quickly "selling" the house to his brother.
+
+:::trick Attachment in one line
+**Seize** what you can carry, **prohibit** what you can't, and **exempt** what a person needs to live.
+:::
+
+===
+
+# Order 21: Claims and objections to attachment (rules 58 to 63)
+
+Sometimes the court attaches property that **someone else** says belongs to him, not to the JD.
+
+:::law Rule 58: Investigation of claims and objections
+Where any **claim** is made to, or any **objection** made to the attachment of, any property attached in execution, on the ground that it is **not liable to attachment**, the court shall **investigate** it, with the same power as if the claimant were a party.
+
+But the court need not investigate where the claim was **designedly or unnecessarily delayed**.
+:::
+
+:::cram
+Rule 59 || **Stay of sale** while the claim is investigated
+Rule 60 || **Release**: if the property was **not in the JD's possession**, or was held by another person **on his own account**, the court releases it
+Rule 61 || **Disallowance**: if the property was in the JD's possession **as his own**, the claim is disallowed
+Rule 62 || Continuance subject to a **mortgage or charge**: the attachment continues, subject to the third party's charge
+Rule 63 || **Saving of suits**: the losing party may file a **regular suit** to establish his right; subject to that suit, the order is **conclusive**
+:::
+
+**Example:** a court attaches a car parked at the JD's house. His friend objects, showing the registration papers and that he merely lent the car. If the court is satisfied the JD did not hold it on his own account, it **releases** the car (rule 60). If the friend loses, he can still file a suit within the limitation period to establish his title (rule 63).
+
+:::remember The test the court applies
+**Possession**: was the property in the JD's possession **on his own account**, or held by someone else for themselves? The objector does not need to prove full title, only possession on his own account.
+:::
+
+===
+
+# Order 21: Sale in execution (rules 64 to 83)
+
+:::law Rule 64: Power to order sale
+The court may order that attached property, or as much of it as is needed to satisfy the decree, be **sold**, and the proceeds paid to the decree-holder.
+:::
+
+:::law Rule 65: Sales by whom conducted
+Every sale in execution is conducted by an **officer of the court** (or another person the court appoints) by **public auction**.
+:::
+
+## The proclamation (rules 66 and 67)
+Before the sale, the court issues a **proclamation of sale** in the local language, stating:
+- the **time and place** of sale;
+- the **property** to be sold;
+- the **revenue** assessed on it, if any;
+- any **encumbrance** on it;
+- the **amount** for which the sale is ordered; and
+- anything else the court thinks a buyer should know.
+
+The proclamation is made by **beat of drum** or another customary mode, and a copy is fixed on the property and in the court-house.
+
+:::law Rule 68: Time of sale
+Without the JD's written consent, no sale may take place until at least **30 days** after the proclamation for **immovable** property, and at least **15 days** for **movable** property.
+:::
+
+:::cram
+Rule 69 || **Adjournment or stoppage** || A long adjournment needs a fresh proclamation; the sale stops if the debt and costs are paid before the lot is knocked down
+Rule 71 || **Defaulting purchaser** || Pays any loss on re-sale
+Rule 72 || **DH may not bid** without the court's permission || With permission, the price is set off against the decree
+Rule 73 || **Officers** connected with the sale may not bid
+Rules 74 to 78 || Sale of **movables** || Price paid at the time of sale (rule 77); an irregularity does not undo a movable sale, but the injured party may sue for damages (rule 78)
+Rules 79 to 81 || Delivery of movables, debts and shares; transfer of negotiable instruments; vesting orders
+Rule 83 || **Postponement** to let the JD raise the money by private sale or mortgage
+:::
+
+:::trick 30 and 15
+**Thirty** days for land, **fifteen** for goods. Land is worth more and takes longer to sell fairly.
+:::
+
+===
+
+# Order 21: Sale of immovable property (rules 84 to 96)
+
+## Paying the price
+:::law Rules 84 to 86: Deposit, balance and default
+- **Rule 84:** the declared purchaser must **immediately deposit 25%** of the price. If he doesn't, the property is **resold at once**.
+- **Rule 85:** he must pay the **balance within 15 days** of the sale.
+- **Rule 86:** if he fails, the deposit may be **forfeited**, and the property **resold**.
+:::
+
+**Rule 88:** where an undivided share is sold and a **co-sharer** and a stranger bid the same amount, the **co-sharer's bid is preferred**.
+
+## Setting the sale aside
+:::cram
+Rule 89 || **On deposit** || Any person owning or interested in the property may apply, depositing the **amount due** under the proclamation **plus 5%** of the purchase money for the purchaser
+Rule 90 || **Material irregularity or fraud** in publishing or conducting the sale || Only if the applicant proves **substantial injury** because of it
+Rule 91 || **By the purchaser** || On the ground that the JD had **no saleable interest**
+:::
+
+:::trick Three ways to undo a land sale
+**89:** pay up (amount plus 5%). **90:** prove irregularity or fraud **and** substantial injury. **91:** the buyer says there was nothing to buy.
+:::
+
+## Confirming the sale
+:::law Rule 92: Sale when to become absolute
+If no application under rules 89 to 91 is made, or it is disallowed, the court **confirms the sale**, and it becomes **absolute**.
+:::
+
+:::cram
+Rule 93 || Return of purchase money where the sale is set aside
+Rule 94 || **Sale certificate** to the purchaser || It states the property and the purchaser's name, and the date the sale became absolute
+Rule 95 || Delivery of property **occupied by the JD** || The purchaser is put in actual possession
+Rule 96 || Delivery of property **occupied by a tenant** || Symbolic delivery, by fixing the certificate and proclaiming it
+:::
+
+**Section 65:** when the sale becomes absolute, the property **vests in the purchaser from the date of the sale**, not from the date of confirmation.
+
+===
+
+# Order 21: Resistance to delivery of possession (rules 97 to 103)
+
+What if someone **resists** the decree-holder or auction purchaser when he tries to take possession?
+
+:::law Rule 97: Complaint of resistance
+Where the holder of a decree for possession, or the purchaser of property sold in execution, is **resisted or obstructed** in getting possession, he may **complain to the court**, which investigates.
+:::
+
+:::cram
+Rule 98 || Resistance by the **JD**, or someone on his behalf, without just cause || The court puts the applicant in possession, and may detain the resister in civil prison for up to **30 days**
+Rule 99 || Resistance by a person **claiming in good faith** to be in possession **on his own account** || The court **dismisses** the application
+Rule 100 || A person **other than the JD** is **dispossessed** by the DH or purchaser || He may complain to the court
+Rule 101 || If he was in possession **on his own account** in good faith || The court **restores** his possession
+Rule 102 || Rules 98 and 100 do not help a **transferee pendente lite** || Someone who bought from the JD **during the suit** is bound
+Rule 103 || The losing party may file a **regular suit** || Subject to that, the order is **conclusive**
+:::
+
+:::remember Two kinds of resisters
+**The JD and his people** are removed and can be detained (rule 98). **A genuine third party** in possession on his own account is protected (rules 99 and 101), and the decree-holder must file a regular suit against him.
+:::
+
+:::warn Don't forget rule 102
+A person who bought from the JD **while the suit was pending** cannot resist. He is bound by the decree through the doctrine of **lis pendens** (section 52 of the Transfer of Property Act).
+:::
+`;
+
+
+/* ==========================================================
+   CIVIL PROCEDURE II (LLB 423)
+   Deep Read, part 2: Orders XXVI, XXXVIII, XXXIX and XXVII
+   ========================================================== */
+BOOKS.cpc.deep += String.raw`
+===
+# Order 26: What a commission is
+
+A **commission** is an order by which the court **appoints someone else**, a commissioner, to do a task the court would otherwise do itself, such as recording a witness's evidence, inspecting a site, examining accounts or dividing property.
+
+**Why?** A court can't always do everything itself. A witness may be too ill to come, the disputed boundary may be 200 km away, or the accounts may run to thousands of pages.
+
+## The power in the sections
+- **Section 75:** the court may issue a commission (a) to **examine any person**, (b) to make a **local investigation**, (c) to examine or adjust **accounts**, or (d) to make a **partition**.
+- **Section 76:** commissions to another court.
+- **Section 77:** letters of request, where the witness is outside Pakistan.
+- **Section 78:** commissions issued by foreign courts.
+
+:::trick What a commission can do: WLAP
+**W**itnesses, **L**ocal investigation, **A**ccounts, **P**artition. Remember it as "**We Love A Plot**", since commissions so often involve land.
+:::
+
+===
+
+# Order 26: Examining witnesses (rules 1 to 8)
+
+:::law Rule 1: When a commission may issue to examine a witness
+Any court may issue a commission to examine **any person resident within its local limits** who is:
+- **exempted** under the Code from attending court; or
+- unable to attend because of **sickness or infirmity**.
+:::
+
+:::law Rule 2: Order for commission
+The court may make the order **on its own motion**, or on the **application of a party** or the witness, supported by affidavit or otherwise.
+:::
+
+:::law Rule 3: Witness within the court's jurisdiction
+The commission may be issued to **any person** the court thinks fit to execute it.
+:::
+
+:::law Rule 4: Persons outside the local limits, and others
+Any court may issue a commission to examine:
+1. **(a)** any person **resident beyond its local limits**;
+2. **(b)** any person **about to leave** those limits before the date he is required to be examined; and
+3. **(c)** any person in the **service of the Government** who cannot, in the court's opinion, attend **without detriment to the public service**.
+:::
+
+:::cram
+Rule 5 || Witness **outside Pakistan** || Commission or letter of request to a foreign court
+Rule 6 || The court receiving the commission **examines the witness**
+Rule 7 || The commission is **returned** with the depositions
+Rule 8 || When the deposition may be **read in evidence**
+:::
+
+:::law Rule 8: When depositions may be read in evidence
+Evidence taken under a commission may be read in evidence **only if** the person who gave it is, at the time, **beyond the court's jurisdiction**, **dead**, unable to attend through **sickness or infirmity**, **exempt** from personal appearance, or a **Government servant** who cannot attend without detriment to the public service, **or** the court, for reasons recorded, **dispenses with proof** of these facts.
+:::
+
+**Why rule 8 matters:** evidence on commission is an **exception**. The normal rule is that witnesses give evidence **in open court**, where the judge can watch them. If the reason for the commission has disappeared, for example the sick witness has recovered and is in town, he should be examined in court.
+
+:::trick Who gets a commission: the 5 Ds
+**D**istant (beyond limits), **D**eparting (about to leave), **D**ebilitated (sick or infirm), **D**ispensed (exempt by law), **D**uty-bound (a Government servant).
+:::
+
+===
+
+# Order 26: Local investigations, accounts and partition (rules 9 to 14)
+
+## Local investigation (rules 9 and 10)
+:::law Rule 9: Commissions for local investigations
+Where the court thinks a **local investigation** is needed or proper to **elucidate any matter in dispute**, to ascertain the **market value** of property, or to ascertain **mesne profits** or damages, it may issue a commission to a suitable person to investigate and **report**.
+:::
+
+:::law Rule 10: Procedure of the commissioner
+- The commissioner **inspects** the site, takes any evidence, and makes a **written report**, signed by him.
+- The **report and the evidence** form **part of the record** of the suit.
+- Any party may, with the court's permission, **examine the commissioner** in open court about the report.
+- If dissatisfied, the court may order **further inquiry**.
+:::
+
+**Example:** in a dispute over whether a neighbour has built a wall on the plaintiff's land, the court appoints a local commissioner, often a revenue officer or surveyor, to measure the plot and report where the boundary lies.
+
+:::warn A commission is not for collecting evidence for a party
+A local commission helps the court **understand** evidence or the site. It must not be used to **gather evidence** that a party should have produced himself.
+:::
+
+## Accounts (rules 11 and 12)
+In a suit where an **examination or adjustment of accounts** is needed, such as a partnership dispute or a suit for accounts, the court may appoint a commissioner to examine them. The court gives him **instructions**, and his report is **evidence**, but the court may still question it or order further inquiry.
+
+## Partition (rules 13 and 14)
+:::law Rule 13: Commission to make partition
+Where a **preliminary decree for partition** of immovable property has been passed, the court may issue a commission to **divide** the property according to the rights declared in the decree.
+:::
+
+:::law Rule 14: Procedure of the commissioner
+The commissioner **divides** the property into shares, **allots** a share to each party, and may award a sum to **equalise** the shares where they cannot be made exactly equal. He reports to the court, which may **confirm, vary or set aside** the report, and then passes the **final decree**.
+:::
+
+:::remember The order of events in a partition suit
+**Preliminary decree** (the shares are declared), then the **commission** (the land is actually divided), then the **final decree**.
+:::
+
+===
+
+# Order 26: Powers and procedure (rules 15 to 22)
+
+:::cram
+Rule 15 || **Expenses** || The court may order a party to pay the commission's expenses into court first
+Rule 16 || **Powers of commissioners** || Examine the parties and any witness; call for documents; enter any land or building mentioned in the order
+Rule 17 || **Witnesses** before a commissioner || Summoned and examined as if before the court; penalties apply in the same way
+Rule 18 || **Parties to appear** || The court directs the parties to appear before the commissioner; if they don't, he may proceed without them
+Rules 19 to 22 || Commissions at the request of **foreign courts** || The court may examine a witness in Pakistan for a foreign tribunal
+:::
+
+:::remember The commissioner is the court's helper, not a judge
+His **report is evidence**, not a judgment. The court may **accept, reject, or vary** it, and may **examine him in court**. The final decision always belongs to the court.
+:::
+
+===
+
+# Order 38: Arrest before judgment (rules 1 to 4)
+
+A plaintiff may win his case after two years, only to find the defendant has **disappeared** or **sold everything**. Order 38 lets the court stop this **before** judgment. Because these are drastic powers against someone not yet proved liable, the court uses them **sparingly**.
+
+:::law Rule 1: When the defendant may be asked to furnish security for appearance
+At any stage of a suit (other than a suit concerning immovable property of the kinds listed in section 16), if the court is satisfied, **by affidavit or otherwise**, that:
+- **(a)** the defendant, **with intent to delay** the plaintiff, avoid the court's process, or obstruct or delay execution of any decree:
+   1. has **absconded** or left the local limits of the court;
+   2. is **about to abscond** or leave; or
+   3. has **disposed of or removed** his property, or any part of it, from those limits; **or**
+- **(b)** the defendant is **about to leave Pakistan** in circumstances showing a reasonable probability that the plaintiff will be obstructed or delayed in executing any decree,
+
+the court may issue a **warrant to arrest** the defendant and bring him before the court to **show cause** why he should not furnish **security for his appearance**.
+:::
+
+:::trick The four As of rule 1
+**A**bsconded, **A**bout to abscond, **A**ssets removed, **A**broad-bound. And always with an **intent** to delay or defeat the plaintiff.
+:::
+
+:::law Rule 2: Security
+If the defendant **fails to show cause**, the court orders him to **deposit** money or property, or to furnish **security** for his appearance at any time while the suit is pending and until the decree is satisfied. The **surety** binds himself to pay the decretal amount if the defendant fails to appear.
+:::
+
+:::cram
+Rule 3 || A **surety** may apply to be **discharged** || The court summons the defendant to find fresh security
+Rule 4 || The defendant **fails to give security** or fresh security || The court may **commit him to civil prison** until the suit is decided, for a limited maximum period
+:::
+
+:::warn Not a punishment
+The aim is only to make sure the defendant **stays available** until the decree. If he furnishes security, he goes free.
+:::
+
+===
+
+# Order 38: Attachment before judgment (rules 5 to 13)
+
+:::law Rule 5: When the defendant may be asked to furnish security for production of property
+Where the court is satisfied, by affidavit or otherwise, that the defendant, **with intent to obstruct or delay** the execution of any decree that may be passed against him:
+- **(a)** is **about to dispose of** the whole or any part of his property; or
+- **(b)** is **about to remove** the whole or any part of his property from the local limits of the court,
+
+the court may direct him either to **furnish security** to produce the property, or its value, when required, or to **appear and show cause** why he should not. The plaintiff must **specify the property** and its estimated value. The court may also order **conditional attachment** of the property straight away.
+:::
+
+:::cram
+Rule 6 || **Attachment** where cause is not shown or security not furnished || The court orders the property, or enough of it, attached
+Rule 7 || **Mode** of attachment || As in execution of a decree under Order 21
+Rule 8 || **Claims** to property attached before judgment || Investigated as under Order 21 rule 58
+Rule 9 || **Removal** of attachment || When security is furnished or the suit is dismissed
+Rule 10 || **Rights of strangers** not affected || Nor is a decree-holder of the defendant barred from applying for sale
+Rule 11 || No **re-attachment** in execution || When the plaintiff wins, property attached before judgment is treated as attached in execution
+Rule 12 || **Agricultural produce** || Cannot be attached before judgment
+Rule 13 || **Small Cause Courts** || Cannot attach immovable property
+:::
+
+## The safeguards
+- The plaintiff must show **real evidence** of the **intent** to defeat the decree. Mere suspicion, or the fact that the defendant is selling property in ordinary business, is not enough.
+- **Section 95:** if arrest or attachment was obtained on **insufficient grounds**, or the suit fails and there was **no reasonable ground** for it, the court may award the defendant **compensation** against the plaintiff.
+- Orders under rules 2, 3 and 6 are **appealable** under **Order 43 rule 1**.
+
+:::compare Arrest before judgment (rules 1 to 4) | Attachment before judgment (rules 5 to 13)
+Aimed at the defendant's **person** || Aimed at his **property**
+He is absconding or leaving Pakistan || He is disposing of or removing property
+Security for **appearance** || Security for **production of property**
+Civil prison if no security || Attachment if no security
+:::
+
+:::trick Section 94: the umbrella
+Section 94 gives the court power, "in order to prevent the ends of justice from being defeated", to issue **arrest** (94(a)), order **security** or **attachment** (94(b)), grant **temporary injunctions** (94(c)), appoint a **receiver** (94(d)), and make other **interlocutory orders** (94(e)). Orders 38 and 39 are the detailed procedure for these powers.
+:::
+
+===
+
+# Order 39: Temporary injunctions (rules 1 and 2)
+
+:::define Temporary injunction
+An order that **restrains** a party from doing something, or keeps things as they are, **for a limited time**: until the suit is decided or the court orders otherwise. It **preserves the subject-matter** of the suit so the final decree will mean something.
+:::
+
+**Link to your Equity book:** under section 53 of the **Specific Relief Act**, temporary injunctions are **regulated by the CPC**, meaning by Order 39.
+
+:::law Rule 1: Cases in which a temporary injunction may be granted
+Where it is proved, by affidavit or otherwise:
+- **(a)** that any property in dispute in a suit is in **danger of being wasted, damaged or alienated** by any party, or **wrongfully sold** in execution of a decree; or
+- **(b)** that the defendant **threatens or intends to remove or dispose of his property** with a view to **defrauding his creditors**,
+
+the court may grant a temporary injunction to **restrain** that act, or make another order to **stop the waste, damage, alienation, sale, removal or disposal** of the property, until the suit is disposed of or until further orders.
+:::
+
+**Example:** in a suit over a disputed house, the defendant starts demolishing part of it and advertising it for sale. The court can restrain him from demolishing, selling or creating any third-party interest in it until the suit is decided.
+
+:::law Rule 2: Injunction to restrain repetition or continuance of a breach
+- In a suit to restrain the defendant from committing a **breach of contract or other injury**, the plaintiff may apply for a temporary injunction to restrain that breach, or a similar breach arising from the same contract or relating to the same property or right.
+- The court may grant it on **terms**, such as keeping an account or giving security.
+- **Disobedience:** if anyone **disobeys** the injunction, the court may order his **property to be attached**, and may also order him **detained in civil prison** for up to **six months**. An attachment may not remain in force for more than **one year**; after that, if the breach continues, the property may be **sold** and compensation paid to the injured party.
+:::
+
+:::trick Rule 1 protects the property; rule 2 stops the wrong
+**Rule 1:** the property may be wasted, sold, or moved away to cheat creditors. **Rule 2:** the defendant keeps breaching a contract or causing an injury. Disobey either, and face **six months' prison and a year's attachment**.
+:::
+
+===
+
+# Order 39: The three tests for a temporary injunction
+
+The rules don't list them, but the courts in Pakistan, following settled principles, grant a temporary injunction only if the applicant shows **all three**:
+
+:::cram
+1. Prima facie case || A serious question to be tried, with a fair chance of success || Not proof; just a case worth hearing
+2. Irreparable injury || Harm that **money cannot properly repair** if the injunction is refused || Losing a unique property, or the demolition of a building
+3. Balance of convenience || Refusing the injunction would cause **more inconvenience** to the applicant than granting it would cause to the other side || The court weighs both sides' hardship
+:::
+
+:::trick Prima facie, Irreparable, Balance: "PIB"
+Think **"P-I-B"**: Prima facie case, Irreparable injury, Balance of convenience. All three must be met.
+:::
+
+## The equitable side
+Since an injunction is an **equitable, discretionary** remedy, the court will also refuse it where:
+- the applicant comes with **unclean hands** or has **concealed** material facts;
+- he has **delayed** without reason; or
+- money **damages** would be an adequate remedy.
+
+:::remember
+A temporary injunction **keeps the status quo**. It doesn't decide the suit. That's why the court asks only for a **prima facie** case, not proof.
+:::
+
+===
+
+# Order 39: Procedure and other interlocutory orders (rules 3 to 10)
+
+:::law Rule 3: Notice before granting an injunction
+The court shall, **in all cases**, **give notice** of the application to the **opposite party** before granting an injunction, **except** where the object of granting it would be **defeated by the delay**.
+:::
+
+So an **ex parte** injunction, granted without hearing the other side, is the **exception**: for example where the defendant would demolish the house overnight if warned. An ex parte order is normally **short-term**, until the other side can be heard.
+
+:::cram
+Rule 4 || Injunction may be **discharged, varied or set aside** || On the application of any party dissatisfied with it
+Rule 5 || Injunction against a **corporation** || Binds the **members and officers** whose personal action it seeks to restrain
+:::
+
+## Interlocutory orders (rules 6 to 10)
+These are orders made **during** the suit to protect the property or the parties.
+
+:::cram
+Rule 6 || **Interim sale** || Of movable property **subject to speedy and natural decay**, such as fruit, vegetables or crops
+Rule 7 || **Detention, preservation and inspection** || Of the property in dispute; entering land or buildings; taking samples
+Rule 8 || **Notice** || Applications under rules 6 and 7 are made after notice to the other side, except where delay would defeat the purpose
+Rule 9 || **Immediate possession** || Of land liable to revenue, where the party in possession **fails to pay the revenue** and the other party pays it
+Rule 10 || **Deposit of money** || Where the subject-matter is money or a deliverable thing, and a party **admits** holding it as **trustee** for another, the court may order it deposited in court
+:::
+
+## Appeals
+Orders granting, refusing, varying or discharging temporary injunctions under Order 39 are **appealable** under **Order 43 rule 1**. The appellate court will interfere only if the trial court used its discretion **arbitrarily** or **perversely**.
+
+:::compare Temporary injunction | Perpetual injunction
+Granted **during** the suit || Granted by the **final decree**
+Under the **CPC, Order 39** (and s. 94) || Under the **Specific Relief Act, ss. 54 to 57**
+Prima facie case, irreparable injury, balance of convenience || Decided on full evidence
+Lasts until the suit ends or further orders || Permanent
+:::
+
+===
+
+# Order 27: Suits by or against the Government (rules 1 to 4)
+
+When the **state** is a party, the procedure changes in small but important ways. The state acts through officials, needs time to get instructions, and has special protections.
+
+## The sections first
+:::law Section 79: Suits by or against the Government
+In a suit by or against the **Federal Government**, the authority named as plaintiff or defendant is the **Federation of Pakistan**. For a **Provincial Government**, it is the **Province** (for example, "Province of Sindh").
+:::
+
+:::law Section 80: Notice before suing the Government or a public officer
+No suit may be filed against the **Government**, or against a **public officer** for an act done in his **official capacity**, until **two months** after a **written notice** has been delivered, stating the **cause of action**, the plaintiff's **name, description and residence**, and the **relief** claimed.
+:::
+
+**Why section 80?** It gives the Government a chance to **settle** the claim **without litigation**, and so saves public money and time.
+
+## The rules
+:::cram
+Rule 1 || Suits by or against the Government || The plaint or written statement is signed by the person the Government **appoints** for that purpose
+Rule 2 || Persons authorised to act for the Government || Treated as its **recognised agents** for appearances, applications and acts
+Rule 3 || Plaints in suits by or against the Government || The plaintiff or defendant is named as required by s. 79, the Federation of Pakistan or the Province
+Rule 4 || Agent for the Government to receive process || The **Government Pleader** is the agent for receiving summons and other process
+:::
+
+:::trick Name it, notice it, serve it on the pleader
+**Name** the Federation or Province (s. 79, rule 3), give **two months' notice** first (s. 80), and serve the **Government Pleader** (rule 4).
+:::
+
+===
+
+# Order 27: More time, public officers and protections (rules 5 to 8B)
+
+:::law Rule 5: Fixing the day for appearance
+The court shall allow a **reasonable time** for the necessary **communication with the Government** through the proper channel, and for instructions to be issued to the Government Pleader, and may extend it.
+:::
+
+:::law Rule 6: Attendance of a person able to answer questions
+The court may require the Government Pleader to be accompanied by a person **able to answer material questions** about the suit.
+:::
+
+:::law Rule 7: Extension of time for a public officer
+Where a public officer is sued for an act done in his **official capacity**, the court shall allow him **extra time** to refer to the Government and receive its instructions.
+:::
+
+:::law Rule 8: Procedure where a public officer is sued
+- If the **Government undertakes his defence**, the Government Pleader appears and applies to the court, which notes the authority.
+- If the Government **does not** undertake the defence, the case proceeds as an **ordinary suit** between private parties, except that the officer is **not liable to arrest**, and his property **not to attachment**, other than in **execution of a decree**.
+:::
+
+:::cram
+Rule 8A || **No security** required from the Government or a public officer || In certain cases, such as security for costs or for staying execution
+Rule 8B || **Definitions** || Of "Government" and "Government Pleader" for this Order
+:::
+
+## Related protections in the sections
+- **Section 81:** in a suit against a public officer for an official act, he is **not liable to arrest** nor his property to **attachment** other than in execution, and the court may **exempt** him from **appearing in person** if he can't be absent without detriment to the public service.
+- **Section 82:** a decree against the **Government** or a public officer acting officially is **not executed** at once. It is executed only if it remains **unsatisfied** for the period the section allows, giving the Government time to pay.
+
+:::remember Why all the special treatment?
+The Government acts through **officials**, needs **time** to get instructions, and spends **public money**. But it is still bound by law: these rules **adjust the procedure**, they don't give the Government immunity.
+:::
+
+===
+
+# Putting it together: a problem question
+
+**Question:** *A sues B for Rs 50 lakh. During the suit, A learns that B is selling his car and his flat and has booked a flight to Dubai. A also fears that B will demolish a disputed boundary wall. A wins a decree, but B refuses to pay. Advise A at each stage.*
+
+## During the suit
+1. **B is leaving Pakistan** to defeat the decree: apply under **Order 38 rule 1(b)**. The court may arrest B and require **security for his appearance** (rule 2), or commit him to prison if he refuses (rule 4).
+2. **B is selling his car and flat**: apply under **Order 38 rule 5** for **attachment before judgment**. Specify the property and its value, and prove B's **intent** to obstruct execution.
+3. **The boundary wall**: apply for a **temporary injunction** under **Order 39 rule 1(a)**, showing a **prima facie case, irreparable injury** and the **balance of convenience**. Ask for an ex parte order under **rule 3** if notice would let B demolish it first.
+4. **Where exactly is the boundary?** Ask the court for a **local commission** under **Order 26 rule 9**.
+
+## After the decree
+5. Apply for **execution** under **Order 21 rule 11**, in writing, stating the mode: **attachment and sale** of B's property (s. 51(b)) and, if B can pay but refuses, **arrest** (s. 51(c); Order 21 rules 37 to 40).
+6. The property attached before judgment needs **no re-attachment** (**Order 38 rule 11**). The court proclaims the sale (Order 21 rules 66 to 68: 30 days for the flat, 15 for the car), and sells by **public auction**.
+7. Any **private sale** by B after attachment is **void** against A (**section 64**).
+
+**Conclusion:** Orders 38 and 39 protect A **before** judgment; Order 21 gives him the **fruits** of his decree after it.
+
+:::tip How to score
+Name the **Order and rule** at every step, explain the **condition** the rule requires (intent, irreparable injury, and so on), and end with a one-line conclusion advising the client.
+:::
+`;
+
+
+/* ==========================================================
+   CIVIL PROCEDURE II (LLB 423): Clear Read
+   ========================================================== */
+BOOKS.cpc.clear = String.raw`
+# Order 21: Execution, part one
+
+**Execution** is enforcing a decree so the **decree-holder (DH)** gets its fruits from the **judgment-debtor (JD)**.
+
+## The sections
+- **s. 38:** executed by the court that **passed** it or the court it is **sent to**. **s. 39:** transfer where the JD lives, works or has property elsewhere.
+- **s. 47:** all questions on **execution, discharge or satisfaction** are decided **by the executing court**; no separate suit.
+- **s. 51 modes:** **delivery**, **attachment and sale**, **arrest and detention**, **receiver**, or **otherwise**. *DAARO.*
+- **s. 55:** arrest any time, but **no entering a dwelling-house between sunset and sunrise**, no breaking an outer door unless the JD refuses access. **s. 56:** no arrest of a **woman** for a money decree.
+- **s. 60:** exempt property: clothes and bedding, artisans' tools, a farmer's implements, cattle and house, books of account, a right to sue, pensions, wages, part of a salary.
+- **s. 64:** a private transfer **after attachment** is **void** against the decree.
+
+## Rules 1 to 29
+:::cram
+Rules 1 and 2 || Pay into court, out of court, or as directed || Out-of-court payment must be **certified**, or the executing court ignores it
+Rules 3 to 9 || Transfer of decrees || Send a copy of the decree, a certificate of non-satisfaction and the execution order
+Rules 10 and 11 || Application for execution || **Oral** for immediate arrest on a money decree; otherwise **written**, with particulars and the mode of relief
+Rules 12 and 13 || Inventory of movables; description of land
+Rule 15 || **Joint DH** || One may execute the whole decree for all
+Rule 16 || **Transferee** of a decree || May execute, after notice to the transferor and the JD
+Rule 17 || The court checks the application, then admits it
+Rules 18 to 20 || **Cross-decrees** || Set off; execute only the balance
+Rule 21 || The court may refuse simultaneous execution against person and property
+Rules 22 and 23 || **Show-cause notice** || Application over one year after the decree, or against a legal representative or insolvency assignee
+Rules 26 to 29 || **Stay** || For a reasonable time; the JD's liability is not discharged; pending suit between DH and JD
+:::
+
+===
+
+# Order 21: Execution, part two
+
+## How each decree is executed (rules 30 to 36)
+- **Money:** prison, or attachment and sale, or both (r. 30).
+- **Specific movable:** seizure and delivery (r. 31).
+- **Specific performance or injunction:** prison, attachment, or the act done by another at the JD's cost (r. 32).
+- **Executing a document:** the court executes it (r. 34).
+- **Immovable property:** delivery of possession (r. 35); **symbolic** delivery where a tenant occupies it (r. 36).
+
+## Arrest (rules 37 to 41)
+Notice to show cause **instead of** arrest (r. 37); warrant (r. 38); the DH pays **subsistence allowance** (r. 39); hearing (r. 40); the JD is **examined about his property** (r. 41). Detention is **pressure, not punishment**.
+
+## Attachment (rules 41 to 57)
+**Seize** movables (r. 43); fix a notice on crops (rr. 44 and 45); a **prohibitory order** for debts and shares (r. 46); salary through the employer (r. 48); a partner's interest (r. 49); negotiable instruments seized (r. 51); property held by a court or officer (r. 52); decrees (r. 53); immovable property by a **prohibitory order** proclaimed publicly (r. 54); removal on satisfaction (r. 55).
+
+## Claims to attached property (rules 58 to 63)
+The court **investigates** the objection (r. 58), may **stay** the sale (r. 59), **releases** it if it was not in the JD's possession on his own account (r. 60), **disallows** it if it was (r. 61), continues it subject to a mortgage (r. 62). The loser may file a **regular suit** (r. 63).
+
+## Sale (rules 64 to 96)
+- **Public auction** by a court officer (r. 65), after a **proclamation** (rr. 66 and 67).
+- **30 days** for land, **15 days** for goods after the proclamation (r. 68).
+- The DH may bid **only with permission** (r. 72); officers can't bid (r. 73).
+- Land: **25% immediately** (r. 84), **balance within 15 days** (r. 85), default means forfeiture and resale (r. 86); a co-sharer is preferred (r. 88).
+- **Set aside:** deposit the amount **plus 5%** (r. 89); **material irregularity or fraud plus substantial injury** (r. 90); the purchaser says the JD had **no saleable interest** (r. 91).
+- **Confirmation** (r. 92), refund (r. 93), **sale certificate** (r. 94), delivery (rr. 95 and 96).
+
+## Resistance to possession (rules 97 to 103)
+A complaint of resistance (r. 97). The JD or his people: possession given, and up to **30 days' detention** (r. 98). A **bona fide third party** in possession on his own account: application dismissed (r. 99), or possession **restored** if dispossessed (rr. 100 and 101). A **buyer during the suit** gets no protection (r. 102). A regular suit is still open (r. 103).
+
+===
+
+# Order 26: Commissions
+
+**Section 75:** the court may issue a commission to **examine witnesses**, make a **local investigation**, examine **accounts**, or make a **partition**. *We Love A Plot.*
+
+## Examining witnesses (rules 1 to 8)
+- **r. 1:** a witness within the court's limits who is **exempt** or **sick or infirm**.
+- **r. 4:** a witness **beyond the limits**, **about to leave**, or a **Government servant** who can't attend without harming public service.
+- **r. 5:** witnesses **outside Pakistan**, by commission or letter of request.
+- **r. 8:** the deposition is read in evidence **only if** the witness is still beyond the limits, dead, sick, exempt or a Government servant, or the court dispenses with proof.
+
+:::trick The 5 Ds
+Distant, Departing, Debilitated, Dispensed, Duty-bound.
+:::
+
+## Local investigations, accounts, partition (rules 9 to 14)
+- **r. 9:** a local investigation to **elucidate a matter in dispute**, find **market value**, or **mesne profits**.
+- **r. 10:** the commissioner inspects and makes a **written report**; the report and evidence are **part of the record**; he may be **examined in court**; the court may order further inquiry.
+- **rr. 11 and 12:** **accounts**, with the court's instructions.
+- **rr. 13 and 14:** **partition** after a **preliminary decree**; the commissioner divides and allots shares, can equalise with money; the court confirms or varies, then passes the final decree.
+
+## Powers and procedure (rules 15 to 22)
+Expenses deposited first (r. 15). A commissioner may **examine parties and witnesses, call for documents and enter land** (r. 16). Witnesses are treated as before the court (r. 17). Parties must appear, or he proceeds without them (r. 18). Foreign commissions (rr. 19 to 22).
+
+:::remember
+A commissioner's **report is evidence**, not a decision. The court may accept, reject or vary it.
+:::
+
+===
+
+# Order 38: Arrest and attachment before judgment
+
+These are **drastic** powers against a defendant not yet found liable, so they need **clear proof of intent** to defeat the decree.
+
+## Arrest before judgment (rules 1 to 4)
+**r. 1:** where the defendant, **with intent** to delay the plaintiff or defeat execution, has **absconded**, is **about to abscond**, has **disposed of or removed** his property, or is **about to leave Pakistan**, the court may **arrest** him and ask him to show cause why he shouldn't give **security for appearance**.
+
+:::trick The four As
+Absconded, About to abscond, Assets removed, Abroad-bound.
+:::
+
+- **r. 2:** failing cause, he must **deposit or give security**; the surety pays if he fails to appear.
+- **r. 3:** a surety may ask to be **discharged**.
+- **r. 4:** no security means **civil prison** until the suit is decided, for a limited period.
+
+## Attachment before judgment (rules 5 to 13)
+**r. 5:** where the defendant, **with intent** to obstruct execution, is **about to dispose of** or **remove** his property, the court may order him to give **security** to produce it, or show cause; the plaintiff must **specify the property and its value**; **conditional attachment** is possible.
+
+:::cram
+Rule 6 || No cause or security || Attachment
+Rule 7 || Mode || As in execution
+Rule 8 || Claims || As under O. 21 r. 58
+Rule 9 || Removed || When security is given or the suit dismissed
+Rule 10 || Strangers' rights || Not affected
+Rule 11 || After a decree || No re-attachment needed
+Rule 12 || Agricultural produce || Not attachable before judgment
+Rule 13 || Small Cause Court || Can't attach immovable property
+:::
+
+**Safeguards:** **s. 95** compensation for arrest or attachment on insufficient grounds; appeals under **O. 43 r. 1**. **s. 94** is the umbrella power.
+
+===
+
+# Order 39: Temporary injunctions and interlocutory orders
+
+A **temporary injunction** keeps the **status quo** until the suit is decided. (Specific Relief Act s. 53: temporary injunctions are regulated by the CPC.)
+
+## When (rules 1 and 2)
+- **r. 1:** disputed property in danger of being **wasted, damaged, alienated** or **wrongfully sold** in execution; or the defendant intends to **remove or dispose** of property **to defraud creditors**.
+- **r. 2:** to restrain a **breach of contract or other injury**, or its repetition; may be on **terms**. **Disobedience:** **attachment** of property (up to **1 year**, then sale) and **civil prison up to 6 months**.
+
+## The three tests (case law)
+:::cram
+Prima facie case || A serious question with a fair chance of success
+Irreparable injury || Harm money can't properly repair
+Balance of convenience || More harm to the applicant if refused than to the other side if granted
+:::
+
+Plus equity: **clean hands**, no **delay**, no **concealment**.
+
+## Procedure (rules 3 to 5)
+- **r. 3:** **notice to the other side first**, unless the delay would **defeat the purpose** (ex parte).
+- **r. 4:** an injunction may be **discharged, varied or set aside**.
+- **r. 5:** an injunction against a **corporation** binds its officers and members.
+
+## Interlocutory orders (rules 6 to 10)
+**Interim sale** of perishables (r. 6); **detention, preservation, inspection**, samples (r. 7); notice first (r. 8); **immediate possession** where a party fails to pay revenue (r. 9); **deposit** of money or a thing admitted to be held as **trustee** (r. 10).
+
+**Appeal:** O. 43 r. 1. **Temporary** (CPC, during the suit, prima facie) vs **perpetual** (SRA ss. 54 to 57, in the final decree).
+
+===
+
+# Order 27: Suits by or against the Government
+
+## The sections
+- **s. 79:** name the **Federation of Pakistan**, or the **Province**.
+- **s. 80:** **two months' written notice** before suing the Government, or a public officer for an official act: the cause of action, the plaintiff's name, description and address, and the relief.
+- **s. 81:** a public officer sued for an official act is **not arrested**, and his property **not attached**, except in execution; personal appearance may be **exempted**.
+- **s. 82:** a decree against the Government is **not executed at once**; it gets time to pay.
+
+## The rules
+:::cram
+Rule 1 || Pleadings signed by the person the Government **appoints**
+Rule 2 || Authorised persons are **recognised agents**
+Rule 3 || Name the Federation or the Province, as in s. 79
+Rule 4 || The **Government Pleader** receives process
+Rule 5 || **Reasonable time** to communicate with the Government and instruct the pleader
+Rule 6 || A person able to **answer questions** may be required to attend
+Rule 7 || **Extra time** for a public officer to refer to the Government
+Rule 8 || If the Government defends the officer, its pleader appears; if not, an ordinary suit, but **no arrest or attachment** except in execution
+Rule 8A || **No security** from the Government or a public officer in certain cases
+Rule 8B || Definitions of "Government" and "Government Pleader"
+:::
+
+:::trick Name it, notice it, serve it on the pleader
+s. 79 and r. 3; s. 80; r. 4.
+:::
+
+**Why:** the Government acts through officials, needs time and spends public money. These rules adjust procedure; they don't give immunity.
+`;
+
+
+/* ==========================================================
+   CIVIL PROCEDURE II (LLB 423): Last-Minute Read
+   ========================================================== */
+BOOKS.cpc.quick = String.raw`
+# Order 21 in five minutes
+
+:::cram
+s. 38, s. 39 || Executed by the court that passed it, or the one it's sent to (where the JD lives or has property)
+s. 47 || Execution questions decided by the executing court, not a separate suit
+s. 51 || Delivery, Attachment and sale, Arrest, Receiver, Otherwise || DAARO
+s. 55, s. 56 || No dwelling-house entry between sunset and sunrise; no arrest of a woman for a money decree
+s. 60 || Exempt: clothes, bedding, tools, a farmer's implements and house, books, a right to sue, pensions, wages
+s. 64 || Transfer after attachment is void against the decree
+Rules 1 and 2 || Out-of-court payment must be certified, or it's ignored
+Rule 11 || Oral application for immediate arrest; otherwise written, with particulars
+Rules 15 and 16 || Joint DH executes for all; transferee after notice
+Rule 18 || Cross-decrees set off
+Rule 22 || Show-cause notice: over one year after the decree, or against a legal representative
+Rules 30 to 36 || Money: prison or sale. Goods: seize. Performance: prison, attachment, or done at the JD's cost. Document: the court signs it. Land: delivery; symbolic if a tenant occupies it
+Rules 37 to 41 || Notice before arrest; the DH pays subsistence; examine the JD about his assets
+Rules 43 to 54 || Seize movables; prohibitory orders for debts, shares and land
+Rules 58 to 63 || Claim investigated; release if not the JD's on his own account; regular suit open
+Rule 68 || Sale after 30 days (land) or 15 days (goods)
+Rules 84 and 85 || 25% at once, balance in 15 days
+Rules 89 to 91 || Set aside: deposit plus 5%; irregularity or fraud plus substantial injury; no saleable interest
+Rules 92 and 94 || Confirmation; sale certificate
+Rules 97 to 103 || JD resists: up to 30 days' detention; a bona fide third party is protected; a buyer during the suit is not
+:::
+
+===
+
+# Orders 26, 38, 39 and 27 in five minutes
+
+## Order 26: Commissions
+:::cram
+s. 75 || Witnesses, Local investigation, Accounts, Partition || We Love A Plot
+Rules 1 and 4 || Exempt, sick, beyond limits, about to leave, a Government servant || The 5 Ds
+Rule 8 || Deposition read only if the reason still exists, or proof is dispensed with
+Rules 9 and 10 || Local investigation; written report is part of the record; commissioner can be examined
+Rules 13 and 14 || Partition after a preliminary decree; divide, allot, equalise; then the final decree
+Rule 16 || Commissioner may examine witnesses, call for documents, enter land
+:::
+
+## Order 38: Before judgment
+:::cram
+Rule 1 || Arrest: absconded, about to abscond, assets removed, about to leave Pakistan, with intent || Four As
+Rules 2 to 4 || Security for appearance; surety discharge; prison if none
+Rule 5 || Attachment: about to dispose of or remove property, with intent to obstruct execution; specify the property
+Rules 6 to 13 || Attach; as in execution; claims as O. 21 r. 58; removal; strangers safe; no re-attachment; no crops; no Small Cause attachment of land
+s. 95 || Compensation for arrest or attachment on insufficient grounds
+:::
+
+## Order 39: Injunctions
+:::cram
+Rule 1 || Property wasted, damaged, alienated, wrongfully sold; or removed to defraud creditors
+Rule 2 || Breach of contract or injury; disobedience means attachment (1 year) and prison (6 months)
+Tests || Prima facie case, Irreparable injury, Balance of convenience || PIB
+Rule 3 || Notice first, unless the delay defeats the purpose
+Rules 4 and 5 || Discharge or vary; binds corporation officers
+Rules 6 to 10 || Sale of perishables; preservation and inspection; possession on revenue default; deposit by an admitted trustee
+:::
+
+## Order 27: The Government
+:::cram
+s. 79 and r. 3 || Federation of Pakistan, or the Province
+s. 80 || Two months' written notice before suing
+Rules 1, 2 and 4 || Appointed signatory; recognised agents; the Government Pleader receives process
+Rules 5 and 7 || Reasonable time; extra time for a public officer
+Rule 8 and s. 81 || No arrest or attachment of a public officer except in execution
+s. 82 || Decree against the Government: time to pay before execution
+:::
+
+===
+
+# If you remember only this
+
+:::remember Ten lines to walk in with
+1. **s. 51:** Deliver, Attach and sell, Arrest, Receiver, Otherwise. **s. 47:** execution questions belong to the executing court.
+2. **O. 21 r. 2:** an uncertified payment doesn't count.
+3. **s. 60** exempts the essentials; **s. 64** voids transfers after attachment.
+4. **O. 21 r. 58:** was the property in the JD's possession **on his own account**?
+5. **O. 21 r. 68:** 30 days for land, 15 for goods. **rr. 84 and 85:** 25% now, the rest in 15 days. **r. 89:** deposit plus 5%. **r. 90:** irregularity plus substantial injury.
+6. **O. 26:** We Love A Plot; the 5 Ds; the report is evidence, not a judgment.
+7. **O. 38 r. 1:** the four As, with intent. **r. 5:** about to dispose of or remove property.
+8. **O. 39:** PIB; notice first (r. 3); disobedience means 6 months and attachment (r. 2).
+9. **O. 27:** the Federation or Province; **two months' notice** (s. 80); the Government Pleader.
+10. **Before** judgment: Orders 38 and 39. **After** judgment: Order 21.
+:::
+
+:::tip The formula for every answer
+Name the Order and rule, state its conditions, give an example, link the section behind it, conclude in one line.
+:::
+`;
+
+
+/* ==========================================================
+   CIVIL PROCEDURE II (LLB 423): Tips & Tricks
+   ========================================================== */
+BOOKS.cpc.tips = String.raw`
+# How to score in CPC II
+
+- **Name the Order and rule every time.** "Under Order 39 rule 1(a) CPC..." is worth more than "the court can stop him".
+- **Pair the rule with its section.** Order 21 with ss. 38, 47, 51, 55, 60, 64. Order 26 with s. 75. Order 38 and 39 with s. 94 (and s. 95). Order 27 with ss. 79 to 82.
+- **State the conditions.** Most rules apply only if something is proved: **intent** (Order 38), **irreparable injury** (Order 39), **substantial injury** (Order 21 rule 90). Spell them out.
+- **Give a simple example** for every rule: a disputed plot, a house being demolished, a defendant booking a flight abroad.
+- **Spend most of your time on Order 21.** It is by far the biggest Order; expect at least one question on it, often on modes of execution, attachment, sale, or objections.
+- **Problem questions:** go stage by stage: **before judgment** (Orders 38, 39, 26), **after judgment** (Order 21), and the **Government** angle (Order 27) if the state is involved.
+
+## Plan your 75 minutes
+- **First 5 minutes:** read the paper; pick questions.
+- **Split the rest by marks.** With three equal questions, about 20 minutes each.
+- **Last 10 minutes:** check that every answer names its Order, rule and section.
+
+:::tip Make it look like a lawyer wrote it
+Underline each **Order and rule**, use short headings, and end with one line that answers the exact question.
+:::
+
+===
+
+# Numbers that win marks
+
+:::cram
+O. 21 r. 2 || Uncertified payment not recognised
+O. 21 r. 22 || Notice if execution is sought over one year after the decree
+O. 21 r. 39 || DH pays subsistence allowance
+O. 21 r. 68 || 30 days (land), 15 days (goods) after proclamation
+O. 21 r. 84 || 25% deposit immediately
+O. 21 r. 85 || Balance within 15 days
+O. 21 r. 89 || Deposit the amount plus 5% for the purchaser
+O. 21 r. 98 || Up to 30 days' detention for a resisting JD
+O. 39 r. 2 || Disobedience: prison up to 6 months; attachment up to 1 year
+s. 80 || 2 months' notice before suing the Government
+s. 51 || 5 modes of execution
+s. 55 || No dwelling-house entry between sunset and sunrise
+s. 56 || No arrest of a woman for a money decree
+s. 60 || Exempt property
+s. 64 || Transfer after attachment void
+s. 75 || 4 purposes of commissions
+s. 94 || Supplemental proceedings: the umbrella for Orders 38 and 39
+s. 95 || Compensation for wrongful arrest, attachment or injunction
+O. 43 r. 1 || Appeals from orders under Orders 38 and 39
+:::
+
+===
+
+# Memory tricks
+
+:::trick DAARO (section 51)
+**D**elivery, **A**ttachment and sale, **A**rrest, **R**eceiver, **O**therwise.
+:::
+
+:::trick Follow the JD (section 39)
+A decree is sent where the JD **lives**, where his **property** is, or where the **land** is.
+:::
+
+:::trick Match the decree to the mode (rules 30 to 36)
+**Money:** prison or sale. **Goods:** seize. **Performance:** prison, attachment, or done at the JD's cost. **Document:** the court signs it. **Land:** the bailiff hands it over.
+:::
+
+:::trick Seize, prohibit, exempt (attachment)
+Seize what you can carry; prohibit what you can't; exempt what a person needs to live.
+:::
+
+:::trick 30 and 15, then 25 and 15 (sale)
+Wait **30** days for land and **15** for goods. Then pay **25%** at once and the rest in **15** days.
+:::
+
+:::trick 89, 90, 91: pay up, prove harm, nothing to buy
+Three ways to undo a land sale.
+:::
+
+:::trick We Love A Plot (section 75)
+**W**itnesses, **L**ocal investigation, **A**ccounts, **P**artition.
+:::
+
+:::trick The 5 Ds (Order 26 rules 1 and 4)
+Distant, Departing, Debilitated, Dispensed, Duty-bound.
+:::
+
+:::trick The four As (Order 38 rule 1)
+Absconded, About to abscond, Assets removed, Abroad-bound. Always **with intent**.
+:::
+
+:::trick PIB (Order 39)
+**P**rima facie case, **I**rreparable injury, **B**alance of convenience.
+:::
+
+:::trick Name it, notice it, serve it on the pleader (Order 27)
+Federation or Province (s. 79), two months' notice (s. 80), Government Pleader (r. 4).
+:::
+
+===
+
+# Common mistakes
+
+:::warn Filing a separate suit on an execution question
+Under **s. 47**, questions on execution, discharge or satisfaction between the parties go to the **executing court**. A separate suit is barred.
+:::
+
+:::warn Treating an uncertified payment as valid
+Under **O. 21 r. 2**, the executing court will not recognise a payment out of court that hasn't been certified or recorded.
+:::
+
+:::warn Thinking arrest is punishment
+Detention in execution is **pressure** on a JD who can pay but won't. The DH must pay **subsistence**, and the court may first issue a **show-cause notice** (r. 37).
+:::
+
+:::warn Asking the objector under rule 58 to prove full title
+The question is **possession on his own account**, not complete title. The losing party can still sue under **r. 63**.
+:::
+
+:::warn Forgetting "substantial injury" under rule 90
+Irregularity or fraud **alone** isn't enough to set aside a sale. The applicant must show **substantial injury** caused by it.
+:::
+
+:::warn Using a commission to collect evidence for a party
+A local commission helps the court **understand** the dispute. A party must still prove his own case.
+:::
+
+:::warn Granting Order 38 relief on suspicion
+Arrest or attachment before judgment needs proof of **intent** to delay or defeat the decree. Ordinary business sales are not enough.
+:::
+
+:::warn Listing only one test for an injunction
+All **three** are needed: prima facie case, irreparable injury, balance of convenience.
+:::
+
+:::warn Confusing temporary and perpetual injunctions
+**Temporary:** CPC, Order 39, during the suit. **Perpetual:** Specific Relief Act ss. 54 to 57, in the final decree.
+:::
+
+:::warn Suing the Government without notice
+**Section 80** requires **two months' written notice** first. And name the **Federation of Pakistan** or the **Province**, not a ministry.
+:::
+
+===
+
+# Likely questions: Orders 21 and 26
+
+Tap a question to see an answer outline.
+
+:::q What are the modes of execution of a decree?
+Define execution, DH and JD. Section 51's five modes, each with the matching rules: delivery (rr. 31, 35, 36), attachment and sale (rr. 43 to 54, 64 to 96), arrest (rr. 37 to 41; s. 55, 56), receiver, otherwise (rr. 32, 34). Mention s. 47. Conclude.
+:::
+
+:::q Explain the procedure for attachment of property in execution. What property is exempt?
+Meaning of attachment; how each kind is attached (rr. 43 to 54); s. 60 exemptions; s. 64 transfers void; r. 55 removal. Conclude.
+:::
+
+:::q How are claims and objections to attachment decided under Order 21?
+Rule 58 investigation, the "possession on his own account" test, stay (r. 59), release (r. 60), disallowance (r. 61), mortgage (r. 62), suit (r. 63). An example. Conclude.
+:::
+
+:::q Explain the procedure of sale in execution, and when a sale may be set aside.
+Order for sale (r. 64), public auction (r. 65), proclamation (rr. 66 and 67), timing (r. 68), bidding rules (rr. 72 and 73), land: 25% and 15 days (rr. 84 to 86). Set aside: rr. 89, 90, 91. Confirmation, certificate (rr. 92, 94); s. 65. Conclude.
+:::
+
+:::q What happens when a decree-holder is resisted in obtaining possession?
+Rule 97 complaint; r. 98 JD resisting (possession and up to 30 days' detention); rr. 99 to 101 bona fide third party; r. 102 transferee during the suit; r. 103 regular suit. Conclude.
+:::
+
+:::q When may a court issue a commission? Explain its kinds.
+Section 75's four purposes. Witnesses (rr. 1 to 8, the 5 Ds, r. 8 rule on reading depositions); local investigation (rr. 9 and 10); accounts (rr. 11 and 12); partition (rr. 13 and 14); powers (r. 16). The report is evidence. Conclude.
+:::
+
+===
+
+# Likely questions: Orders 38, 39 and 27
+
+:::q Explain arrest and attachment before judgment.
+The purpose and s. 94. Arrest: r. 1 grounds (four As, with intent), rr. 2 to 4. Attachment: r. 5 grounds, specifying property, conditional attachment, rr. 6 to 13. Safeguards: s. 95, appeals under O. 43. A comparison table. Conclude.
+:::
+
+:::q When may a temporary injunction be granted? Explain the principles.
+Define it; SRA s. 53 and CPC s. 94(c). Rules 1 and 2 with examples. The three tests (PIB) plus equity (clean hands, delay). Rule 3 notice and ex parte orders; rule 4 discharge; disobedience under r. 2. Appeal under O. 43. Conclude.
+:::
+
+:::q Distinguish temporary and perpetual injunctions.
+Definitions; a table: the source (CPC O. 39 vs SRA ss. 54 to 57), timing, the standard (prima facie vs full evidence), duration, appeal. Conclude.
+:::
+
+:::q What interlocutory orders can a court make under Order 39?
+Rules 6 to 10: interim sale of perishables, preservation and inspection, notice, possession on revenue default, deposit by an admitted trustee. Examples. Conclude.
+:::
+
+:::q Explain the procedure in suits by or against the Government and public officers.
+Sections 79 to 82: naming, two months' notice, protection of officers, time before execution. Order 27 rules 1 to 8B. Why the special treatment. Conclude.
+:::
+
+:::q Problem: A sues B for money. B is selling his flat and booking a flight abroad. Advise A before and after the decree.
+O. 38 r. 1(b) arrest and security; O. 38 r. 5 attachment before judgment; O. 39 r. 1 injunction if a disputed property is at risk. After the decree: O. 21 r. 11 application, s. 51 modes, O. 38 r. 11 (no re-attachment), sale rules, s. 64. Conclude.
+:::
+`;
 
 
 /* ==========================================================
@@ -4939,6 +6212,7 @@ const P = {
   pages: '<path d="M7 3.5h8l4 4v13H7z"/><path d="M15 3.5v4h4"/><path d="M4.5 6.5v14.5H16"/>',
   globe: '<circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><path d="M12 3.4c2.4 2.4 3.6 5.3 3.6 8.6s-1.2 6.2-3.6 8.6c-2.4-2.4-3.6-5.3-3.6-8.6S9.6 5.8 12 3.4z"/>',
   court: '<path d="M3 9.2 12 4l9 5.2z"/><path d="M5.5 11v6.5M10 11v6.5M14 11v6.5M18.5 11v6.5M3.5 20.5h17M4.5 18h15"/>',
+  copy: '<rect x="8.5" y="8.5" width="12" height="12" rx="2.2"/><path d="M15.5 8.5V5.7a2.2 2.2 0 0 0-2.2-2.2H5.7a2.2 2.2 0 0 0-2.2 2.2v7.6a2.2 2.2 0 0 0 2.2 2.2h2.8"/>',
   gavel: '<path d="M10.8 7.6 15 3.4l5.6 5.6-4.2 4.2z"/><path d="M13.6 10.4 4.2 19.8"/><path d="M12.5 21h8.5"/>'
 };
 const icon = (n, cls) => P[n] ? `<svg class="i${cls ? ' ' + cls : ''}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${P[n]}</svg>` : '';
@@ -5526,6 +6800,7 @@ function renderSubject(b){
         <h1 class="subj-title">${esc(b.title)}</h1>
         <p class="subj-blurb">${esc(b.blurb)}</p>
         <div class="chips">${chips}</div>
+        ${ready ? `<button type="button" class="btn btn-line btn-sm copy-all" data-act="copy-book" data-id="${b.id}">${icon('copy')}Copy all four reads</button>` : ''}
       </div>
     </header>
     <div class="reads">${BRANCHES.map(br => readCard(b, br, ready)).join('')}</div>
@@ -5775,6 +7050,62 @@ function finish(){
   const first = f.querySelector('.btn');
   if (first) try { first.focus({ preventScroll: true }); } catch (e) {}
 }
+/* ---------- copying a read as plain text ---------- */
+function readsToText(id, keys){
+  const book = bookById(id);
+  const box = document.createElement('div');
+  box.setAttribute('aria-hidden', 'true');
+  box.style.cssText = 'position:fixed;left:-100000px;top:0;width:720px;pointer-events:none;';
+  let html = '';
+  keys.forEach(k => {
+    const br = BRANCHES.find(x => x.key === k), ps = pages(id, k);
+    if (!ps.length) return;
+    html += `<h1 data-sep>${esc(book.title)}: ${br.name}</h1>`;
+    ps.forEach((p, i) => { html += `<article class="notes" data-branch="${k}">${p.html}</article>`; });
+  });
+  box.innerHTML = html;
+  document.body.appendChild(box);
+  // make the plain text read well: bullets, numbers, table rows, open Q cards
+  box.querySelectorAll('details').forEach(d => { d.open = true; });
+  box.querySelectorAll('ul > li').forEach(li => li.insertBefore(document.createTextNode('• '), li.firstChild));
+  box.querySelectorAll('ol').forEach(ol => [...ol.children].forEach((li, n) => li.insertBefore(document.createTextNode((n + 1) + '. '), li.firstChild)));
+  box.querySelectorAll('.cram-row').forEach(r => {
+    const c = [...r.children].map(x => x.textContent.trim()).filter(Boolean);
+    r.textContent = '• ' + c[0] + (c[1] ? ': ' + c[1] : '') + (c[2] ? ' (' + c[2] + ')' : '');
+  });
+  box.querySelectorAll('.lawbox .sym, .orn').forEach(x => x.remove());
+  box.querySelectorAll('.case-tag').forEach(t => { t.textContent = 'CASE: '; t.style.display = 'inline'; });
+  box.querySelectorAll('.stamp-tag').forEach(t => { t.textContent = '[' + t.textContent + '] '; });
+  box.querySelectorAll('.qcard .q').forEach(t => { t.textContent = 'Q. '; });
+  box.querySelectorAll('h2.pg-title').forEach(h => { h.textContent = '\n## ' + h.textContent; });
+  box.querySelectorAll('h1[data-sep]').forEach(h => { h.textContent = '\n\n==========  ' + h.textContent + '  ==========\n'; });
+  let text = box.innerText;
+  box.remove();
+  return text.replace(/\t/g, '  |  ').replace(/[  ]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+}
+async function copyText(text){
+  try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand('copy'); ta.remove(); return ok;
+  } catch (e) { return false; }
+}
+let toastTimer = null;
+function toast(msg){
+  let t = $('#toast');
+  if (!t){ t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role', 'status'); document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+async function copyReads(id, keys, label){
+  const text = readsToText(id, keys);
+  const ok = await copyText(text);
+  toast(ok ? `Copied ${label}: about ${Math.round(text.split(/\s+/).length / 10) * 10} words` : 'Copy failed. Try the Whole thing view and select the text.');
+}
+
 function hideFinish(){ const f = $('#finish'); if (f){ f.hidden = true; f.innerHTML = ''; } }
 
 /* --- drawer & settings --- */
@@ -5919,6 +7250,8 @@ function wire(){
         case 'close-finish': hideFinish(); break;
         case 'goto': gotoPage(+act.dataset.i); break;
         case 'switch': switchReader(); break;
+        case 'copy': if (R.id) copyReads(R.id, [R.branch], 'the ' + R.br.name); break;
+        case 'copy-book': { const bk = bookById(act.dataset.id); copyReads(bk.id, BRANCHES.map(x => x.key), 'all four reads of ' + bk.short); break; }
       }
       return;
     }
