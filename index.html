@@ -1134,7 +1134,7 @@ const LIBRARY = [
   { id: 'cpc', title: 'Civil Procedure II', short: 'CPC II', code: 'LLB 423', color: '#57295f', emblem: 'court',
     blurb: 'Execution of decrees, commissions, arrest and attachment before judgment, temporary injunctions, and suits involving the Government: Orders 21, 26, 27, 38 and 39.' },
   { id: 'crpc', title: 'Criminal Procedure II', short: 'CrPC II', code: 'LLB 424', color: '#5c3a1a', emblem: 'gavel',
-    blurb: 'How a criminal case moves from FIR to judgment under the Code of Criminal Procedure 1898.' },
+    blurb: 'Pardon, compounding, evidence and judgment, section 164 statements, sentences (section 426), appeal, revision and double jeopardy: all twelve outline topics.' },
   { id: 'evidence', title: 'Law of Evidence II', short: 'Evidence II', code: 'LLB 425', color: '#1f5966', emblem: 'lens',
     blurb: 'Articles 85 to 129 of the Qanun-e-Shahadat Order 1984: documents and presumptions (Article 95 in depth), the written word, estoppel and the burden of proof.' },
   { id: 'drafting', title: 'Legal Drafting II', short: 'Drafting II', code: 'LLB 426', color: '#3d4654', emblem: 'quill',
@@ -2426,6 +2426,1023 @@ Sections 79 to 82: naming, two months' notice, protection of officers, time befo
 
 :::q Problem: A sues B for money. B is selling his flat and booking a flight abroad. Advise A before and after the decree.
 O. 38 r. 1(b) arrest and security; O. 38 r. 5 attachment before judgment; O. 39 r. 1 injunction if a disputed property is at risk. After the decree: O. 21 r. 11 application, s. 51 modes, O. 38 r. 11 (no re-attachment), sale rules, s. 64. Conclude.
+:::
+`;
+
+
+/* ==========================================================
+   CRIMINAL PROCEDURE II (LLB 424)
+   Deep Read, part 1: topics 1 to 7 of the mid-term outline
+   Checked against the Sindh Judicial Academy's updated text of
+   the Code of Criminal Procedure 1898.
+   ========================================================== */
+BOOKS.crpc = { deep: '', clear: '', quick: '', tips: '' };
+
+BOOKS.crpc.deep += String.raw`
+# Start here: the map of the mid-term
+
+Sir's outline has **twelve topics**. This book follows them in his order.
+
+:::cram
+1. Tender of pardon || Sections 337 to 339-A || Accomplice, who grants pardon, conditions, effects
+2. Section 340(2) vs section 342 || Accused as a witness on oath vs examination of the accused by the court
+3. Compounding || Section 345 || Compoundable vs non-compoundable, who compounds, effects
+4. Recording of evidence || Sections 353 to 363 || How, oath, narrative form, cross-examination, language
+5. Judgment || Sections 366 to 371 || How pronounced, what it contains
+6. Recording statements || Section 164 read with section 364 || Statements and confessions before a Magistrate
+7. Sections 374, 376, 382-A, 382-B || Death confirmation, postponement, credit for custody
+8. Suspension, remission, commutation || Sections 401 to 402-C, and 426
+9. Appeal || Sections 404 to 431 || Forums, conditions, powers
+10. Revision vs appeal
+11. Revision || Sections 435, 439, 439-A
+12. Double jeopardy || Section 403 || Once convicted or acquitted, never tried again for the same offence
+:::
+
+:::tip A note on these notes
+These are written from the **Code of Criminal Procedure 1898 (CrPC)** as it stands in Pakistan, checked against the Sindh Judicial Academy's updated text. There were no class notes, so where sir taught something differently, follow sir.
+:::
+
+===
+
+# Topic 1: Tender of pardon: the accomplice and the power
+
+## Who is an accomplice?
+:::define Accomplice
+A person who **took part in the commission of the crime**, as a principal or an abettor, together with the accused, and who is then used as a **witness against** his partners in crime. Section 337 describes him as a person "supposed to have been **directly or indirectly concerned in or privy to** the offence".
+:::
+
+**Why use an accomplice?** Some crimes, like a gang robbery or a conspiracy, are planned in secret, and only an insider can tell the court what really happened. The law offers the insider a **pardon** in exchange for the **whole truth**.
+
+:::warn An accomplice's evidence is weak on its own
+Under **Article 129(b)** of the Qanun-e-Shahadat, the court **may presume** that an accomplice is **unworthy of credit** unless he is **corroborated** in material particulars. He is, after all, saving his own skin. So courts look for **independent corroboration** before convicting on his word.
+:::
+
+## Who has the power to tender pardon?
+:::law Section 337(1): Tender of pardon to accomplice
+In the offences the section covers, the **officer-in-charge of the prosecution in the district** may, at any stage of the **investigation, inquiry or trial**, with a view to obtaining the evidence of any person supposed to have been directly or indirectly concerned in or privy to the offence, **tender a pardon** to that person on condition of his making a **full and true disclosure** of the whole of the circumstances within his knowledge relating to the offence and to every other person concerned in it, whether as principal or abettor.
+
+**Proviso:** no person shall be tendered a pardon who is involved in an offence relating to **hurt or qatl** **without the permission of the victim** or, as the case may be, of the **heirs of the victim**.
+:::
+
+:::law Section 338: Power to grant or tender pardon
+The **High Court** or the **Court of Session** may, **at any time before judgment is passed**, tender a pardon on the same condition, or **order** the officer-in-charge of the prosecution to tender it. The same proviso on **hurt and qatl** applies.
+:::
+
+:::cram
+Section 337 || The officer-in-charge of the prosecution in the district || At any stage: investigation, inquiry or trial
+Section 338 || The High Court or the Court of Session || At any time before judgment; may tender it, or direct the prosecution to
+Both || Hurt or qatl || Only with the permission of the victim or his heirs
+:::
+
+:::trick Pardon is a deal: the whole truth for freedom
+"Tell us **everything**, about **everyone**, and you go free." Break the deal, and the pardon is gone (s. 339).
+:::
+
+===
+
+# Topic 1: Conditions and effects of a pardon
+
+## The conditions
+1. The offence must be one to which **section 337 applies** (serious offences of the kinds the section lists).
+2. The person must be **concerned in or privy to** the offence: an accomplice.
+3. The purpose must be to **obtain his evidence**.
+4. He must make a **full and true disclosure** of everything within his knowledge about the offence **and every other person** involved.
+5. In **hurt or qatl**, the **victim or his heirs** must **permit** it.
+6. The person must **accept** the tender.
+
+## What happens after the pardon
+:::cram
+Section 337(1A) || The **reasons** for the pardon are recorded, with whether it was accepted; the accused can get a copy
+Section 337(2) || The person who accepts is **examined as a witness** in the subsequent trial
+Section 337(2A) || Where there are grounds, the case is committed for trial to the Court of Session or High Court
+Section 337(3) || He is **detained in custody** until the trial ends, **unless already on bail**
+:::
+
+## If he breaks the deal: section 339
+:::law Section 339: Trial of a person who fails to comply
+Where the **Public Prosecutor certifies** that the person has **not complied** with the condition, by **wilfully concealing** anything essential or by **giving false evidence**, he **may be tried** for the offence for which the pardon was tendered, or any other offence of which he appears guilty in connection with it.
+
+- He is **not tried jointly** with the other accused.
+- He may **plead** that he complied with the condition; then the **prosecution must prove** that he did not.
+- His statement as an approver **may be used in evidence** against him.
+- He can't be prosecuted for **giving false evidence** in that statement without the **High Court's sanction**.
+:::
+
+## The effects in one list
+1. **Freedom from prosecution** for the offence, so long as he keeps the condition.
+2. He becomes a **prosecution witness** (an "approver"), and must testify.
+3. He stays in **custody** until the trial ends, unless on bail.
+4. His evidence needs **corroboration** to be relied on (QSO Article 129(b)).
+5. If he **breaks the condition**, the pardon is lost: he can be **tried**, and his own statement used against him (s. 339).
+
+:::remember Approver
+An accomplice who accepts a pardon is commonly called an **approver**. Every approver is an accomplice, but not every accomplice is an approver.
+:::
+
+===
+
+# Topic 2: Section 340(2) vs section 342
+
+These two sections are both about **the accused speaking in court**, but they are completely different.
+
+:::law Section 340: Right of the accused to be defended, and to be a witness
+- **(1)** Any person accused of an offence before a criminal court **may of right be defended by a pleader**.
+- **(2)** A person against whom proceedings are instituted **shall, if he does not plead guilty, give evidence on oath** in disproof of the charges or allegations made against him or any person charged or tried with him.
+
+**Proviso:** he **shall not be asked**, and if asked shall not be required to answer, any question tending to show that he has committed or been convicted of **any other offence**, or is of **bad character**, unless (i) proof of that other offence is admissible to show his guilt of this one; (ii) he has tried to prove his **own good character**; or (iii) he has given evidence **against a co-accused**.
+:::
+
+:::law Section 342: Power to examine the accused
+- **(1)** To enable the accused to **explain any circumstances appearing in the evidence against him**, the court **may** question him **at any stage** without previous warning, and **shall** question him generally on the case **after the prosecution witnesses have been examined** and before he is called on for his defence.
+- **(2)** He **shall not be liable to punishment** for refusing to answer or for giving false answers, but the court and jury may draw **such inference** from his refusal or answers as they think just.
+- **(3)** His answers may be taken into consideration, and put in evidence in any other inquiry or trial for any other offence they tend to show he committed.
+- **(4)** **No oath** shall be administered to the accused, except when he gives evidence under **section 340(2)**.
+:::
+
+## The difference
+:::compare Section 340(2) | Section 342
+The accused as his **own witness**, giving evidence **on oath** || The **court questions** the accused to let him **explain** the evidence against him
+**On oath** || **No oath** (s. 342(4))
+He is **cross-examined** by the prosecution || **No cross-examination**
+Evidence in the full sense || A statement, not evidence on oath
+Part of the **defence evidence** || Comes after the prosecution evidence, before the defence
+Protected from questions about other offences and bad character, subject to the proviso || No punishment for refusing or lying, but the court may draw an inference
+:::
+
+## Which provision gives the right to a defence and to be a witness?
+**Section 340.** Sub-section (1) gives the **right to be defended by a pleader**, and sub-section (2) makes the accused a **competent witness on oath**. Section 342 is the court's **power to examine** the accused.
+
+:::warn "Shall" in section 340(2), and Article 13(b)
+The text says the accused "**shall**" give evidence on oath. But **Article 13(b) of the Constitution** says no person accused of an offence shall be **compelled to be a witness against himself**. So in practice, the accused **chooses** whether to go into the witness box under s. 340(2). Mention both in your answer.
+:::
+
+:::trick 340 is the witness box, 342 is the judge's questions
+**340:** stand in the box, take the oath, face cross-examination. **342:** the judge asks, no oath, no cross-examination, explain yourself.
+:::
+
+===
+
+# Topic 3: Compounding: what it is and who can do it
+
+:::define Compounding
+A **compromise** by which the **victim** (or the person entitled) **settles** the matter with the accused and **forgives** the offence, usually for compensation, so that the prosecution ends. In qatl and hurt cases, Islamic concepts apply: **afw** (waiver) and **sulh** (compounding), under PPC ss. 309 and 310.
+:::
+
+## Compoundable vs non-compoundable
+:::compare Compoundable offences | Non-compoundable offences
+Listed in the tables of **section 345** || Not listed in section 345
+Mostly offences that harm a **private individual**: hurt, simple assault, defamation, criminal trespass, qatl-i-amd by the heirs || Offences against **society or the state**: for example terrorism, offences against the state, forgery of public documents
+The victim can settle || No settlement possible; the state continues the prosecution
+:::
+
+## Section 345: the two tables
+:::law Section 345(1) and (2)
+- **(1)** The offences in the **first table** may be compounded by the persons named in its third column **without the court's permission**.
+- **(2)** The offences in the **second table** may be compounded **with the permission of the court** before which the prosecution is pending, by the persons named.
+:::
+
+## Who can compound?
+1. **The person named in the table:** usually the **victim**, the person to whom the **hurt** was caused, or the **owner** of the property.
+2. **In qatl-i-amd (PPC s. 302):** the **heirs of the victim** (*walis*), subject to **PPC s. 311**.
+3. **Under 18, idiot or lunatic (s. 345(4)):** any person **competent to contract on his behalf**, **with the court's permission**.
+4. **Abetment and attempt (s. 345(3)):** may be compounded in the same way as the offence itself.
+
+:::trick Who compounds? The one who was hurt
+The **victim**, or his **heirs** if he's dead, or his **guardian** if he can't act himself. The state never compounds.
+:::
+
+===
+
+# Topic 3: The effects of compounding
+
+## When the case has moved on
+:::cram
+Section 345(5) || After conviction, while an **appeal is pending** || No compounding without the **leave of the appellate court**
+Section 345(5A) || A **High Court in revision** (s. 439) or a **Sessions Court** (s. 439-A) || May allow the offence to be compounded
+Section 345(2A) || Offences under **Chapter XVI PPC** committed in the name of **karo kari, siyah kari** or similar customs || May be waived or compounded only on **conditions the court imposes**, with the parties' consent
+Section 345(7) || No offence may be waived or compounded **except as this section and PPC s. 311 provide**
+:::
+
+## The legal effect
+:::law Section 345(6)
+The **composition** of an offence under this section **shall have the effect of an acquittal** of the accused with whom the offence has been compounded.
+:::
+
+## The effects of an acquittal by compounding
+1. The accused is treated as **acquitted** of that offence.
+2. The prosecution **ends**; no further trial for the same offence.
+3. **Double jeopardy (s. 403)** protects him: he can't be tried again for the same offence on the same facts.
+4. If he was serving a sentence after conviction, and the composition is allowed on appeal or revision, he is **released**.
+5. **But in qatl cases, PPC s. 311** lets the court still award **ta'zir** punishment after waiver or compounding, having regard to the facts, for example where the offence was committed in the name of **honour** or as **fasad-fil-arz**.
+
+:::remember The big rule
+**Compounding = acquittal** (s. 345(6)). But in **murder and honour crimes**, the court keeps the power to punish under **ta'zir** (PPC s. 311), so a settlement doesn't always mean freedom.
+:::
+
+:::warn Compounding is not withdrawal
+**Withdrawal** of prosecution (s. 494) is by the **Public Prosecutor** with the court's consent. **Compounding** is a settlement by the **victim**. And a **non-compoundable** offence cannot be compounded, even if both sides agree.
+:::
+
+===
+
+# Topic 4: Recording of evidence
+
+## Evidence in the presence of the accused
+:::law Section 353
+Evidence in inquiries and trials must be **taken in the presence of the accused**, or, where his personal attendance is dispensed with, in the presence of his **pleader**.
+:::
+
+## How it is recorded
+:::cram
+Section 355 || Trials by certain Magistrates || A **memorandum of the substance** of the evidence
+Section 356 || Sessions trials and other cases || The evidence of each witness is **taken down in writing** in the **language of the court**, and **signed** by the judge or magistrate; English evidence may be taken down in English
+Section 357 || Language of the record || As the Provincial Government directs
+Section 359 || **Mode** of recording || **Not ordinarily** in **question-and-answer** form, but as a **narrative**; the judge may record a particular question and answer in his discretion
+Section 360 || When the evidence of a witness is completed || **Read over** to him in the accused's presence, and corrected if needed; if he disputes it, the judge notes the objection
+Section 363 || Remarks on **demeanour** || The judge records any remarks he thinks material about the witness's **demeanour**
+:::
+
+## Is an oath necessary?
+**Yes, ordinarily.** Witnesses give evidence on **oath or affirmation** under the **Oaths Act**, and the Qanun-e-Shahadat. But:
+- the **accused** is **not** put on oath, except when he gives evidence under **s. 340(2)** (s. 342(4));
+- a **child** too young to understand an oath may still be a competent witness if he understands the questions and gives rational answers, and his statement is weighed with care; and
+- an **irregularity** in administering the oath does not by itself make the evidence inadmissible.
+
+## Question-and-answer or narrative?
+**Narrative** (s. 359). The witness's evidence is written as a continuous account, in the first person ("I saw the accused..."), not as a list of questions and answers. The judge may record **particular questions and answers** where they matter, for example where the exact wording of a question is important.
+
+:::compare Witness's evidence | Accused's examination
+**Narrative** form (s. 359) || **Question and answer**, every question and answer recorded in full (s. 364)
+On oath || No oath (s. 342(4))
+:::
+
+## Is cross-examination allowed?
+**Yes.** Every witness may be **cross-examined** by the other side, under the Qanun-e-Shahadat (examination-in-chief, then cross-examination, then re-examination). It is the main way of testing truth. Even a statement recorded under **s. 164(1-A)** in the accused's presence must give him the chance to **cross-examine**. The only person **not** cross-examined is the **accused under s. 342**.
+
+## The court's duty if the language isn't understood
+:::law Sections 360(3) and 361
+- If the **witness** doesn't understand the language in which his evidence is recorded, it must be **interpreted** to him (s. 360(3)).
+- If evidence is given in a language the **accused**, present in person, doesn't understand, it must be **interpreted to him in open court** in a language he understands (s. 361(1)).
+- If he appears by **pleader**, it is interpreted to the pleader (s. 361(2)).
+:::
+
+:::remember Why it matters
+A fair trial (Article 10A of the Constitution) means the accused must **know and understand** the evidence against him. A conviction based on evidence he couldn't understand is open to challenge.
+:::
+
+===
+
+# Topic 5: Judgment
+
+## How the judgment is pronounced (section 366)
+:::law Section 366: Mode of delivering judgment
+- **(1)** The judgment is pronounced in **open court**, immediately after the trial or at a later time of which **notice** is given to the parties or their pleaders, by **delivering the whole** judgment, or by **reading it out**, or by **reading out the operative part and explaining its substance**, in the **language of the court** or a language the accused understands. The **whole judgment** is read out if either side requests it.
+- **(2)** The accused, if in **custody**, is brought up to hear it; if not, he must **attend**, unless his attendance was dispensed with and the sentence is only a fine, or he is acquitted.
+- **(3)** A judgment is **not invalid** just because a party or his pleader was absent on the day fixed.
+:::
+
+## What a judgment contains (section 367)
+:::law Section 367: Language and contents of judgment
+- **(1)** It is written by the **presiding officer** in the language of the court or in English. It contains the **point or points for determination**, the **decision** on them, and the **reasons** for the decision. It is **dated and signed** by the presiding officer in open court.
+- **(2)** On a **conviction**, it specifies the **offence**, the **section** of the PPC or other law, and the **punishment**.
+- **(3)** If it is doubtful which of **two sections** applies, the court may express this and give judgment **in the alternative**.
+- **(4)** On an **acquittal**, it states the offence of which the accused is acquitted and directs that he be **set at liberty**.
+- **(5)** If the accused is convicted of an offence punishable with **death** but sentenced to a lesser punishment, the court must state the **reason** for not passing a death sentence.
+:::
+
+:::trick The four Ps of a judgment
+**Points** for determination, the **Pronouncement** (decision), the **Proof** (reasons), and the **Punishment** (offence, section and sentence).
+:::
+
+## After the judgment
+:::cram
+Section 368 || Sentence of death || The sentence directs that he "be hanged by the neck till he is dead"
+Section 369 || **No alteration** || Once signed, a judgment can't be altered or reviewed, except to correct a **clerical error**
+Section 371 || Copy to the accused || A copy of the judgment is given to the convicted accused **at the time of pronouncement**, free of cost (except in summary trials); a person sentenced to death is told the **period for appeal**
+:::
+
+:::remember What a judgment determines
+The **points** in issue, the **decision** on each, the **reasons**, and, if convicted, the **offence, section and sentence**. If acquitted, the offence acquitted of and an order to **release** him.
+:::
+
+===
+
+# Topic 6: Recording statements: section 164 read with section 364
+
+## Section 164: statements and confessions before a Magistrate
+:::law Section 164: Power to record statements and confessions
+- **(1)** A **Magistrate of the first class**, or a Magistrate of the second class specially empowered, who is **not a police officer**, may record any **statement or confession** made to him **in the course of an investigation**, or at any time afterwards **before the inquiry or trial begins**.
+- **(1-A)** A statement may be recorded **in the presence of the accused**, who must be given an **opportunity to cross-examine** the witness making it.
+- **(2)** Statements are recorded in the manner the Magistrate thinks best fitted to the case. **Confessions** are recorded and signed **in the manner provided in section 364**, and forwarded to the Magistrate who is to inquire into or try the case.
+- **(3)** **Before** recording a confession, the Magistrate must **explain** to the person that he is **not bound to make a confession**, and that if he does, it **may be used as evidence against him**. He must not record it unless, on questioning, he has **reason to believe it is being made voluntarily**. He then adds a **memorandum (certificate)** at its foot.
+- **Explanation:** the Magistrate need not have jurisdiction over the case.
+:::
+
+## The certificate
+At the foot of the confession, the Magistrate certifies, in substance, that he **explained** to the accused that he is not bound to confess and that it may be used against him; that he believes it was **voluntarily made**; that it was **taken in his presence and hearing**; that it was **read over** to the accused and **admitted by him to be correct**; and that it contains a **full and true account** of what he said.
+
+## Section 364: how it is recorded
+:::law Section 364: Examination of accused how recorded
+- **(1)** The **whole** of the examination, **every question** put and **every answer** given, is recorded **in full** in the language in which he is examined, or if that isn't practicable in the language of the court. It is **shown or read** to him, or interpreted, and he may **explain or add** to his answers.
+- **(2)** It is then **signed by the accused and the Magistrate**, who **certifies** under his own hand that it was taken in his presence and hearing and contains a **full and true account** of the statement made.
+:::
+
+## The safeguards, in order
+1. A **Magistrate**, never the police.
+2. **Warning:** not bound to confess; it may be used against you.
+3. **Time to reflect:** in practice, the accused is given time, free from police influence, and the police are kept out of the room.
+4. **Voluntariness** checked by questioning.
+5. **Question-and-answer** form, in full (s. 364).
+6. **Read over**, corrected, **signed** by the accused and the Magistrate.
+7. **Certificate** of voluntariness and accuracy.
+
+:::trick Section 164 is the room, section 364 is the pen
+**164:** who records, the warning, voluntariness, the certificate. **364:** how it is written: every question and answer, read over, signed by both.
+:::
+
+:::warn Why the strictness?
+A confession to the **police** is **inadmissible** (QSO Article 38). So the law lets confessions be recorded only by a **Magistrate**, with these safeguards, to make sure they are **voluntary and true**. A confession recorded without them may be **discarded**.
+:::
+
+===
+
+# Topic 7: Sections 374 and 376: confirming a death sentence
+
+:::law Section 374: Sentence of death to be submitted by Court of Session
+When the **Court of Session** passes a **sentence of death**, the proceedings shall be **submitted to the High Court**, and the sentence **shall not be executed unless it is confirmed** by the High Court.
+:::
+
+This is called a **murder reference** (or death reference). It is **automatic**: it happens even if the convict doesn't appeal.
+
+:::law Section 376: Power of High Court to confirm sentence or annul conviction
+In any case submitted under section 374, the High Court may:
+1. **(a)** **confirm** the sentence, or pass **any other sentence** warranted by law;
+2. **(b)** **annul** the conviction and **convict** the accused of any offence of which the Sessions Court might have convicted him, or order a **new trial** on the same or an amended charge; or
+3. **(c)** **acquit** the accused.
+
+**Proviso:** no order of confirmation is made until the **period for appeal has expired**, or, if an appeal is filed, until it is **disposed of**.
+:::
+
+:::cram
+Section 375 || The High Court may direct **further inquiry** or take **additional evidence**
+Section 377 || In a High Court of two or more judges, confirmation is **signed by at least two judges**
+:::
+
+:::remember Why confirmation?
+Death can't be undone. So the law requires a **second look by the High Court** in every death sentence, whether or not there is an appeal. The High Court looks at the **whole evidence** itself, not just the points raised.
+:::
+
+===
+
+# Topic 7: Sections 382-A and 382-B
+
+:::law Section 382-A: Postponement of execution of short sentences
+Where a sentence of imprisonment is passed under **section 476**, or for a period of **less than one year**, and the accused furnishes **bail** to the court's satisfaction, the sentence **shall not be executed**:
+- until the **period for appeal** has expired; or
+- if an appeal is filed, until the **appellate court confirms** the sentence.
+
+It is then executed **as soon as practicable** after that.
+:::
+
+**Why?** A person sentenced to a few months might **finish his sentence before his appeal is even heard**. Section 382-A lets him stay out on bail until the appeal stage is over, so the appeal isn't pointless.
+
+:::law Section 382-B: Period of detention to be considered while awarding sentence
+Where a court decides to pass a sentence of **imprisonment** on an offender, it **shall take into consideration** the period, if any, during which he was **detained in custody** for that offence.
+:::
+
+**In simple words:** the time an accused spent in jail **before** his conviction (while under trial) is **counted** towards his sentence. **Example:** A spends 2 years in jail awaiting trial and is then sentenced to 7 years: he serves the remaining **5 years**.
+
+:::remember "May" became "shall"
+The word "**shall**" replaced "may" in 1979. So giving credit for pre-trial custody is **mandatory**, not a favour.
+:::
+
+:::compare Section 382-A | Section 382-B
+**Postpones** the execution of a **short** sentence || **Credits** pre-trial custody against the sentence
+Sentences under s. 476, or under **one year** || Any sentence of **imprisonment**
+Needs **bail**, until the appeal period or the appeal ends || Automatic: the court **shall** consider it
+:::
+`;
+
+
+/* ==========================================================
+   CRIMINAL PROCEDURE II (LLB 424)
+   Deep Read, part 2: topics 8 to 12 + a model answer
+   ========================================================== */
+BOOKS.crpc.deep += String.raw`
+===
+# Topic 8: Suspension, remission and commutation
+
+These are ways the **executive** (the Government or the President) can **soften** a sentence the court passed.
+
+:::cram
+Suspension || **Postponing** the execution of a sentence for a time; the sentence remains || Section 401; and, pending appeal, section 426
+Remission || **Reducing the amount** of a sentence without changing its **character** || 10 years' imprisonment reduced to 7: still imprisonment
+Commutation || **Changing the kind** of punishment to a **lighter** one || Death commuted to imprisonment for life (section 402)
+Pardon || **Wiping out** the punishment altogether || The President, under Article 45 of the Constitution
+:::
+
+:::trick Pause, Cut, Change, Clean
+**Suspension** = pause. **Remission** = cut the length. **Commutation** = change the type. **Pardon** = clean slate.
+:::
+
+## Section 401: suspension and remission
+:::law Section 401: Power to suspend or remit sentences
+- **(1)** The **Provincial Government** may, at any time, **without conditions** or **on conditions** the convicted person accepts, **suspend** the execution of his sentence or **remit** the whole or any part of the punishment.
+- **Proviso:** it may **not** suspend or remit a sentence for an offence under **Chapter XVI PPC** committed in the name or on the pretext of **karo kari, siyah kari** or similar customs.
+- **(2)** On an application, the Government may ask the **presiding judge** for his **opinion**, with reasons, and a copy of the record.
+- **(3)** If a **condition is not fulfilled**, the Government may **cancel** the suspension or remission, and the person may be **arrested without warrant** to serve the rest of his sentence.
+- **(5)** Nothing here affects the **President's** power of pardon, reprieve, respite and remission.
+:::
+
+## Section 402: commutation
+:::law Section 402: Power to commute punishment
+The **Provincial Government** may, **without the consent** of the person sentenced, commute any of the following sentences into any one mentioned **after it**: **death, imprisonment for life, rigorous imprisonment** (for a term not exceeding that to which he might have been sentenced), **simple imprisonment** (for a like term), **fine**.
+:::
+
+:::trick The ladder of commutation
+**Death, then life, then rigorous, then simple, then fine.** You may only move **down** the ladder, never up.
+:::
+
+## The limits
+:::cram
+Section 402-A || For **death sentences**, the powers under ss. 401 and 402 may also be exercised by the **President**
+Section 402-B || The Provincial Government can't use these powers where the **President has already acted**, without the President's prior approval
+Section 402-C || No suspension, remission or commutation of a sentence under **Chapter XVI PPC** (offences against the human body) **without the consent of the victim or his heirs**
+Article 45, Constitution || The **President** may grant **pardon, reprieve and respite**, and **remit, suspend or commute** any sentence
+:::
+
+:::remember Why the victim's consent?
+In qatl and hurt, Islamic law treats the **victim and his heirs** as having a personal right over punishment. So the Government can't soften such a sentence on its own (s. 402-C).
+:::
+
+===
+
+# Topic 8: Section 426: suspension of sentence pending appeal
+
+Sir flagged this as **especially important**.
+
+:::law Section 426: Suspension of sentence pending appeal; release of appellant on bail
+- **(1)** Pending any appeal by a **convicted person**, the **appellate court** may, **for reasons to be recorded in writing**, order that the **execution of the sentence be suspended**, and, if he is in confinement, that he be **released on bail** or on his own bond.
+- **(1A)** The appellate court **shall** release a convicted person on bail where he is sentenced to imprisonment and his **appeal is not decided** within:
+   1. **six months** of his conviction, where the sentence is up to **three years**;
+   2. **one year**, where the sentence is **over three years and up to seven years**;
+   3. **two years**, where the sentence is **imprisonment for life** or **over seven years**.
+
+   This doesn't apply to a **previously convicted** offender for an offence punishable with death or life imprisonment, to a person the court thinks a **hardened, desperate or dangerous** criminal, or to one accused of **terrorism**, and not where the delay was caused by the appellant.
+- **(2)** The **High Court** may exercise the same power in an appeal pending before a **subordinate** court.
+- **(2A)** A court that convicts a person of a **bailable** offence, or of a non-bailable offence where it is satisfied he intends to appeal, may grant him **temporary bail** so he can file the appeal.
+- **(2B)** Where **special leave to appeal to the Supreme Court** has been granted, the High Court may suspend the sentence.
+- **(3)** If the appellant is **ultimately sentenced** to imprisonment, the **time he spent on bail** is **excluded** in computing his term.
+:::
+
+:::cram
+Up to 3 years || Appeal undecided for **6 months**
+Over 3, up to 7 years || **1 year**
+Over 7 years, or life || **2 years**
+:::
+
+:::trick 3 / 7 / life, then 6 months / 1 year / 2 years
+A **short** sentence earns bail after a **short** wait; a **long** sentence after a **long** wait.
+:::
+
+## Why section 426 matters
+- It stops an appellant from **serving his whole sentence** before his appeal is heard.
+- Section 426(1) is **discretionary**: the court weighs the **length of the sentence**, whether the appeal has **reasonable grounds**, and the **chances of it being heard soon**. For **short sentences**, courts readily suspend them.
+- Section 426(1A) is **mandatory**: delay in deciding the appeal gives a **statutory right** to bail, subject to the exceptions.
+
+:::compare Section 401 suspension | Section 426 suspension
+By the **Government** (executive) || By the **appellate court** (judicial)
+At any time || Only **while an appeal is pending**
+May be conditional || With reasons recorded; bail or bond
+:::
+
+===
+
+# Topic 9: Appeal: what it is and where it goes
+
+:::define Appeal
+A **complaint to a higher court** that the decision of a lower court is **wrong**, asking it to **reverse or change** it. It is a **creature of statute**: there is no appeal unless a law gives one.
+:::
+
+:::law Section 404: Unless otherwise provided, no appeal
+No appeal lies from any judgment or order of a criminal court **except as provided by this Code or by any other law** for the time being in force.
+:::
+
+## How an appeal is filed
+:::law Section 419: Petition of appeal
+Every appeal is made in the form of a **petition in writing**, presented by the **appellant or his pleader**, and accompanied by a **copy of the judgment** or order appealed against (unless the court directs otherwise).
+:::
+
+- **Section 418:** an appeal may lie on matters of **fact as well as law**. The alleged **severity of a sentence** is treated as a matter of law.
+- **Section 421:** the appellate court may **dismiss an appeal summarily** if there is no sufficient ground for interfering.
+- **Section 422:** if not dismissed summarily, **notice** of the hearing goes to the appellant and the prosecution.
+- **Section 412:** where the accused **pleaded guilty** and was convicted on that plea, there is **no appeal** except as to the **extent or legality of the sentence**.
+
+## Appellate forums against conviction
+:::cram
+Section 408 || Convicted by an **Assistant Sessions Judge**, a **Judicial Magistrate** or a Special Magistrate || Appeal to the **Court of Session**
+Section 408, proviso (b) || An Assistant Sessions Judge or specially empowered Magistrate imposes imprisonment of **more than four years** || Appeal to the **High Court**
+Section 410 || Convicted at a trial by a **Sessions Judge** or **Additional Sessions Judge** || Appeal to the **High Court**
+Section 411-A || Convicted by the **High Court** in its original criminal jurisdiction || Appeal to a **Division Bench** of at least two other judges
+Article 185, Constitution || From the **High Court** || To the **Supreme Court**, as of right in some cases and by leave in others
+:::
+
+:::trick The ladder of appeals
+**Magistrate or Assistant Sessions Judge, then Sessions Court; Sessions Court, then High Court; High Court, then Supreme Court.** And over four years from an Assistant Sessions Judge or specially empowered Magistrate goes straight to the High Court.
+:::
+
+===
+
+# Topic 9: Appeal against acquittal, and the powers of the appellate court
+
+## Appeal against acquittal: section 417
+:::law Section 417
+- **(1)** The **Provincial Government** may direct the **Public Prosecutor** to appeal to the **High Court** from an original or appellate order of **acquittal** passed by any court other than a High Court.
+- **(2)** If the case was instituted on a **complaint**, the **complainant** may appeal to the High Court if the High Court grants **special leave**.
+- **(2A)** A person **aggrieved** by an acquittal may appeal **within thirty days**.
+- **(3)** An application for **special leave** must be made **within sixty days** of the order of acquittal.
+- **(4)** If special leave is **refused**, no appeal lies under (1).
+- **(5)** Appeals in certain sexual offences (PPC ss. 354A, 376, 376A, 377, 377B) **shall be decided within six months**.
+:::
+
+:::compare Appeal against conviction | Appeal against acquittal
+By the **convicted person** || By the **Government** (through the Public Prosecutor), the **complainant** (with special leave), or an **aggrieved person**
+A **right**, under ss. 408 and 410 || More restricted
+The court checks whether guilt was proved || The court is **slow to interfere**: the accused has a **double presumption of innocence** (the original presumption, plus the acquittal)
+:::
+
+:::remember The double presumption of innocence
+An acquitted person starts with the presumption of innocence, and the acquittal **strengthens** it. So a court reverses an acquittal only where the trial court's view was **perverse, arbitrary or plainly unreasonable**, not merely because another view is possible.
+:::
+
+## The powers of the appellate court: section 423
+After reading the record and hearing the parties, the appellate court may **dismiss** the appeal, or:
+1. **(a) In an appeal from an acquittal:** **reverse** the order and direct **further inquiry**, or a **retrial**, or find the accused **guilty** and pass sentence.
+2. **(b) In an appeal from a conviction:** **reverse** the finding and sentence and **acquit** or **discharge** the accused, or order a **retrial**; or **alter** the finding, keeping the sentence; or, with or without altering the finding, **reduce the sentence** or change its nature, **but not so as to enhance it**.
+3. **(c) In an appeal from any other order:** alter or reverse it.
+4. **(d)** Make any **amendment** or **consequential** or incidental order that is just.
+
+:::warn No enhancement in the convict's own appeal
+An appellate court hearing a **convict's appeal** may **not enhance** his sentence (s. 423(1)(b)). Enhancement is possible only in **revision** by the High Court (s. 439), after giving him a hearing.
+:::
+
+:::trick The appellate court's toolbox
+**Dismiss, reverse, retry, alter, reduce.** Never **increase** in the convict's own appeal.
+:::
+
+===
+
+# Topic 11: Revision: sections 435, 439 and 439-A
+
+:::define Revision
+The power of a **superior court** to **call for and examine the record** of a subordinate criminal court, to satisfy itself about the **correctness, legality or propriety** of any finding, sentence or order, and the **regularity** of its proceedings. It is a **supervisory, discretionary** power.
+:::
+
+:::law Section 435: Power to call for records of inferior courts
+The **High Court** or any **Sessions Judge** (and certain Magistrates, as the section provides) may **call for and examine the record** of any proceeding before any **inferior criminal court** within its local limits, to satisfy itself as to the **correctness, legality or propriety** of any finding, sentence or order, and the **regularity** of any proceedings. Meanwhile, it may direct that the **execution of a sentence be suspended** and, if the accused is in confinement, that he be **released on bail**.
+
+**Explanation:** all Magistrates are deemed **inferior to the Sessions Judge** for this purpose.
+:::
+
+:::law Section 439: High Court's powers of revision
+- **(1)** In any case whose record it has called for, or which otherwise comes to its knowledge, the **High Court** may exercise any of the powers of a **court of appeal** (ss. 423, 426, 427, 428) or of a court under s. 338, and may **enhance the sentence**.
+- **(2)** **No order** to the **prejudice** of the accused unless he has had an **opportunity of being heard**.
+- **(4)** Nothing here authorises the High Court to **convert a finding of acquittal into one of conviction**.
+- **(5)** **No revision** at the instance of a party who **could have appealed** but didn't.
+- **(6)** A convict asked to show cause why his sentence shouldn't be **enhanced** may also show cause against his **conviction**.
+:::
+
+:::law Section 439-A: Sessions Judge's powers of revision
+- **(1)** In the case of any proceeding before a **Magistrate**, the **Sessions Judge** may exercise **any of the powers conferred on the High Court by section 439**.
+- **(2)** An **Additional Sessions Judge** has the same powers in cases **transferred** to him by a general or special order.
+:::
+
+:::cram
+Section 435 || **Call for and examine** the record || Correctness, legality, propriety, regularity; may suspend the sentence and grant bail
+Section 439 || The **High Court's** revisional powers || Appellate powers; may **enhance**; must hear the accused; can't turn acquittal into conviction; no revision where an appeal lay
+Section 439-A || The **Sessions Judge's** revisional powers || Over **Magistrates'** proceedings; same powers as the High Court under s. 439
+:::
+
+:::trick Revision is the supervisor's look
+**Call** for the file (435), **check** it (correct, legal, proper, regular), then **correct** it (439 for the High Court, 439-A for the Sessions Judge).
+:::
+
+===
+
+# Topic 10: Revision vs appeal
+
+This is one of the most predictable questions. Learn the table.
+
+:::compare Appeal | Revision
+A **statutory right** of the aggrieved party (where the law gives one) || A **discretionary** power of the court; no one has a right to it
+Filed by the **party** || The court may act **on its own motion** (suo motu) or on a petition
+Lies on **facts and law** (s. 418) || About **correctness, legality or propriety** and the regularity of proceedings (s. 435); the court doesn't normally reappraise evidence
+The court **must** hear and decide it || The court **may** refuse to interfere
+Provided by ss. 404 to 431 || Provided by ss. 435 to 439-A
+The appellate court **can't enhance** a sentence in the convict's appeal || The **High Court can enhance** a sentence in revision, after hearing the accused (s. 439)
+Can **convert acquittal into conviction** (on an appeal against acquittal, s. 423(1)(a)) || **Cannot** convert acquittal into conviction (s. 439(4))
+Limitation is fixed for appeals || No fixed limitation in the Code, but it must be filed within a reasonable time
+Where an appeal lies, it must be used || **No revision** where the party could have appealed (s. 439(5))
+:::
+
+:::trick Appeal is a right; revision is a favour
+An **appeal** is like a **second exam**: you're entitled to it and the examiner reads everything again. **Revision** is like a **principal checking the marking**: he may look, he may correct obvious errors, and he may refuse.
+:::
+
+===
+
+# Topic 12: Double jeopardy: section 403
+
+:::maxim Nemo debet bis vexari pro una et eadem causa | No one should be troubled twice for the same cause
+:::
+
+:::law Section 403(1): Person once convicted or acquitted not to be tried for the same offence
+A person who has **once been tried** by a **court of competent jurisdiction** for an offence, and **convicted or acquitted** of it, shall, **while the conviction or acquittal remains in force**, **not be liable to be tried again**:
+- for the **same offence**; or
+- on the **same facts** for any other offence for which a different charge might have been made under **s. 236**, or for which he might have been convicted under **s. 237**.
+:::
+
+## The conditions for the bar
+1. A **previous trial**.
+2. By a **court of competent jurisdiction**.
+3. Ending in a **conviction or acquittal**.
+4. Which **remains in force** (not set aside on appeal or revision).
+5. A second trial for the **same offence**, or on the **same facts** for an offence that could have been charged or convicted under ss. 236 and 237.
+
+## The exceptions
+:::cram
+Section 403(2) || A **distinct offence** for which a **separate charge** could have been made at the first trial under s. 235(1) || May be tried for it separately
+Section 403(3) || An act causing **consequences** that, with the act, make a **different offence**, where the consequences had **not happened**, or weren't known, at the time of conviction || A **new trial** for the new offence
+Section 403(4) || The first court was **not competent** to try the offence later charged || May be tried for that offence
+Section 403(5) || Saves **s. 26 of the General Clauses Act** and s. 188 of the Code
+:::
+
+**The classic example for s. 403(3):** A is tried for causing **grievous hurt** to B and convicted. B later **dies** of the injuries. A may be tried again for **culpable homicide or qatl**, because B's death had not happened at the time of the first trial.
+
+:::law Explanation
+The **dismissal of a complaint**, the **stopping of proceedings** under **s. 249**, or the **discharge** of the accused, is **not an acquittal** for the purposes of this section.
+:::
+
+:::warn Discharge is not acquittal
+A **discharged** accused may be **tried again** if new evidence appears; only a **conviction or acquittal** creates the bar. But note: an order under **s. 249-A** (Magistrate) or **s. 265-K** (Court of Session), where the charge is **groundless**, is a real **acquittal**, so it **does** attract s. 403.
+:::
+
+## The constitutional protection
+:::law Article 13(a), Constitution of Pakistan
+No person shall be **prosecuted or punished for the same offence more than once**.
+:::
+
+Also **s. 26 of the General Clauses Act 1897**: where an act is an offence under two laws, the offender may be prosecuted under either or both, but **not punished twice** for the same offence.
+
+:::trick The three shields
+**Article 13(a)** (the Constitution), **section 403** (the CrPC), **section 26** (the General Clauses Act). One trial, one punishment.
+:::
+
+===
+
+# Putting it together: a model answer
+
+**Question:** *Distinguish between appeal and revision. Can the High Court in revision convert an acquittal into a conviction?*
+
+1. **Introduction:** both are remedies against a criminal court's decision, but they differ in nature, scope and powers.
+2. **Appeal:** define it; a statutory right (s. 404); filed as a petition with a copy of the judgment (s. 419); on facts and law (s. 418); the forums (ss. 408, 410, 411-A); the powers (s. 423); no enhancement in the convict's appeal.
+3. **Revision:** define it; supervisory and discretionary; s. 435 (calling for records: correctness, legality, propriety, regularity); s. 439 (the High Court's powers); s. 439-A (the Sessions Judge's powers).
+4. **The table of differences:** right vs discretion; facts and law vs legality and propriety; enhancement; acquittal; no revision where an appeal lay (s. 439(5)).
+5. **The specific question:** **no.** Section 439(4) expressly says nothing authorises the High Court to **convert a finding of acquittal into one of conviction**. In revision it may **set aside** an acquittal and order a **retrial**, but it cannot itself convict. To convict, an **appeal against acquittal** under s. 417 is needed.
+6. **Conclusion:** appeal is a right of rehearing; revision is a discretionary power of supervision. The High Court in revision can't convict an acquitted person.
+
+:::tip How to score
+Name the **section** for every point, use a **table** for any "difference" question, add an **example**, and end with one line answering the exact question.
+:::
+`;
+
+
+/* ==========================================================
+   CRIMINAL PROCEDURE II (LLB 424): Clear Read, Last-Minute Read, Tips
+   ========================================================== */
+BOOKS.crpc.clear = String.raw`
+# Topics 1 to 3: Pardon, the accused as witness, compounding
+
+## Tender of pardon (sections 337 to 339)
+- **Accomplice:** a person "directly or indirectly concerned in or privy to" the offence, used as a witness against his partners. His evidence needs **corroboration** (QSO Article 129(b)). One who accepts a pardon is an **approver**.
+- **Who grants it:** s. 337, the **officer-in-charge of the prosecution** in the district, at any stage of investigation, inquiry or trial; s. 338, the **High Court or Court of Session** before judgment (or it directs the prosecution to).
+- **Conditions:** an offence the section covers; the person concerned in it; to obtain his evidence; a **full and true disclosure** of everything and **everyone**; **hurt or qatl: the victim's or heirs' permission**; acceptance.
+- **Effects:** reasons recorded (1A); examined as a **witness** (2); **detained** till the trial ends unless on bail (3). If the **Public Prosecutor certifies** he concealed or lied, he may be **tried**, and his statement used against him; no false-evidence prosecution without High Court sanction (s. 339).
+
+## Section 340(2) vs section 342
+:::compare Section 340(2) | Section 342
+The accused as a **witness on oath** || The **court questions** the accused
+Cross-examined || No cross-examination
+Protected from questions on other offences and bad character (with three exceptions) || No punishment for silence or lies, but an **inference** may be drawn
+:::
+**The right to a defence and to be a witness is section 340:** (1) a pleader as of right; (2) evidence on oath. Section 342: questions after the prosecution evidence, **no oath** (s. 342(4)). The text says "shall", but under **Article 13(b)** no accused can be **compelled** to be a witness against himself.
+
+## Compounding (section 345)
+- **Compoundable:** listed in the s. 345 tables; table 1 **without** permission, table 2 **with the court's permission**. **Non-compoundable:** everything else (offences against society or the state).
+- **Who:** the person named, usually the **victim**; in **qatl-i-amd**, the **heirs**, subject to PPC s. 311; for a **minor, idiot or lunatic**, a person **competent to contract** for him, **with permission** (s. 345(4)); **abetment and attempt** likewise (s. 345(3)).
+- **After conviction, with an appeal pending:** the appellate court's **leave** (s. 345(5)); the High Court or Sessions Court in **revision** may allow it (s. 345(5A)); **karo kari** offences only on conditions (s. 345(2A)); nothing outside s. 345 and PPC s. 311 (s. 345(7)).
+- **Effect:** **composition = acquittal** (s. 345(6)), so **s. 403** bars a retrial. But in murder and honour crimes the court may still award **ta'zir** (PPC s. 311).
+
+===
+
+# Topics 4 to 6: Evidence, judgment, statements
+
+## Recording evidence (sections 353 to 363)
+- In the **presence of the accused** or his pleader (s. 353).
+- **Written** in the language of the court, **signed** by the judge (s. 356); a **memorandum** of substance in some Magistrates' trials (s. 355).
+- **Narrative**, not question and answer, ordinarily; particular questions may be recorded (s. 359). Contrast: the **accused's** examination is **question and answer** (s. 364).
+- **Read over** to the witness and corrected (s. 360); **demeanour** remarks (s. 363).
+- **Oath:** yes, for witnesses (Oaths Act and QSO); **not** for the accused except under s. 340(2) (s. 342(4)); child witnesses may be heard without one if they understand the questions.
+- **Cross-examination:** yes, of every witness; not of the accused under s. 342.
+- **Language:** interpreted to the **witness** (s. 360(3)); to the **accused** in open court, or to his **pleader** (s. 361).
+
+## Judgment (sections 366 to 371)
+- **Pronounced** in **open court**, immediately or on notice; the whole read, or the operative part explained; the accused present (s. 366).
+- **Contents:** the **points** for determination, the **decision**, the **reasons**; **dated and signed** in open court; on conviction, the **offence, section and sentence**; alternative judgment if unsure of two sections; on acquittal, an order to **release**; **reasons** if death isn't imposed for a capital offence (s. 367).
+- Death: "**hanged by the neck till he is dead**" (s. 368). **No alteration** except clerical errors (s. 369). A **free copy** to the convict (s. 371).
+
+## Statements and confessions (section 164 with section 364)
+- A **Magistrate** (first class, or specially empowered second class), **not police**, during investigation or before the trial.
+- **(1-A):** a statement may be recorded in the **accused's presence**, with the right to **cross-examine**.
+- **Confession:** **warn** him he is not bound to confess and it may be used against him; satisfy himself it is **voluntary**; record **every question and answer** in full (s. 364); read over; **signed by the accused and the Magistrate**; **certificate** at the foot.
+- **Why:** a confession to the **police** is **inadmissible** (QSO Article 38).
+
+===
+
+# Topics 7 and 8: Special sections and softening sentences
+
+## Sections 374, 376, 382-A, 382-B
+:::cram
+Section 374 || A Sessions Court's **death sentence** goes to the **High Court**; not executed unless **confirmed**
+Section 376 || The High Court may **confirm**, pass another sentence, **annul** and convict or order a **new trial**, or **acquit**; no confirmation until the appeal period ends or the appeal is decided
+Section 382-A || A sentence under s. 476 or **under one year**: with **bail**, not executed until the **appeal period** or the **appeal** is over
+Section 382-B || The court **shall** consider **pre-trial custody** when awarding imprisonment ("shall" since 1979)
+:::
+
+## Suspension, remission, commutation
+:::cram
+Suspension || **Pause** the execution; the sentence remains || s. 401; s. 426 pending appeal
+Remission || **Reduce** the amount, same kind || s. 401
+Commutation || **Change** to a lighter kind || s. 402: death, life, rigorous, simple, fine
+Pardon || **Wipe out** || The President, Article 45
+:::
+- **s. 401:** the Provincial Government; conditional or not; **not for karo kari** offences; the judge's opinion may be called; a broken condition means cancellation and arrest.
+- **s. 402:** commutation **without consent**, only **down** the ladder.
+- **s. 402-A:** the President for death sentences. **s. 402-B:** not where the President has acted. **s. 402-C:** Chapter XVI PPC: **the victim's or heirs' consent** needed.
+
+## Section 426 (very important)
+- **(1)** The appellate court may **suspend** the sentence and grant **bail**, **with reasons in writing**.
+- **(1A)** Bail **as of right** if the appeal is undecided after **6 months** (up to 3 years), **1 year** (3 to 7 years), **2 years** (over 7 years or life). Exceptions: previous convicts for capital or life offences, hardened, desperate or dangerous criminals, terrorism.
+- **(2)** The High Court may do it for subordinate courts. **(2A)** Temporary bail to file an appeal. **(2B)** On special leave to the Supreme Court. **(3)** Time on bail **excluded** from the sentence.
+
+===
+
+# Topics 9 to 12: Appeal, revision, double jeopardy
+
+## Appeal
+- **No appeal unless the law gives one** (s. 404). A **written petition** with a **copy of the judgment** (s. 419); on **fact and law** (s. 418); **summary dismissal** possible (s. 421); no appeal after a **guilty plea** except on the sentence (s. 412).
+- **Forums:** Magistrate or Assistant Sessions Judge to the **Sessions Court** (s. 408), but **over four years** to the **High Court**; Sessions Judge or Additional Sessions Judge to the **High Court** (s. 410); High Court original jurisdiction to a **Division Bench** (s. 411-A); then the **Supreme Court**.
+- **Against acquittal (s. 417):** the **Government** through the Public Prosecutor; the **complainant** with **special leave** (apply within **60 days**); an **aggrieved person** within **30 days**. Courts reverse only perverse acquittals: the **double presumption of innocence**.
+- **Powers (s. 423):** in an acquittal appeal, reverse, retry, convict; in a conviction appeal, acquit, retry, alter, **reduce, but never enhance**.
+
+## Revision
+- **s. 435:** the High Court or Sessions Judge **calls for records**: **correctness, legality, propriety**, regularity; may suspend the sentence and grant bail.
+- **s. 439:** the High Court uses appellate powers, may **enhance** after hearing the accused; **can't convert acquittal into conviction** (4); **no revision where an appeal lay** (5).
+- **s. 439-A:** the **Sessions Judge** has the same powers over **Magistrates**; also an Additional Sessions Judge in transferred cases.
+
+:::compare Appeal | Revision
+A right || A discretion
+Fact and law || Legality and propriety
+No enhancement in the convict's appeal || The High Court can enhance
+Can convict on an acquittal appeal || Can't convert acquittal into conviction
+:::
+
+## Double jeopardy (section 403)
+- Tried by a **competent court**, **convicted or acquitted**, the decision **in force**: no retrial for the **same offence**, or on the **same facts** for an offence chargeable under ss. 236 and 237.
+- **Exceptions:** a **distinct offence** (s. 403(2)); **later consequences**, like the victim dying (s. 403(3)); the first court **not competent** (s. 403(4)).
+- **Not an acquittal:** dismissal of a complaint, stopping proceedings under s. 249, **discharge**. But **s. 249-A and s. 265-K acquittals** count.
+- **Also:** **Article 13(a)** of the Constitution; **s. 26** of the General Clauses Act.
+`;
+
+BOOKS.crpc.quick = String.raw`
+# Topics 1 to 7 in five minutes
+
+:::cram
+Accomplice || Concerned in or privy to the offence; needs corroboration (QSO Art. 129(b)) || Approver = an accomplice who accepts a pardon
+Who pardons || s. 337: prosecution officer-in-charge, any stage; s. 338: High Court or Sessions Court, before judgment || Hurt or qatl: the victim's or heirs' permission
+Conditions || A full and true disclosure about the offence and everyone in it
+Effects || Witness; custody till the trial ends; break it and be tried (s. 339)
+Section 340 || A pleader as of right; evidence on oath; cross-examined || Article 13(b): can't be compelled
+Section 342 || The court questions; no oath; no cross-examination; an inference may be drawn
+Section 345 || Table 1 without, table 2 with permission; the victim, the heirs, the guardian with permission || Composition = acquittal (s. 345(6)); PPC s. 311 ta'zir
+Evidence || In the accused's presence; written and signed; **narrative** (s. 359); read over; demeanour; oath for witnesses, not the accused; cross-examination yes; interpret if not understood (ss. 360, 361)
+Judgment || Open court; points, decision, reasons; offence, section, sentence; no alteration (s. 369); free copy (s. 371)
+Section 164 with 364 || A Magistrate, not police; warn; voluntary; every question and answer; signed by both; certificate
+Section 374 and 376 || Death sentence confirmed by the High Court; confirm, alter, annul, retry or acquit
+Section 382-A || Under one year, on bail: wait for the appeal
+Section 382-B || Pre-trial custody **shall** count
+:::
+
+===
+
+# Topics 8 to 12 in five minutes
+
+:::cram
+Suspension, remission, commutation, pardon || Pause, cut, change, clean
+Section 401 || Provincial Government suspends or remits; not for karo kari; a broken condition means arrest
+Section 402 || Commute down: death, life, rigorous, simple, fine
+Sections 402-A to 402-C || The President for death; not where the President acted; Chapter XVI PPC needs the victim's consent
+Section 426 || Appellate court suspends with reasons; bail as of right after 6 months, 1 year, 2 years (for 3, 7, over 7 years or life); bail time excluded
+Section 404 || No appeal unless the law gives one
+Forums || Magistrate or Assistant Sessions Judge to Sessions (over 4 years: High Court); Sessions to High Court; High Court to a Division Bench, then the Supreme Court
+Section 417 || Acquittal: Government via the Public Prosecutor; complainant with special leave (60 days); aggrieved person (30 days)
+Section 423 || Dismiss, reverse, retry, alter, reduce; never enhance in the convict's appeal
+Section 435 || Call for records: correctness, legality, propriety
+Section 439 || High Court: enhance after a hearing; no acquittal to conviction; no revision where an appeal lay
+Section 439-A || The Sessions Judge revises Magistrates
+Section 403 || Once convicted or acquitted, not tried again for the same offence or facts; exceptions for a distinct offence, later consequences, an incompetent court || Article 13(a)
+:::
+
+===
+
+# If you remember only this
+
+:::remember Ten lines to walk in with
+1. **Pardon:** the whole truth for freedom; s. 337 (prosecution), s. 338 (court); hurt or qatl needs the heirs' permission.
+2. **340 is the witness box** (oath, cross-examination); **342 is the judge's questions** (no oath).
+3. **Compounding = acquittal** (s. 345(6)); qatl by the heirs; the court can still give ta'zir (PPC s. 311).
+4. Evidence: **narrative** (s. 359); the accused's examination: **question and answer** (s. 364); interpret if not understood.
+5. Judgment: **points, decision, reasons**, plus **offence, section, sentence**; no alteration after signing.
+6. **Section 164:** a Magistrate, a warning, voluntariness, a certificate; **section 364:** every question and answer, signed by both.
+7. **374:** no execution of a death sentence without High Court confirmation. **382-B:** custody time **shall** count.
+8. **Pause, cut, change, clean.** **Section 426:** 6 months, 1 year, 2 years.
+9. **Appeal is a right; revision is a favour.** Revision can't turn an acquittal into a conviction (s. 439(4)).
+10. **Section 403** and **Article 13(a):** one trial, one punishment.
+:::
+
+:::tip The formula for every answer
+Name the section, explain it simply, give an example, add the constitutional angle where it fits, conclude in one line.
+:::
+`;
+
+BOOKS.crpc.tips = String.raw`
+# How to score in CrPC II
+
+- **Sir's outline is your question paper.** Each of the twelve topics has its own sub-questions. Answer **exactly those sub-points** in that order, under headings.
+- **Section 426 is flagged:** know (1), the 6 months, 1 year and 2 years rule in (1A), its exceptions, and (2) to (3).
+- **"Difference" questions are certain:** 340(2) vs 342, appeal vs revision, compoundable vs non-compoundable, suspension vs remission vs commutation, 382-A vs 382-B. Use **tables**.
+- **Cite the section, and the sub-section** where you can: s. 345(6), s. 439(4), s. 426(1A).
+- **Add the Constitution** where it fits: **Article 10A** (fair trial), **Article 13(a)** (double jeopardy), **Article 13(b)** (no compelled self-incrimination), **Article 45** (the President's pardon).
+- **Add the Islamic and PPC angle** for qatl and hurt: the heirs' consent (ss. 337, 338, 402-C), compounding by the heirs, ta'zir under **PPC s. 311**.
+
+## Plan your 75 minutes
+- **First 5 minutes:** read the paper; match each question to the outline topic.
+- **Split the rest by marks.**
+- **Last 10 minutes:** check every answer names its sections.
+
+===
+
+# Memory tricks
+
+:::trick Pardon is a deal
+The whole truth, about everyone, for freedom. Break it, and you're tried (s. 339).
+:::
+
+:::trick 340 is the witness box, 342 is the judge's questions
+Oath and cross-examination vs no oath and no cross-examination.
+:::
+
+:::trick Who compounds? The one who was hurt
+The victim, his heirs if he's dead, his guardian if he can't act. Never the state.
+:::
+
+:::trick Narrative for witnesses, question and answer for the accused
+s. 359 vs s. 364.
+:::
+
+:::trick The four Ps of a judgment
+Points, Pronouncement, Proof (reasons), Punishment.
+:::
+
+:::trick Section 164 is the room, section 364 is the pen
+Who, the warning, voluntary, the certificate; then every question and answer, read over, signed by both.
+:::
+
+:::trick Pause, Cut, Change, Clean
+Suspension, remission, commutation, pardon.
+:::
+
+:::trick The ladder of commutation
+Death, life, rigorous, simple, fine. Only down.
+:::
+
+:::trick Section 426: 3 / 7 / life, then 6 months / 1 year / 2 years
+:::
+
+:::trick Appeal is a right; revision is a favour
+And revision can't turn an acquittal into a conviction.
+:::
+
+:::trick The three shields against double jeopardy
+Article 13(a), section 403, General Clauses Act s. 26.
+:::
+
+===
+
+# Common mistakes
+
+:::warn Saying a Magistrate grants pardon under s. 337
+In Pakistan's current text, it is the **officer-in-charge of the prosecution in the district** (s. 337), or the **High Court or Court of Session** (s. 338).
+:::
+
+:::warn Forgetting the heirs in qatl and hurt
+No pardon (ss. 337, 338), no compounding outside s. 345, and no suspension, remission or commutation (s. 402-C) **without the victim's or heirs' consent**.
+:::
+
+:::warn Mixing up s. 340(2) and s. 342
+Only s. 340(2) is **on oath** with **cross-examination**. Section 342 has **no oath** (s. 342(4)).
+:::
+
+:::warn Compounding a non-compoundable offence
+Only offences in the **s. 345 tables** can be compounded (s. 345(7)), however much both sides want to settle.
+:::
+
+:::warn Recording a witness in question-and-answer form
+The rule is **narrative** (s. 359). Question and answer is for the **accused's examination** (s. 364).
+:::
+
+:::warn Letting the police record a confession
+Only a **Magistrate** under s. 164. A confession to the police is **inadmissible** (QSO Article 38).
+:::
+
+:::warn Mixing up 382-A and 382-B
+**382-A** postpones a **short** sentence pending appeal; **382-B** gives credit for **pre-trial custody**.
+:::
+
+:::warn Enhancing a sentence in the convict's own appeal
+Not allowed (s. 423). Only the **High Court in revision** can enhance (s. 439), after hearing him.
+:::
+
+:::warn Treating a discharge as an acquittal
+Dismissal, stopping under s. 249, or discharge is **not** an acquittal (s. 403, Explanation). But **s. 249-A and s. 265-K** orders **are** acquittals.
+:::
+
+===
+
+# Likely questions: Topics 1 to 7
+
+Tap a question to see an answer outline.
+
+:::q What is a tender of pardon? Who may grant it, on what conditions, and with what effect?
+Accomplice and approver; ss. 337 and 338 (who, when); the conditions (full and true disclosure; the heirs' permission in hurt or qatl); the effects (witness, custody, corroboration); s. 339 (breach). Conclude.
+:::
+
+:::q Distinguish s. 340(2) and s. 342. Which gives the accused the right to defence and to be a witness?
+Both sections' text; a comparison table; s. 342(4) no oath; Article 13(b); the answer: **s. 340**. Conclude.
+:::
+
+:::q Explain compounding of offences under s. 345.
+Meaning; compoundable vs non-compoundable; the two tables; who compounds (victim, heirs, guardian); ss. 345(3), (5), (5A), (2A), (7); the effect (acquittal, s. 345(6)); PPC ss. 309 to 311; double jeopardy. Conclude.
+:::
+
+:::q Describe the procedure of recording evidence in a criminal trial.
+s. 353 presence; ss. 355 and 356 writing and signing; s. 359 narrative; s. 360 read over; s. 363 demeanour; oath; cross-examination; ss. 360(3) and 361 language. Conclude.
+:::
+
+:::q How is a judgment pronounced, and what must it contain?
+s. 366 (open court, the modes, the presence of the accused, validity); s. 367 (points, decision, reasons, offence, section, sentence, alternative, acquittal, reasons for no death sentence); ss. 368, 369, 371. Conclude.
+:::
+
+:::q How are statements and confessions recorded under s. 164 read with s. 364?
+Who; when; s. 164(1-A); the warning; voluntariness; s. 364 question and answer, read over, signed; the certificate; why (QSO Article 38). Conclude.
+:::
+
+:::q Write notes on ss. 374, 376, 382-A and 382-B.
+Death confirmation and the High Court's powers; postponing short sentences on bail; credit for pre-trial custody ("shall"). Conclude.
+:::
+
+===
+
+# Likely questions: Topics 8 to 12
+
+:::q Define and distinguish suspension, remission and commutation. Explain s. 426.
+Definitions; a table; ss. 401, 402, 402-A to 402-C; Article 45; then s. 426 (1), (1A) with the 6 months, 1 year and 2 years and the exceptions, (2), (2A), (2B), (3). Conclude.
+:::
+
+:::q What is an appeal? Discuss the appellate forums and the powers of an appellate court.
+Definition; s. 404; s. 419 petition; s. 418 fact and law; forums (ss. 408, 410, 411-A, Supreme Court); against acquittal (s. 417); powers (s. 423), no enhancement. Conclude.
+:::
+
+:::q Distinguish appeal and revision.
+Definitions; a full table (right vs discretion, scope, enhancement, acquittal, s. 439(5)). Conclude.
+:::
+
+:::q Explain the revisional powers under ss. 435, 439 and 439-A.
+Meaning of revision; s. 435 calling for records; s. 439 powers and limits ((2), (4), (5), (6)); s. 439-A Sessions Judge. Conclude.
+:::
+
+:::q "No person shall be tried twice for the same offence." Discuss s. 403.
+The maxim; s. 403(1) conditions; exceptions (2), (3), (4) with the grievous-hurt-then-death example; the Explanation; ss. 249-A and 265-K; Article 13(a); s. 26 General Clauses Act. Conclude.
 :::
 `;
 
